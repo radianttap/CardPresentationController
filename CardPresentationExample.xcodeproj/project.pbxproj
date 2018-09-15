@@ -12,6 +12,7 @@
 		D05FF1DB214D53520017A263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1D9214D53520017A263 /* Main.storyboard */; };
 		D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DC214D53540017A263 /* Assets.xcassets */; };
 		D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */; };
+		D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1E8214D54B50017A263 /* CardPresentationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		D05FF1DC214D53540017A263 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D05FF1DF214D53540017A263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D05FF1E1214D53540017A263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D05FF1E8214D54B50017A263 /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		D05FF1C9214D53520017A263 = {
 			isa = PBXGroup;
 			children = (
+				D05FF1E7214D54970017A263 /* CardPresentationController */,
 				D05FF1D4214D53520017A263 /* Example */,
 				D05FF1D3214D53520017A263 /* Products */,
 			);
@@ -62,6 +65,14 @@
 				D05FF1E1214D53540017A263 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		D05FF1E7214D54970017A263 /* CardPresentationController */ = {
+			isa = PBXGroup;
+			children = (
+				D05FF1E8214D54B50017A263 /* CardPresentationController.swift */,
+			);
+			path = CardPresentationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */,
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,
 				D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */,
 			);
