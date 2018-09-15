@@ -38,7 +38,7 @@
 		D05FF1C9214D53520017A263 = {
 			isa = PBXGroup;
 			children = (
-				D05FF1D4214D53520017A263 /* CardPresentationExample */,
+				D05FF1D4214D53520017A263 /* Example */,
 				D05FF1D3214D53520017A263 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,7 +51,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D05FF1D4214D53520017A263 /* CardPresentationExample */ = {
+		D05FF1D4214D53520017A263 /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				D05FF1D5214D53520017A263 /* AppDelegate.swift */,
@@ -61,7 +61,7 @@
 				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
 				D05FF1E1214D53540017A263 /* Info.plist */,
 			);
-			path = CardPresentationExample;
+			path = Example;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
