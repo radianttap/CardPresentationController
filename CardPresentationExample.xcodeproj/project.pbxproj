@@ -12,6 +12,8 @@
 		D0519308214D60910047AB2D /* DequeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519303214D60910047AB2D /* DequeableView.swift */; };
 		D0519309214D60910047AB2D /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519304214D60910047AB2D /* ReusableView.swift */; };
 		D051930A214D60910047AB2D /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519305214D60910047AB2D /* NibLoadable.swift */; };
+		D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051930B214D6C690047AB2D /* CardTransitionManager.swift */; };
+		D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051930D214D6DD10047AB2D /* CardAnimator.swift */; };
 		D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1D5214D53520017A263 /* AppDelegate.swift */; };
 		D05FF1D8214D53520017A263 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1D7214D53520017A263 /* ViewController.swift */; };
 		D05FF1DB214D53520017A263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1D9214D53520017A263 /* Main.storyboard */; };
@@ -26,6 +28,8 @@
 		D0519303214D60910047AB2D /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
 		D0519304214D60910047AB2D /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		D0519305214D60910047AB2D /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		D051930B214D6C690047AB2D /* CardTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransitionManager.swift; sourceTree = "<group>"; };
+		D051930D214D6DD10047AB2D /* CardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimator.swift; sourceTree = "<group>"; };
 		D05FF1D2214D53520017A263 /* CardPresentationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardPresentationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05FF1D5214D53520017A263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05FF1D7214D53520017A263 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				D05FF1E8214D54B50017A263 /* CardPresentationController.swift */,
+				D051930B214D6C690047AB2D /* CardTransitionManager.swift */,
+				D051930D214D6DD10047AB2D /* CardAnimator.swift */,
 			);
 			path = CardPresentationController;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0519306214D60910047AB2D /* StoryboardLoadable.swift in Sources */,
+				D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */,
+				D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */,
 				D051930A214D60910047AB2D /* NibLoadable.swift in Sources */,
 				D0519308214D60910047AB2D /* DequeableView.swift in Sources */,
 				D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */,
@@ -339,7 +347,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CardPresentationExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,7 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CardPresentationExample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
