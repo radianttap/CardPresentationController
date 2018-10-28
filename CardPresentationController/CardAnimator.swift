@@ -36,7 +36,7 @@ private extension UIViewControllerContextTransitioning {
 	func recognize(_ vc: UIViewController) -> UIViewController? {
 		switch vc {
 		case let nc as UINavigationController:
-			return nc.topViewController
+			return nc.topViewController ?? nc
 
 		case let tbc as UITabBarController:
 			guard let vc = tbc.selectedViewController else { return tbc }
