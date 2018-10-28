@@ -28,11 +28,15 @@ private extension ViewController {
 		present(nc, animated: true) {
 			[weak vc] in
 			guard let vc = vc else { return }
+
 			//	and add Done button to dismiss the popup
 			let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
 			var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
 			buttonItems.append(bbi)
 			vc.navigationItem.leftBarButtonItems = buttonItems
+
+			//	Note: another (better) way to do this is through UIPopoverPresentationControllerDelegate methods
+			//	https://stackoverflow.com/questions/15689261/modal-segue-navigation-bar-disappears
 		}
 	}
 
