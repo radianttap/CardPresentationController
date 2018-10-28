@@ -24,11 +24,16 @@ private extension ViewController {
 
 		//	wrap inside NC
 		let nc = UINavigationController(rootViewController: vc)
-		//	and add Done button to dismiss the popup
-		let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
-		vc.navigationItem.leftBarButtonItem = bbi
 
-		present(nc, animated: true, completion: nil)
+		present(nc, animated: true) {
+			[weak vc] in
+			guard let vc = vc else { return }
+			//	and add Done button to dismiss the popup
+			let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
+			var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
+			buttonItems.append(bbi)
+			vc.navigationItem.leftBarButtonItems = buttonItems
+		}
 	}
 
 	/// Display popup as inset card
