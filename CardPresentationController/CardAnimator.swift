@@ -15,6 +15,16 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		guard
+			let fromVC = transitionContext.viewController(forKey: .from),
+			let toVC = transitionContext.viewController(forKey: .to)
+		else {
+			return
+		}
+		let containerView = transitionContext.containerView
+		let duration = transitionDuration(using: transitionContext)
+
+		
 	}
 }
 
