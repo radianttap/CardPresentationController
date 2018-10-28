@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D026AF392185EAB400568323 /* PlainPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026AF382185EAB400568323 /* PlainPopupController.swift */; };
+		D026AF3B2185EE0E00568323 /* PlainPopupController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D026AF3A2185EE0E00568323 /* PlainPopupController.storyboard */; };
 		D0519306214D60910047AB2D /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519300214D60910047AB2D /* StoryboardLoadable.swift */; };
 		D0519307214D60910047AB2D /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519301214D60910047AB2D /* Embeddable.swift */; };
 		D0519308214D60910047AB2D /* DequeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519303214D60910047AB2D /* DequeableView.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D026AF382185EAB400568323 /* PlainPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainPopupController.swift; sourceTree = "<group>"; };
+		D026AF3A2185EE0E00568323 /* PlainPopupController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlainPopupController.storyboard; sourceTree = "<group>"; };
 		D0519300214D60910047AB2D /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		D0519301214D60910047AB2D /* Embeddable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
 		D0519303214D60910047AB2D /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
@@ -106,6 +110,8 @@
 				D05FF1DC214D53540017A263 /* Assets.xcassets */,
 				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
 				D05FF1E1214D53540017A263 /* Info.plist */,
+				D026AF382185EAB400568323 /* PlainPopupController.swift */,
+				D026AF3A2185EE0E00568323 /* PlainPopupController.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 			files = (
 				D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */,
 				D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */,
+				D026AF3B2185EE0E00568323 /* PlainPopupController.storyboard in Resources */,
 				D05FF1DB214D53520017A263 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,6 +201,7 @@
 				D0519306214D60910047AB2D /* StoryboardLoadable.swift in Sources */,
 				D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */,
 				D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */,
+				D026AF392185EAB400568323 /* PlainPopupController.swift in Sources */,
 				D051930A214D60910047AB2D /* NibLoadable.swift in Sources */,
 				D0519308214D60910047AB2D /* DequeableView.swift in Sources */,
 				D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */,
