@@ -24,20 +24,9 @@ private extension ViewController {
 
 		//	wrap inside NC
 		let nc = UINavigationController(rootViewController: vc)
+		addDismissBarButton(to: vc)
 
-		present(nc, animated: true) {
-			[weak vc] in
-			guard let vc = vc else { return }
-
-			//	and add Done button to dismiss the popup
-			let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
-			var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
-			buttonItems.append(bbi)
-			vc.navigationItem.leftBarButtonItems = buttonItems
-
-			//	Note: another (better) way to do this is through UIPopoverPresentationControllerDelegate methods
-			//	https://stackoverflow.com/questions/15689261/modal-segue-navigation-bar-disappears
-		}
+		present(nc, animated: true)
 	}
 
 	/// Display popup as inset card
@@ -46,12 +35,11 @@ private extension ViewController {
 	@IBAction func popupCard(_ sender: UIButton) {
 		let vc = PlainPopupController.instantiate()
 
-		//	make it custom
-		vc.modalPresentationStyle = .custom
-		//	so we can use our Card transition
-		vc.transitioningDelegate = transitionManager
+		//	wrap inside NC
+		let nc = UINavigationController(rootViewController: vc)
+		addDismissBarButton(to: vc)
 
-		present(vc, animated: true, completion: nil)
+		presentCard(nc, using: transitionManager, animated: true)
 	}
 
 	/// Dismisses whatever popup is currently shown
@@ -59,5 +47,19 @@ private extension ViewController {
 	/// - Parameter sender: An UI object that initiated dismissal
 	@IBAction func dismissPopup(_ sender: Any) {
 		dismiss(animated: true)
+	}
+}
+
+
+fileprivate extension ViewController {
+	func addDismissBarButton(to vc: UIViewController) {
+		//	and add Done button to dismiss the popup
+		let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
+		var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
+		buttonItems.append(bbi)
+		vc.navigationItem.leftBarButtonItems = buttonItems
+
+		//	Note: another (better) way to do this is through UIPopoverPresentationControllerDelegate methods
+		//	https://stackoverflow.com/questions/15689261/modal-segue-navigation-bar-disappears
 	}
 }
