@@ -21,10 +21,10 @@ private extension ViewController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupDefault(_ sender: UIButton) {
 		let vc = PlainPopupController.instantiate()
+		addDismissBarButton(to: vc)
 
 		//	wrap inside NC
 		let nc = UINavigationController(rootViewController: vc)
-		addDismissBarButton(to: vc)
 
 		present(nc, animated: true)
 	}
@@ -34,10 +34,11 @@ private extension ViewController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupCard(_ sender: UIButton) {
 		let vc = PlainPopupController.instantiate()
-
-		//	wrap inside NC
-		let nc = UINavigationController(rootViewController: vc)
 		addDismissBarButton(to: vc)
+
+		//	wrap inside custom NC, so we can enforce statusBarStyle
+		let nc = PopupNavigationController(rootViewController: vc)
+		nc.modalPresentationCapturesStatusBarAppearance = true
 
 		presentCard(nc, using: transitionManager, animated: true)
 	}

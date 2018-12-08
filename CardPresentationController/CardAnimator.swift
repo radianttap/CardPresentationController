@@ -28,18 +28,18 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	Configuration
 
 	var spacing: CGFloat = 34
-	var topCornerRadius: CGFloat = 20
+	var topCornerRadius: CGFloat = 8
 	var fadeAlpha: CGFloat = 0.8
 
 	//	Local stuff
 
-	private var statusBarStyle: UIStatusBarStyle = UIApplication.shared.statusBarStyle
 	private var statusBarFrame: CGRect = UIApplication.shared.statusBarFrame
+	private var initialBarStyle: UIBarStyle?
 
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-		return 0.3
+		return 0.4
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -68,6 +68,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			toView.frame = toStartFrame
 			containerView.addSubview(toView)
 
+			let fromNC = fromVC as? UINavigationController
+			initialBarStyle = fromNC?.navigationBar.barStyle
+
 			let pa = UIViewPropertyAnimator(duration: duration, dampingRatio: ratio) {
 				[weak self] in
 				guard let self = self else { return }
@@ -77,11 +80,15 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				fromView.maskTopCard(cornerRadius: self.topCornerRadius)
 				toView.maskTopCard(cornerRadius: self.topCornerRadius)
 				fromView.alpha = self.fadeAlpha
+				if let nc = fromVC as? UINavigationController {
+					nc.navigationBar.barStyle = .black
+				}
 			}
 			pa.addCompletion {
 				[weak self] _ in
-				transitionContext.completeTransition(true)
 				self?.direction = .dismissal
+
+				transitionContext.completeTransition(true)
 			}
 			pa.startAnimation()
 
@@ -90,18 +97,28 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let toEndFrame = transitionContext.finalFrame(for: toVC)
 
 			let pa = UIViewPropertyAnimator(duration: duration, dampingRatio: ratio) {
+				[weak self] in
+
 				fromView.maskTopCard(cornerRadius: 0)
 				toView.maskTopCard(cornerRadius: 0)
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				toView.alpha = 1
 				fromView.alpha = 1
+
+				if
+					let nc = toVC as? UINavigationController,
+					let barStyle = self?.initialBarStyle
+				{
+					nc.navigationBar.barStyle = barStyle
+				}
 			}
 			pa.addCompletion {
 				[weak self] _ in
+				self?.direction = .presentation
+
 				transitionContext.completeTransition(true)
 				fromView.removeFromSuperview()
-				self?.direction = .presentation
 			}
 			pa.startAnimation()
 			break

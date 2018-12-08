@@ -23,6 +23,7 @@
 		D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */; };
 		D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1E8214D54B50017A263 /* CardPresentationController.swift */; };
 		D0AC738121BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */; };
+		D0AC738321BC88D800054FC3 /* PopupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D05FF1E1214D53540017A263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05FF1E8214D54B50017A263 /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
 		D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit-CardPresentationExtensions.swift"; sourceTree = "<group>"; };
+		D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				D05FF1DC214D53540017A263 /* Assets.xcassets */,
 				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
 				D05FF1E1214D53540017A263 /* Info.plist */,
+				D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */,
 				D026AF382185EAB400568323 /* PlainPopupController.swift */,
 				D026AF3A2185EE0E00568323 /* PlainPopupController.storyboard */,
 			);
@@ -211,6 +214,7 @@
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,
 				D0519307214D60910047AB2D /* Embeddable.swift in Sources */,
 				D0519309214D60910047AB2D /* ReusableView.swift in Sources */,
+				D0AC738321BC88D800054FC3 /* PopupNavigationController.swift in Sources */,
 				D0AC738121BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift in Sources */,
 				D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */,
 			);
