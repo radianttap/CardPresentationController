@@ -26,3 +26,17 @@ extension UIViewController {
 	}
 
 }
+
+extension UIView {
+	func maskTopCard(cornerRadius: CGFloat = 24) {
+		let corners: UIRectCorner = [.topLeft, .topRight]
+		let maskPath = UIBezierPath(roundedRect: bounds,
+									byRoundingCorners: corners,
+									cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+		let maskLayer = CAShapeLayer()
+		maskLayer.frame = bounds
+		print(bounds)
+		maskLayer.path = maskPath.cgPath
+		layer.mask = maskLayer
+	}
+}
