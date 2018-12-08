@@ -22,6 +22,7 @@
 		D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DC214D53540017A263 /* Assets.xcassets */; };
 		D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */; };
 		D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1E8214D54B50017A263 /* CardPresentationController.swift */; };
+		D0AC738121BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D05FF1DF214D53540017A263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D05FF1E1214D53540017A263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05FF1E8214D54B50017A263 /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
+		D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit-CardPresentationExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				D05FF1E8214D54B50017A263 /* CardPresentationController.swift */,
 				D051930B214D6C690047AB2D /* CardTransitionManager.swift */,
 				D051930D214D6DD10047AB2D /* CardAnimator.swift */,
+				D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */,
 			);
 			path = CardPresentationController;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,
 				D0519307214D60910047AB2D /* Embeddable.swift in Sources */,
 				D0519309214D60910047AB2D /* ReusableView.swift in Sources */,
+				D0AC738121BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift in Sources */,
 				D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,12 @@
 import UIKit
 
 final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+	enum Direction {
+		case presentation
+		case dismissal
+	}
+	var direction: Direction = .presentation
+
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
 		return 0.3
@@ -24,11 +30,25 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		let containerView = transitionContext.containerView
 		let duration = transitionDuration(using: transitionContext)
 
-		
+		switch direction {
+		case .presentation:
+			containerView.addSubview(toVC.view)
+			break
+
+		case .dismissal:
+			fromVC.view.removeFromSuperview()
+			break
+		}
+
+
+		transitionContext.completeTransition(true)
 	}
 }
 
 
+private extension CardAnimator {
+
+}
 
 
 

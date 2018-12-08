@@ -8,19 +8,21 @@
 
 import UIKit
 
-final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
+public final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
 	private lazy var animator = CardAnimator()
 
-	func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
 		let pc = CardPresentationController(presentedViewController: presented, presenting: presenting)
 		return pc
 	}
 
-	func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+	public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		animator.direction = .presentation
 		return animator
 	}
 
-	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+	public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		animator.direction = .dismissal
 		return animator
 	}
 }

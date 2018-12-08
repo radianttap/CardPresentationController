@@ -8,6 +8,6 @@
 
 import UIKit
 
-class CardPresentationController: UIPresentationController {
+open class CardPresentationController: UIPresentationController {
 
 }
