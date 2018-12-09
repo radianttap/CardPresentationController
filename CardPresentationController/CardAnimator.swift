@@ -41,7 +41,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-		return 0.4
+		return 0.65
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -54,8 +54,6 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			return
 		}
 		let containerView = transitionContext.containerView
-		let duration = transitionDuration(using: transitionContext)
-		let ratio: CGFloat = 0.86
 
 		switch direction {
 		case .presentation:
@@ -73,7 +71,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let fromNC = fromVC as? UINavigationController
 			initialBarStyle = fromNC?.navigationBar.barStyle
 
-			let pa = UIViewPropertyAnimator(duration: duration, dampingRatio: ratio) {
+			animate({
 				[weak self] in
 				guard let self = self else { return }
 
@@ -87,20 +85,18 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				} else {
 					fromView.alpha = self.fadeAlpha
 				}
-			}
-			pa.addCompletion {
+			}, completion: {
 				[weak self] _ in
 				self?.direction = .dismissal
 
 				transitionContext.completeTransition(true)
-			}
-			pa.startAnimation()
+			})
 
 		case .dismissal:
 			let fromEndFrame = initialTransitionFrame
 			let toEndFrame = transitionContext.finalFrame(for: toVC)
 
-			let pa = UIViewPropertyAnimator(duration: duration, dampingRatio: ratio) {
+			animate({
 				[weak self] in
 
 				fromView.cardUnmask()
@@ -116,23 +112,39 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				{
 					nc.navigationBar.barStyle = barStyle
 				}
-			}
-			pa.addCompletion {
+			}, completion: {
 				[weak self] _ in
 				self?.direction = .presentation
 
 				transitionContext.completeTransition(true)
 				fromView.removeFromSuperview()
-			}
-			pa.startAnimation()
-			break
+			})
 		}
 	}
 }
 
 
 private extension CardAnimator {
+	func animate(_ animation: @escaping () -> Void, completion: @escaping (UIViewAnimatingPosition) -> Void) {
+		//	entire spring animation should not last more than transitionDuration
+		//	thus these values should produce 0.6
+		let damping: CGFloat = 0.8
+		let response: CGFloat = 0.45
 
+		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
+		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
+		pa.addAnimations(animation)
+		pa.addCompletion(completion)
+
+		let ts = CACurrentMediaTime()
+		pa.addCompletion {
+			_ in
+			let te = CACurrentMediaTime()
+			print(te - ts)
+		}
+
+		pa.startAnimation()
+	}
 }
 
 
@@ -161,4 +173,21 @@ private extension UIViewControllerContextTransitioning {
 			return vc
 		}
 	}
+}
+
+
+private extension UISpringTimingParameters {
+	/// A design-friendly way to create a spring timing curve.
+	///	See: https://medium.com/@nathangitter/building-fluid-interfaces-ios-swift-9732bb934bf5
+	///
+	/// - Parameters:
+	///   - damping: The 'bounciness' of the animation. Value must be between 0 and 1.
+	///   - response: The 'speed' of the animation.
+	///   - initialVelocity: The vector describing the starting motion of the property. Optional, default is `.zero`.
+	convenience init(damping: CGFloat, response: CGFloat, initialVelocity: CGVector = .zero) {
+		let stiffness = pow(2 * .pi / response, 2)
+		let damp = 4 * .pi * damping / response
+		self.init(mass: 1, stiffness: stiffness, damping: damp, initialVelocity: initialVelocity)
+	}
+
 }
