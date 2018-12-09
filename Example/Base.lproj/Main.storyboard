@@ -82,23 +82,45 @@
                                     <constraint firstAttribute="trailing" secondItem="5K0-Qm-Nmn" secondAttribute="trailing" id="kCJ-oy-Bfa"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYw-t1-vEd">
+                                <rect key="frame" x="0.0" y="579" width="375" height="88"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="zLA-gP-UqZ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MqC-J9-uYC">
+                                <rect key="frame" x="0.0" y="579" width="375" height="88"/>
+                                <connections>
+                                    <action selector="expandCard:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="93u-Uu-TEQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zYw-t1-vEd" secondAttribute="trailing" id="ESb-OR-lS7"/>
+                            <constraint firstItem="MqC-J9-uYC" firstAttribute="leading" secondItem="zYw-t1-vEd" secondAttribute="leading" id="EhH-qm-4Yk"/>
                             <constraint firstItem="cTK-Yc-YQv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GdZ-DW-1hf"/>
+                            <constraint firstItem="MqC-J9-uYC" firstAttribute="height" secondItem="zYw-t1-vEd" secondAttribute="height" id="IFk-h5-VZA"/>
+                            <constraint firstItem="zYw-t1-vEd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Pg1-ew-Pza"/>
+                            <constraint firstItem="MqC-J9-uYC" firstAttribute="top" secondItem="zYw-t1-vEd" secondAttribute="top" id="Yt2-Cj-GcT"/>
                             <constraint firstItem="cTK-Yc-YQv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jOq-uq-KbV"/>
+                            <constraint firstItem="MqC-J9-uYC" firstAttribute="width" secondItem="zYw-t1-vEd" secondAttribute="width" id="vdg-1h-7iQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zYw-t1-vEd" secondAttribute="bottom" id="w1t-zI-pi2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="9X6-Bh-BNO"/>
                     <connections>
                         <outlet property="cardPopupButton" destination="4TM-Ls-ln9" id="wnU-6H-mRs"/>
+                        <outlet property="container" destination="zYw-t1-vEd" id="ned-Ia-yqR"/>
                         <outlet property="defaultPopupButton" destination="5K0-Qm-Nmn" id="bsQ-3d-ncB"/>
+                        <outlet property="expandPopupButton" destination="MqC-J9-uYC" id="MJA-W8-UlH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="134"/>
+            <point key="canvasLocation" x="61.600000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

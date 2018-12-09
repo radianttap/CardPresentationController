@@ -12,6 +12,22 @@ final class ViewController: UIViewController {
 	@IBOutlet private weak var defaultPopupButton: UIButton!
 	@IBOutlet private weak var cardPopupButton: UIButton!
 
+	@IBOutlet private weak var expandPopupButton: UIButton!
+	@IBOutlet private weak var container: UIView!
+
+	//	Embedded
+
+	private var controller: PlainPopupController?
+
+	//	View lifecycle
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		let vc = PlainPopupController.instantiate()
+		embed(controller: vc, into: container)
+		controller = vc
+	}
 }
 
 private extension ViewController {
@@ -40,6 +56,20 @@ private extension ViewController {
 		nc.modalPresentationCapturesStatusBarAppearance = true
 
 		presentCard(nc, animated: true)
+	}
+
+	/// Expand popup as inset card
+	///
+	/// - Parameter sender: button which initiated this action
+	@IBAction func expandCard(_ sender: UIButton) {
+		let vc = PlainPopupController.instantiate()
+		vc.modalPresentationCapturesStatusBarAppearance = true
+
+		let transitionManager = CardTransitionManager()
+		let f = container.convert(sender.bounds, to: view.window!)
+		transitionManager.initialTransitionFrame = f
+
+		presentCard(vc, using: transitionManager, animated: true)
 	}
 }
 
