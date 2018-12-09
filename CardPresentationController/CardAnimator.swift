@@ -27,8 +27,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	//	Configuration
 
-	var spacing: CGFloat = 34
-	var topCornerRadius: CGFloat = 8
+	var verticalSpacing: CGFloat = 17
+	var horizontalInset: CGFloat = 16
+	var topCornerRadius: CGFloat = 12
 	var fadeAlpha: CGFloat = 0.8
 
 	//	Local stuff
@@ -58,11 +59,11 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		switch direction {
 		case .presentation:
 			let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
-			let fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: 0, bottom: 0, right: 0))
+			let fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: horizontalInset, bottom: 0, right: horizontalInset))
 
 			let toStartFrame = initialTransitionFrame
 			let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
-			let toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + spacing, left: 0, bottom: 0, right: 0))
+			let toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + verticalSpacing, left: 0, bottom: 0, right: 0))
 
 			toView.clipsToBounds = true
 			toView.frame = toStartFrame
