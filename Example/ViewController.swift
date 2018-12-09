@@ -12,7 +12,7 @@ final class ViewController: UIViewController {
 	@IBOutlet private weak var defaultPopupButton: UIButton!
 	@IBOutlet private weak var cardPopupButton: UIButton!
 
-	private lazy var transitionManager: CardTransitionManager = CardTransitionManager()
+//	private lazy var transitionManager: CardTransitionManager = CardTransitionManager()
 }
 
 private extension ViewController {
@@ -40,7 +40,8 @@ private extension ViewController {
 		let nc = PopupNavigationController(rootViewController: vc)
 		nc.modalPresentationCapturesStatusBarAppearance = true
 
-		presentCard(nc, using: transitionManager, animated: true)
+//		presentCard(nc, using: transitionManager, animated: true)
+		presentCard(nc, animated: true)
 	}
 
 	/// Dismisses whatever popup is currently shown
