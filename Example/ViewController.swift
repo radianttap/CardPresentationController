@@ -89,8 +89,5 @@ fileprivate extension ViewController {
 		var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
 		buttonItems.append(bbi)
 		vc.navigationItem.leftBarButtonItems = buttonItems
-
-		//	Note: another (better) way to do this is through UIPopoverPresentationControllerDelegate methods
-		//	https://stackoverflow.com/questions/15689261/modal-segue-navigation-bar-disappears
 	}
 }
