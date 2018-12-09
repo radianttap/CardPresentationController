@@ -12,7 +12,6 @@ final class ViewController: UIViewController {
 	@IBOutlet private weak var defaultPopupButton: UIButton!
 	@IBOutlet private weak var cardPopupButton: UIButton!
 
-//	private lazy var transitionManager: CardTransitionManager = CardTransitionManager()
 }
 
 private extension ViewController {
@@ -40,20 +39,19 @@ private extension ViewController {
 		let nc = PopupNavigationController(rootViewController: vc)
 		nc.modalPresentationCapturesStatusBarAppearance = true
 
-//		presentCard(nc, using: transitionManager, animated: true)
 		presentCard(nc, animated: true)
 	}
+}
 
+
+fileprivate extension ViewController {
 	/// Dismisses whatever popup is currently shown
 	///
 	/// - Parameter sender: An UI object that initiated dismissal
 	@IBAction func dismissPopup(_ sender: Any) {
 		dismiss(animated: true)
 	}
-}
 
-
-fileprivate extension ViewController {
 	func addDismissBarButton(to vc: UIViewController) {
 		//	and add Done button to dismiss the popup
 		let bbi = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(ViewController.dismissPopup))
