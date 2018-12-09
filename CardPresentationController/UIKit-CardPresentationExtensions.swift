@@ -53,15 +53,18 @@ extension UIViewController {
 }
 
 extension UIView {
-	func maskTopCard(cornerRadius: CGFloat = 24) {
-		let corners: UIRectCorner = [.topLeft, .topRight]
-		let maskPath = UIBezierPath(roundedRect: bounds,
-									byRoundingCorners: corners,
-									cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-		let maskLayer = CAShapeLayer()
-		maskLayer.frame = bounds
-		print(bounds)
-		maskLayer.path = maskPath.cgPath
-		layer.mask = maskLayer
+	func cardMaskTopCorners(using cornerRadius: CGFloat = 24) {
+		var f = self.bounds
+
+		let maskView = UIView(frame: f)
+		maskView.backgroundColor = .white
+		maskView.clipsToBounds = true
+		maskView.layer.cornerRadius = cornerRadius
+
+		self.mask = maskView
+	}
+
+	func cardUnmask() {
+		mask = nil
 	}
 }

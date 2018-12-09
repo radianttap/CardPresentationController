@@ -78,8 +78,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
-				fromView.maskTopCard(cornerRadius: self.topCornerRadius)
-				toView.maskTopCard(cornerRadius: self.topCornerRadius)
+				fromView.cardMaskTopCorners(using: self.topCornerRadius)
+				toView.cardMaskTopCorners(using: self.topCornerRadius)
+
 				if let nc = fromVC as? UINavigationController, !nc.isNavigationBarHidden {
 					nc.navigationBar.barStyle = .black
 				} else {
@@ -101,8 +102,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let pa = UIViewPropertyAnimator(duration: duration, dampingRatio: ratio) {
 				[weak self] in
 
-				fromView.maskTopCard(cornerRadius: 0)
-				toView.maskTopCard(cornerRadius: 0)
+				fromView.cardUnmask()
+				toView.cardUnmask()
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				toView.alpha = 1
