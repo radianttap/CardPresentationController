@@ -47,9 +47,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.73333333329999995" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="HTH-3J-7be" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="89Z-sI-Xpc" secondAttribute="trailing" priority="998" constant="-16" id="QR0-Bn-WMu"/>
+                            <constraint firstItem="89Z-sI-Xpc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="trailing" priority="998" constant="16" id="QR0-Bn-WMu"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="leading" secondItem="89Z-sI-Xpc" secondAttribute="leading" constant="16" id="btU-7T-5fX"/>
-                            <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="bottom" priority="999" constant="16" id="qHF-jo-WOi"/>
+                            <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="bottom" constant="16" id="qHF-jo-WOi"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="top" secondItem="89Z-sI-Xpc" secondAttribute="top" constant="16" id="rNw-sk-BeR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="89Z-sI-Xpc"/>
