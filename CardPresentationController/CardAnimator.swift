@@ -41,7 +41,12 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-		return 0.65
+		switch direction {
+		case .presentation:
+			return 0.65
+		case .dismissal:
+			return 0.55
+		}
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -96,6 +101,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let fromEndFrame = initialTransitionFrame
 			let toEndFrame = transitionContext.finalFrame(for: toVC)
 
+			let params = SpringParameters(damping: 0.7,
+										  response: 0.3)
 			animate({
 				[weak self] in
 
@@ -112,7 +119,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				{
 					nc.navigationBar.barStyle = barStyle
 				}
-			}, completion: {
+			}, params: params, completion: {
 				[weak self] _ in
 				self?.direction = .presentation
 
@@ -125,16 +132,25 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 
 private extension CardAnimator {
-	func animate(_ animation: @escaping () -> Void, completion: @escaping (UIViewAnimatingPosition) -> Void) {
+	struct SpringParameters {
+		let damping: CGFloat
+		let response: CGFloat
+
+		static let base = SpringParameters(damping: 0.85, response: 0.4)
+	}
+
+	func animate(_ animation: @escaping () -> Void, params: SpringParameters = .base, completion: @escaping (UIViewAnimatingPosition) -> Void) {
 		//	entire spring animation should not last more than transitionDuration
-		//	thus these values should produce 0.6
-		let damping: CGFloat = 0.8
-		let response: CGFloat = 0.45
+		let damping = params.damping
+		let response = params.response
 
 		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
 		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
 		pa.addAnimations(animation)
 		pa.addCompletion(completion)
+/*
+		//	simple way to measure total time of the transition
+		//	add about 0.02 for good measure and use that value for transitionDuration
 
 		let ts = CACurrentMediaTime()
 		pa.addCompletion {
@@ -142,7 +158,7 @@ private extension CardAnimator {
 			let te = CACurrentMediaTime()
 			print(te - ts)
 		}
-
+*/
 		pa.startAnimation()
 	}
 }
