@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q14-a2-9zC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q14-a2-9zC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +32,26 @@
                     <view key="view" contentMode="scaleToFill" id="CAn-bZ-kcd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="WonderWomanPoster" translatesAutoresizingMaskIntoConstraints="NO" id="HTH-3J-7be">
+                                <rect key="frame" x="16" y="80" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HTH-3J-7be" secondAttribute="height" multiplier="1:1" id="SrQ-IE-Fja"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.73333333329999995" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="HTH-3J-7be" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="89Z-sI-Xpc" secondAttribute="trailing" priority="998" constant="-16" id="QR0-Bn-WMu"/>
+                            <constraint firstItem="HTH-3J-7be" firstAttribute="leading" secondItem="89Z-sI-Xpc" secondAttribute="leading" constant="16" id="btU-7T-5fX"/>
+                            <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="bottom" priority="999" constant="16" id="qHF-jo-WOi"/>
+                            <constraint firstItem="HTH-3J-7be" firstAttribute="top" secondItem="89Z-sI-Xpc" secondAttribute="top" constant="16" id="rNw-sk-BeR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="89Z-sI-Xpc"/>
                     </view>
                     <navigationItem key="navigationItem" id="nTc-7t-LFo"/>
@@ -42,4 +61,7 @@
             <point key="canvasLocation" x="-537" y="-54"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="WonderWomanPoster" width="1200" height="1200"/>
+    </resources>
 </document>
