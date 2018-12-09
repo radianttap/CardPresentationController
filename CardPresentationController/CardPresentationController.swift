@@ -19,6 +19,13 @@ open class CardPresentationController: UIPresentationController {
 		return view
 	}()
 
+	private lazy var handleButton: UIButton = {
+		let view = UIButton(frame: .zero)
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.backgroundColor = .clear
+		return view
+	}()
+
 	private var handleTopConstraint: NSLayoutConstraint!
 	private var tapGR: UITapGestureRecognizer?
 
@@ -44,7 +51,7 @@ open class CardPresentationController: UIPresentationController {
 
 	//	MARK:- Internal
 
-	@objc private func handleTapped(_ sender: UITapGestureRecognizer) {
+	@objc private func handleTapped(_ sender: UIButton) {
 		handleView.alpha = 0
 		presentedViewController.dismiss(animated: true)
 	}
@@ -63,8 +70,13 @@ open class CardPresentationController: UIPresentationController {
 		handleTopConstraint = handleView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10)
 		handleTopConstraint.isActive = true
 
-		let tapGR = UITapGestureRecognizer(target: self, action: #selector(handleTapped))
-		handleView.addGestureRecognizer(tapGR)
+		containerView.addSubview(handleButton)
+		handleButton.widthAnchor.constraint(equalTo: handleView.widthAnchor).isActive = true
+		handleButton.heightAnchor.constraint(equalTo: handleView.widthAnchor).isActive = true
+		handleButton.centerYAnchor.constraint(equalTo: handleView.centerYAnchor).isActive = true
+		handleButton.centerXAnchor.constraint(equalTo: handleView.centerXAnchor).isActive = true
+
+		handleButton.addTarget(self, action: #selector(handleTapped), for: .touchUpInside)
 	}
 
 	private func showDismissHandle() {
@@ -74,6 +86,7 @@ open class CardPresentationController: UIPresentationController {
 		else { return }
 
 		containerView.bringSubviewToFront(handleView)
+		containerView.bringSubviewToFront(handleButton)
 
 		//	assume there's 16pt space at the top, which can be used to fit-in dismiss handle
 		//	place in the middle of that space
@@ -81,11 +94,10 @@ open class CardPresentationController: UIPresentationController {
 			handleTopConstraint.constant = v.frame.minY + 8 - handleView.frame.height / 2
 		}
 
+		self.handleView.superview?.layoutIfNeeded()
 		UIView.animate(withDuration: 0.15) {
 			[weak self] in
 			guard let self = self else { return }
-
-			self.handleView.layoutIfNeeded()
 			self.handleView.alpha = 1
 		}
 	}
