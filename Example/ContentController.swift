@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PlainPopupController: UIViewController, StoryboardLoadable {
+final class ContentController: UIViewController, StoryboardLoadable {
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
 	}

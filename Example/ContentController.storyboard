@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-1276" y="-54"/>
         </scene>
-        <!--Plain Popup Controller-->
+        <!--Content Controller-->
         <scene sceneID="ca9-wn-gSY">
             <objects>
-                <viewController storyboardIdentifier="PlainPopupController" id="e3E-hF-iVk" customClass="PlainPopupController" customModule="CardPresentationExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentController" id="e3E-hF-iVk" customClass="ContentController" customModule="CardPresentationExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CAn-bZ-kcd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

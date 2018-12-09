@@ -17,14 +17,14 @@ final class ViewController: UIViewController {
 
 	//	Embedded
 
-	private var controller: PlainPopupController?
+	private var controller: ContentController?
 
 	//	View lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let vc = PlainPopupController.instantiate()
+		let vc = ContentController.instantiate()
 		embed(controller: vc, into: container)
 		controller = vc
 	}
@@ -35,7 +35,7 @@ private extension ViewController {
 	///
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupDefault(_ sender: UIButton) {
-		let vc = PlainPopupController.instantiate()
+		let vc = ContentController.instantiate()
 		addDismissBarButton(to: vc)
 
 		//	wrap inside NC
@@ -48,7 +48,7 @@ private extension ViewController {
 	///
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupCard(_ sender: UIButton) {
-		let vc = PlainPopupController.instantiate()
+		let vc = ContentController.instantiate()
 		addDismissBarButton(to: vc)
 
 		//	wrap inside custom NC, so we can enforce statusBarStyle
@@ -58,11 +58,12 @@ private extension ViewController {
 		presentCard(nc, animated: true)
 	}
 
-	/// Expand popup as inset card
+	/// Expand popup from the arbitrary rect on the screen
+	///	(and also collapse down to the same area)
 	///
 	/// - Parameter sender: button which initiated this action
 	@IBAction func expandCard(_ sender: UIButton) {
-		let vc = PlainPopupController.instantiate()
+		let vc = ContentController.instantiate()
 		vc.modalPresentationCapturesStatusBarAppearance = true
 
 		let transitionManager = CardTransitionManager()
