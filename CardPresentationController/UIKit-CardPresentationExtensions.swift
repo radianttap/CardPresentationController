@@ -40,6 +40,10 @@ extension UIViewController {
 	{
 		//	make it custom
 		viewControllerToPresent.modalPresentationStyle = .custom
+
+		//	enforce statusBarStyle preferred by presented UIVC
+		viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
+
 		//	so we can use our Card transition
 		let tm = transitionManager ?? CardTransitionManager()
 		self.transitionManager = tm

@@ -53,7 +53,6 @@ private extension ViewController {
 
 		//	wrap inside custom NC, so we can enforce statusBarStyle
 		let nc = PopupNavigationController(rootViewController: vc)
-		nc.modalPresentationCapturesStatusBarAppearance = true
 
 		presentCard(nc, animated: true)
 	}
@@ -64,7 +63,6 @@ private extension ViewController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func expandCard(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
-		vc.modalPresentationCapturesStatusBarAppearance = true
 
 		let transitionManager = CardTransitionManager()
 		let f = container.convert(sender.bounds, to: view.window!)
