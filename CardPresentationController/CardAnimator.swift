@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 11.0, *)
 final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	enum Direction {
 		case presentation

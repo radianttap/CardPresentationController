@@ -22,7 +22,7 @@ extension UIViewController {
 	}
 
 
-	@available(iOS 10.0, *)
+	@available(iOS 11.0, *)
 	/// Presents given View Controller using custom Card-like modal transition. Think like Apple‘s Music or Wallet apps.
 	///
 	///	Existing view will slide down and fade a bit and top corners would be rounded.
@@ -53,18 +53,14 @@ extension UIViewController {
 }
 
 extension UIView {
+	@available(iOS 11.0, *)
 	func cardMaskTopCorners(using cornerRadius: CGFloat = 24) {
-		var f = self.bounds
-
-		let maskView = UIView(frame: f)
-		maskView.backgroundColor = .white
-		maskView.clipsToBounds = true
-		maskView.layer.cornerRadius = cornerRadius
-
-		self.mask = maskView
+		clipsToBounds = true
+		layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+		layer.cornerRadius = cornerRadius
 	}
 
 	func cardUnmask() {
-		mask = nil
+		layer.cornerRadius = 0
 	}
 }

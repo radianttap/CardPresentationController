@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 11.0, *)
 public final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
 	private lazy var animator = CardAnimator()
 
