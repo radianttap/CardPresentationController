@@ -10,6 +10,14 @@ import UIKit
 
 @available(iOS 11.0, *)
 open class CardPresentationController: UIPresentationController {
+	//	This is a link to the original UIVC on which presentCard() was called.
+	//	(this is populated by CardTransitionManager)
+	//	It's used in this file to clean-up CTM instance once dismissal happens.
+	weak var sourceController: UIViewController?
+
+
+	//	Private stuff
+
 	private lazy var handleView: UIView = {
 		let view = UIView()
 		view.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +55,14 @@ open class CardPresentationController: UIPresentationController {
 			return
 		}
 		showDismissHandle()
+	}
+
+	open override func dismissalTransitionDidEnd(_ completed: Bool) {
+		super.dismissalTransitionDidEnd(completed)
+		if !completed {
+			return
+		}
+		sourceController?.removeCardTransitionManager()
 	}
 
 	//	MARK:- Internal

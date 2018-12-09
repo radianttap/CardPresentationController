@@ -16,6 +16,7 @@ public final class CardTransitionManager: NSObject, UIViewControllerTransitionin
 
 	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
 		let pc = CardPresentationController(presentedViewController: presented, presenting: presenting)
+		pc.sourceController = source
 		return pc
 	}
 
