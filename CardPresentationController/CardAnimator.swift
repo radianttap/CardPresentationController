@@ -19,12 +19,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	var direction: Direction = .presentation
 
-	lazy var initialTransitionFrame: CGRect = {
-		var f: CGRect = .zero
-		f.size.width = UIScreen.main.bounds.width
-		f.origin.y = UIScreen.main.bounds.height
-		return f
-	}()
+	var initialTransitionFrame: CGRect?
 
 	//	Configuration
 
@@ -65,7 +60,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
 			let fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: horizontalInset, bottom: 0, right: horizontalInset))
 
-			let toStartFrame = initialTransitionFrame
+			let toStartFrame = offscreenFrame(inside: containerView)
 			let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
 			let toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + verticalSpacing, left: 0, bottom: 0, right: 0))
 
@@ -98,7 +93,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			})
 
 		case .dismissal:
-			let fromEndFrame = initialTransitionFrame
+			let fromEndFrame = offscreenFrame(inside: containerView)
 			let toEndFrame = transitionContext.finalFrame(for: toVC)
 
 			let params = SpringParameters(damping: 0.7,
@@ -132,6 +127,16 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 
 private extension CardAnimator {
+	func offscreenFrame(inside containerView: UIView) -> CGRect {
+		if let initialTransitionFrame = initialTransitionFrame {
+			return initialTransitionFrame
+		} else {
+			var f = containerView.frame
+			f.origin.y = f.height
+			return f
+		}
+	}
+
 	struct SpringParameters {
 		let damping: CGFloat
 		let response: CGFloat
