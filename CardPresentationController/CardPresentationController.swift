@@ -8,7 +8,7 @@
 
 import UIKit
 
-@available(iOS 11.0, *)
+@available(iOS 10.0, *)
 open class CardPresentationController: UIPresentationController {
 	//	This is a link to the original UIVC on which presentCard() was called.
 	//	(this is populated by CardTransitionManager)

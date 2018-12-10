@@ -1,6 +1,6 @@
 //
 //  UIKit-CardPresentationExtensions.swift
-//  CardPresentationExample
+//  CardPresentationController
 //
 //  Created by Aleksandar Vacić on 12/8/18.
 //  Copyright © 2018 Aleksandar Vacić. All rights reserved.
@@ -22,7 +22,7 @@ extension UIViewController {
 	}
 
 
-	@available(iOS 11.0, *)
+	@available(iOS 10.0, *)
 	/// Presents given View Controller using custom Card-like modal transition. Think like Apple‘s Music or Wallet apps.
 	///
 	///	Existing view will slide down and fade a bit and top corners would be rounded.
@@ -60,10 +60,14 @@ extension UIViewController {
 }
 
 extension UIView {
-	@available(iOS 11.0, *)
 	func cardMaskTopCorners(using cornerRadius: CGFloat = 24) {
 		clipsToBounds = true
-		layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+		//	from iOS 11, it's possible to choose which corners are rounded
+		if #available(iOS 11.0, *) {
+			layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+		}
+
 		layer.cornerRadius = cornerRadius
 	}
 
