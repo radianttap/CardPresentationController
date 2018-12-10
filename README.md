@@ -53,7 +53,9 @@ If you are presenting UINC, then my advice is to subclass it and override `prefe
 
 Currently it's tested only on iOS. 
 
-It requires iOS 11, since it uses [maskedCorners](https://developer.apple.com/documentation/quartzcore/calayer/2877488-maskedcorners) property to round the top corners only.
+It *requires iOS 10*, since it uses [UIViewPropertyAnimator](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator), [UISpringTimingParameters](https://developer.apple.com/documentation/uikit/uispringtimingparameters) and a bunch of other modern UIKit animation APIs.
+
+On iOS 11 it uses [maskedCorners](https://developer.apple.com/documentation/quartzcore/calayer/2877488-maskedcorners) property to round just the top corners. On iOS 10.x it will fallback to rounding all corners.
 
 ## How it works
 
