@@ -21,6 +21,8 @@ dismiss(animated: true)
 
 This will present `vc` modally, flying-in from bottom. Existing view will be kept shown as dimmed background card, on black background.
 
+You can present card from another card; library will stack the cards nicely. Do use common sense though, as popups over popups do make pleasant user experience.
+
 ### Advanced behavior
 
 If the _presenting_ controller was UINavigationController instance (which is the case in most apps) then its `barStyle` will be automatically changed to `.black`. So it looks dimmed.
@@ -88,11 +90,14 @@ presentCard(vc,
 
 The important bit here is setting `initialTransitionFrame` property to the frame *in the UIWindow coordinating space*, since transition happens in it.
 
-CardPresentationController can only animates the views – behavior of the internal views of the UIVCs you are presenting is up to you.
+### Caveats
+
+`CardAnimator` can only animate layout of its own subviews – `from` and `to` views included in `transitionContext`. Behavior and layout of the internal views of each UIVC you are presenting is up to you.
 (I still need to figure that out, as it's obvious from the example).
 
 ## TODO
 
+* ~~stack multiple cards~~ (1.1)
 * interactivity (both for presenting and dismissing)
 * improve landscape behavior
 * more examples
