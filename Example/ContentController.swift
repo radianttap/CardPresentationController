@@ -25,6 +25,7 @@ final class ContentController: UIViewController, StoryboardLoadable {
 
 	//	UI
 
+	@IBOutlet private weak var messageLabel: UILabel!
 	@IBOutlet private weak var popupButton: UIButton!
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -32,12 +33,25 @@ final class ContentController: UIViewController, StoryboardLoadable {
 	}
 
 
+	//	Data source
+
+	private var message: String?
+
+
 	//	View lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		messageLabel.text = nil
 		processContext()
+		populateMessage()
+	}
+
+	func message(_ s: String) {
+		self.message = s
+		if !isViewLoaded { return }
+		populateMessage()
 	}
 }
 
@@ -49,6 +63,10 @@ private extension ContentController {
 		case .popup:
 			popupButton.isHidden = false
 		}
+	}
+
+	func populateMessage() {
+		messageLabel.text = message
 	}
 
 	@IBAction func popup(_ sender: UIButton) {

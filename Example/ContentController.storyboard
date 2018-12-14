@@ -29,7 +29,7 @@
         <!--Content Controller-->
         <scene sceneID="ca9-wn-gSY">
             <objects>
-                <viewController storyboardIdentifier="ContentController" id="e3E-hF-iVk" customClass="ContentController" customModule="CardPresentationExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentController" id="e3E-hF-iVk" customClass="ContentController" customModule="EmbeddedNCExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CAn-bZ-kcd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -62,12 +62,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip7-e8-ZaN">
+                                <rect key="frame" x="16" y="439" width="343" height="0.0"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.73333333329999995" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="Ip7-e8-ZaN" firstAttribute="leading" secondItem="HTH-3J-7be" secondAttribute="leading" id="8BD-ZW-y2K"/>
                             <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" secondItem="vt5-oH-glx" secondAttribute="bottom" constant="16" id="ERJ-e3-77O"/>
+                            <constraint firstItem="Ip7-e8-ZaN" firstAttribute="trailing" secondItem="HTH-3J-7be" secondAttribute="trailing" id="F1f-od-l3Z"/>
                             <constraint firstItem="89Z-sI-Xpc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="trailing" priority="998" constant="16" id="QR0-Bn-WMu"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="leading" secondItem="89Z-sI-Xpc" secondAttribute="leading" constant="16" id="btU-7T-5fX"/>
+                            <constraint firstItem="Ip7-e8-ZaN" firstAttribute="top" secondItem="HTH-3J-7be" secondAttribute="bottom" constant="16" id="oI1-AA-lvw"/>
                             <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="bottom" constant="16" id="qHF-jo-WOi"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="top" secondItem="89Z-sI-Xpc" secondAttribute="top" constant="16" id="rNw-sk-BeR"/>
                             <constraint firstItem="vt5-oH-glx" firstAttribute="trailing" secondItem="89Z-sI-Xpc" secondAttribute="trailing" constant="-16" id="smK-2E-sjP"/>
@@ -76,6 +85,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nTc-7t-LFo"/>
                     <connections>
+                        <outlet property="messageLabel" destination="Ip7-e8-ZaN" id="06t-SG-qA8"/>
                         <outlet property="popupButton" destination="vt5-oH-glx" id="kIa-9E-7GO"/>
                     </connections>
                 </viewController>

@@ -78,14 +78,14 @@
 		D021C72521C3FDB0004CFA5A /* EmbeddedNCExample */ = {
 			isa = PBXGroup;
 			children = (
-				D021C74E21C3FE68004CFA5A /* ContentController.storyboard */,
-				D021C74F21C3FE68004CFA5A /* ContentController.swift */,
 				D021C72621C3FDB0004CFA5A /* AppDelegate.swift */,
 				D021C72821C3FDB0004CFA5A /* ViewController.swift */,
 				D021C72A21C3FDB0004CFA5A /* Main.storyboard */,
 				D021C72D21C3FDB2004CFA5A /* Assets.xcassets */,
 				D021C72F21C3FDB2004CFA5A /* LaunchScreen.storyboard */,
 				D021C73221C3FDB2004CFA5A /* Info.plist */,
+				D021C74F21C3FE68004CFA5A /* ContentController.swift */,
+				D021C74E21C3FE68004CFA5A /* ContentController.storyboard */,
 			);
 			path = EmbeddedNCExample;
 			sourceTree = "<group>";
