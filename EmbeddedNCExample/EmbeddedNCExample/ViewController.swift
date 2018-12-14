@@ -18,6 +18,7 @@ final class ViewController: UIViewController {
 		let vc = ContentController.instantiate()
 		let nc = UINavigationController(rootViewController: vc)
 		nc.navigationBar.barTintColor = .red
+//		nc.setNavigationBarHidden(true, animated: false)
 		embed(controller: nc, into: view)
 		controller = nc
 	}
