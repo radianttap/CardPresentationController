@@ -12,7 +12,7 @@ extension UIViewController {
 	private struct AssociatedKeys {
 		static var cardTransitionManager = "CardTransitionManager"
 	}
-	private var transitionManager: CardTransitionManager? {
+	private(set) var cardTransitionManager: CardTransitionManager? {
 		get {
 			return objc_getAssociatedObject(self, &AssociatedKeys.cardTransitionManager) as? CardTransitionManager
 		}
@@ -46,7 +46,7 @@ extension UIViewController {
 
 		//	so we can use our Card transition
 		let tm = transitionManager ?? CardTransitionManager()
-		self.transitionManager = tm
+		self.cardTransitionManager = tm
 		viewControllerToPresent.transitioningDelegate = tm
 
 		present(viewControllerToPresent,
@@ -55,7 +55,7 @@ extension UIViewController {
 	}
 
 	public func removeCardTransitionManager() {
-		transitionManager = nil
+		cardTransitionManager = nil
 	}
 }
 
