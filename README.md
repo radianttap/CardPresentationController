@@ -21,7 +21,7 @@ dismiss(animated: true)
 
 This will present `vc` modally, flying-in from bottom. Existing view will be kept shown as dimmed background card, on black background.
 
-You can present card from another card; library will stack the cards nicely. Do use common sense though, as popups over popups do make pleasant user experience.
+You can *present card from another card*; library will stack the cards nicely. Do use common sense as popups over popups don’t make pleasant user experience.
 
 ### Advanced behavior
 
