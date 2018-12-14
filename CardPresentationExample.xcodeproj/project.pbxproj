@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D021C71721C3F795004CFA5A /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021C71621C3F795004CFA5A /* SecondController.swift */; };
+		D021C71921C3F875004CFA5A /* SecondController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D021C71821C3F875004CFA5A /* SecondController.storyboard */; };
 		D026AF392185EAB400568323 /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026AF382185EAB400568323 /* ContentController.swift */; };
 		D026AF3B2185EE0E00568323 /* ContentController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D026AF3A2185EE0E00568323 /* ContentController.storyboard */; };
 		D0519306214D60910047AB2D /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519300214D60910047AB2D /* StoryboardLoadable.swift */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D021C71621C3F795004CFA5A /* SecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
+		D021C71821C3F875004CFA5A /* SecondController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondController.storyboard; sourceTree = "<group>"; };
 		D026AF382185EAB400568323 /* ContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
 		D026AF3A2185EE0E00568323 /* ContentController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContentController.storyboard; sourceTree = "<group>"; };
 		D0519300214D60910047AB2D /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				D05FF1D5214D53520017A263 /* AppDelegate.swift */,
 				D05FF1D7214D53520017A263 /* ViewController.swift */,
 				D05FF1D9214D53520017A263 /* Main.storyboard */,
+				D021C71621C3F795004CFA5A /* SecondController.swift */,
+				D021C71821C3F875004CFA5A /* SecondController.storyboard */,
 				D05FF1DC214D53540017A263 /* Assets.xcassets */,
 				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
 				D05FF1E1214D53540017A263 /* Info.plist */,
@@ -190,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D021C71921C3F875004CFA5A /* SecondController.storyboard in Resources */,
 				D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */,
 				D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */,
 				D026AF3B2185EE0E00568323 /* ContentController.storyboard in Resources */,
@@ -211,6 +218,7 @@
 				D051930A214D60910047AB2D /* NibLoadable.swift in Sources */,
 				D0519308214D60910047AB2D /* DequeableView.swift in Sources */,
 				D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */,
+				D021C71721C3F795004CFA5A /* SecondController.swift in Sources */,
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,
 				D0519307214D60910047AB2D /* Embeddable.swift in Sources */,
 				D0519309214D60910047AB2D /* ReusableView.swift in Sources */,

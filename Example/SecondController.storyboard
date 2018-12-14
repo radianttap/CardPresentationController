@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BCy-31-xHX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Second Controller-->
+        <scene sceneID="QdU-xR-NmV">
+            <objects>
+                <viewController storyboardIdentifier="SecondController" id="BCy-31-xHX" customClass="SecondController" customModule="CardPresentationExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pct-ZL-O5g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vif-m6-iLz">
+                                <rect key="frame" x="16" y="28" width="49" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="12"/>
+                                <state key="normal" title="← BACK"/>
+                                <connections>
+                                    <action selector="goBack:" destination="BCy-31-xHX" eventType="touchUpInside" id="DHV-oB-kW4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZG-Nt-cIb">
+                                <rect key="frame" x="104.5" y="325.5" width="166.5" height="36"/>
+                                <string key="text">(example when 
+navigation bar is hidden)</string>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fz-hG-Ajn">
+                                <rect key="frame" x="259" y="617" width="100" height="34"/>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.25882352939999997" blue="0.14117647059999999" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                <state key="normal" title="Open card">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="popupCard:" destination="BCy-31-xHX" eventType="touchUpInside" id="ZO8-47-WCJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xZG-Nt-cIb" firstAttribute="centerX" secondItem="ZCu-qh-BH4" secondAttribute="centerX" id="dSs-ON-cOF"/>
+                            <constraint firstItem="Vif-m6-iLz" firstAttribute="leading" secondItem="ZCu-qh-BH4" secondAttribute="leading" constant="16" id="dVz-RR-afa"/>
+                            <constraint firstItem="Vif-m6-iLz" firstAttribute="top" secondItem="ZCu-qh-BH4" secondAttribute="top" constant="8" id="fgY-0f-FCe"/>
+                            <constraint firstItem="xZG-Nt-cIb" firstAttribute="centerY" secondItem="ZCu-qh-BH4" secondAttribute="centerY" id="hHI-eS-kXk"/>
+                            <constraint firstItem="ZCu-qh-BH4" firstAttribute="bottom" secondItem="8fz-hG-Ajn" secondAttribute="bottom" constant="16" id="hQ6-Dc-8MJ"/>
+                            <constraint firstItem="ZCu-qh-BH4" firstAttribute="trailing" secondItem="8fz-hG-Ajn" secondAttribute="trailing" constant="16" id="zSH-py-oSs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZCu-qh-BH4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mx-RC-gft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106" y="-36"/>
+        </scene>
+    </scenes>
+</document>

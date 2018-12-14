@@ -71,6 +71,11 @@ private extension ViewController {
 
 		presentCard(vc, using: transitionManager, animated: true)
 	}
+
+	@IBAction func pushNext(_ sender: UIBarButtonItem) {
+		let vc = SecondController.instantiate()
+		show(vc, sender: self)
+	}
 }
 
 
