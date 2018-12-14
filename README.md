@@ -2,6 +2,8 @@
 
 Custom [UIPresentationController](https://developer.apple.com/documentation/uikit/uipresentationcontroller) which mimics the behavior of Apple Music UI.
 
+![DEMO](CardPresentationController.mp4)
+
 ## Usage
 
 1. Add the folder `CardPresentationController` into your project
