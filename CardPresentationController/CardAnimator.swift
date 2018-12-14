@@ -57,12 +57,24 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 		switch direction {
 		case .presentation:
-			let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
-			let fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: horizontalInset, bottom: 0, right: horizontalInset))
+			let isSourceAlreadyCard = (fromVC.presentationController is CardPresentationController)
+			let fromEndFrame: CGRect
+			let toEndFrame: CGRect
 
+			if isSourceAlreadyCard {
+				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
+
+				toEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: verticalSpacing, left: 0, bottom: 0, right: 0))
+
+			} else {
+				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: horizontalInset, bottom: 0, right: horizontalInset))
+
+				let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
+				toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + verticalSpacing, left: 0, bottom: 0, right: 0))
+			}
 			let toStartFrame = offscreenFrame(inside: containerView)
-			let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
-			let toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + verticalSpacing, left: 0, bottom: 0, right: 0))
 
 			toView.clipsToBounds = true
 			toView.frame = toStartFrame
@@ -102,8 +114,19 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			})
 
 		case .dismissal:
+			let isTargetAlreadyCard = (toVC.presentationController is CardPresentationController)
+
+			let toEndFrame: CGRect
+
+			if isTargetAlreadyCard {
+				let toBeginFrame = toView.frame
+				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
+
+			} else {
+				toEndFrame = transitionContext.finalFrame(for: toVC)
+			}
+
 			let fromEndFrame = offscreenFrame(inside: containerView)
-			let toEndFrame = transitionContext.finalFrame(for: toVC)
 
 			let params = SpringParameters(damping: 0.7,
 										  response: 0.3)
@@ -111,7 +134,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				[weak self] in
 
 				fromView.cardUnmask()
-				toView.cardUnmask()
+				if !isTargetAlreadyCard {
+					toView.cardUnmask()
+				}
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				toView.alpha = 1
@@ -188,7 +213,7 @@ private extension CardAnimator {
 
 
 
-private extension UIViewControllerContextTransitioning {
+fileprivate extension UIViewControllerContextTransitioning {
 	var fromContentController: UIViewController? {
 		guard let topVC = viewController(forKey: .from) else { return nil }
 		return recognize(topVC)
