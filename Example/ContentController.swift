@@ -119,6 +119,20 @@ extension ContentController {
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
+		if countOfPresentingParents == 4 {
+			popupButton.setTitle("Ehm, it's enough, don't you think?", for: .normal)
+			popupButton.isUserInteractionEnabled = false
+			popupButton.alpha = 0.6
+		}
+	}
+}
 
+fileprivate extension UIViewController {
+	var countOfPresentingParents: Int {
+		var c = 0
+		if let vc = self.presentingViewController {
+			c = 1 + vc.countOfPresentingParents
+		}
+		return c
 	}
 }
