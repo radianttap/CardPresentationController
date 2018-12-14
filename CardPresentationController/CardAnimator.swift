@@ -86,8 +86,17 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 					fromView.alpha = self.fadeAlpha
 				}
 			}, completion: {
-				[weak self] _ in
-				self?.direction = .dismissal
+				[weak self] finalAnimatingPosition in
+
+				switch finalAnimatingPosition {
+				case .end, .current:	//	Note: .current should not be possible
+					self?.direction = .dismissal
+					fromView.isUserInteractionEnabled = false
+
+				case .start:
+					self?.direction = .presentation
+					fromView.isUserInteractionEnabled = true
+				}
 
 				transitionContext.completeTransition(true)
 			})
@@ -115,11 +124,20 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 					nc.navigationBar.barStyle = barStyle
 				}
 			}, params: params, completion: {
-				[weak self] _ in
-				self?.direction = .presentation
+				[weak self] finalAnimatingPosition in
+
+				switch finalAnimatingPosition {
+				case .end, .current:	//	Note: .current should not be possible
+					self?.direction = .presentation
+					toView.isUserInteractionEnabled = true
+					fromView.removeFromSuperview()
+
+				case .start:
+					self?.direction = .dismissal
+					toView.isUserInteractionEnabled = false
+				}
 
 				transitionContext.completeTransition(true)
-				fromView.removeFromSuperview()
 			})
 		}
 	}
