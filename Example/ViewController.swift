@@ -25,6 +25,7 @@ final class ViewController: UIViewController {
 		super.viewDidLoad()
 
 		let vc = ContentController.instantiate()
+		vc.context = .embed
 		embed(controller: vc, into: container)
 		controller = vc
 	}

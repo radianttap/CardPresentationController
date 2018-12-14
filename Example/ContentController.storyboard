@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,6 +34,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vt5-oH-glx">
+                                <rect key="frame" x="198" y="617" width="161" height="34"/>
+                                <color key="backgroundColor" red="0.80392156862745101" green="0.25882352941176473" blue="0.14117647058823529" alpha="0.17306236233480177" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                <state key="normal" title="Open another card">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="popup:" destination="e3E-hF-iVk" eventType="touchUpInside" id="czU-nn-ZI3"/>
+                                </connections>
+                            </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="WonderWomanPoster" translatesAutoresizingMaskIntoConstraints="NO" id="HTH-3J-7be">
                                 <rect key="frame" x="16" y="80" width="343" height="343"/>
                                 <constraints>
@@ -47,14 +65,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.73333333329999995" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" secondItem="vt5-oH-glx" secondAttribute="bottom" constant="16" id="ERJ-e3-77O"/>
                             <constraint firstItem="89Z-sI-Xpc" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="trailing" priority="998" constant="16" id="QR0-Bn-WMu"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="leading" secondItem="89Z-sI-Xpc" secondAttribute="leading" constant="16" id="btU-7T-5fX"/>
                             <constraint firstItem="89Z-sI-Xpc" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HTH-3J-7be" secondAttribute="bottom" constant="16" id="qHF-jo-WOi"/>
                             <constraint firstItem="HTH-3J-7be" firstAttribute="top" secondItem="89Z-sI-Xpc" secondAttribute="top" constant="16" id="rNw-sk-BeR"/>
+                            <constraint firstItem="vt5-oH-glx" firstAttribute="trailing" secondItem="89Z-sI-Xpc" secondAttribute="trailing" constant="-16" id="smK-2E-sjP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="89Z-sI-Xpc"/>
                     </view>
                     <navigationItem key="navigationItem" id="nTc-7t-LFo"/>
+                    <connections>
+                        <outlet property="popupButton" destination="vt5-oH-glx" id="kIa-9E-7GO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sCY-na-j8M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
