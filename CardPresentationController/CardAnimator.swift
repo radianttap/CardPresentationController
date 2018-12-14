@@ -57,11 +57,12 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 		switch direction {
 		case .presentation:
-			let isSourceAlreadyCard = (fromVC.presentationController is CardPresentationController)
+			let sourceCardPresentationController = fromVC.presentationController as? CardPresentationController
 			let fromEndFrame: CGRect
 			let toEndFrame: CGRect
 
-			if isSourceAlreadyCard {
+			if let sourceCardPresentationController = sourceCardPresentationController {
+				sourceCardPresentationController.fadeoutHandle()
 				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
 				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
 
@@ -114,11 +115,13 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			})
 
 		case .dismissal:
-			let isTargetAlreadyCard = (toVC.presentationController is CardPresentationController)
+			let targetCardPresentationController = toVC.presentationController as? CardPresentationController
+			let isTargetAlreadyCard = (targetCardPresentationController != nil)
 
 			let toEndFrame: CGRect
 
-			if isTargetAlreadyCard {
+			if let targetCardPresentationController = targetCardPresentationController {
+				targetCardPresentationController.fadeinHandle()
 				let toBeginFrame = toView.frame
 				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
 

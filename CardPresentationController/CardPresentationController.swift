@@ -65,6 +65,24 @@ open class CardPresentationController: UIPresentationController {
 		sourceController?.removeCardTransitionManager()
 	}
 
+	//	MARK:- Public
+
+	func fadeinHandle() {
+		UIView.animate(withDuration: 0.15) {
+			[weak self] in
+			guard let self = self else { return }
+			self.handleView.alpha = 1
+		}
+	}
+
+	func fadeoutHandle() {
+		UIView.animate(withDuration: 0.15) {
+			[weak self] in
+			guard let self = self else { return }
+			self.handleView.alpha = 0
+		}
+	}
+
 	//	MARK:- Internal
 
 	@objc private func handleTapped(_ sender: UIButton) {
@@ -111,10 +129,6 @@ open class CardPresentationController: UIPresentationController {
 		}
 
 		self.handleView.superview?.layoutIfNeeded()
-		UIView.animate(withDuration: 0.15) {
-			[weak self] in
-			guard let self = self else { return }
-			self.handleView.alpha = 1
-		}
+		self.fadeinHandle()
 	}
 }
