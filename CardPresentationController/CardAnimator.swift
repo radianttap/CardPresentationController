@@ -79,6 +79,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 			toView.clipsToBounds = true
 			toView.frame = toStartFrame
+			toView.layoutIfNeeded()
 			containerView.addSubview(toView)
 
 			let fromNC = fromVC as? UINavigationController
