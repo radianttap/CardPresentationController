@@ -30,11 +30,11 @@ extension UIViewController {
 	///
 	/// - Parameters:
 	///   - viewControllerToPresent: `UIViewController` instance to present.
-	///   - transitionManager: an instance of `CardTransitionManager`. By default it's `nil` which means that one will be created and managed internally.
+	///   - configuration: an instance of `CardConfiguration`. By default it's `nil` which means that defaults will be used.
 	///   - flag: Pass `true` to animate the presentation; otherwise, `pass` false.
 	///   - completion: The closure to execute after the presentation finishes. This closure has no return value and takes no parameters. You may specify `nil` for this parameter or omit it entirely.
 	open func presentCard(_ viewControllerToPresent: UIViewController,
-						  using transitionManager: CardTransitionManager? = nil,
+						  configuration: CardConfiguration? = nil,
 						  animated flag: Bool,
 						  completion: (() -> Void)? = nil)
 	{
@@ -44,8 +44,11 @@ extension UIViewController {
 		//	enforce statusBarStyle preferred by presented UIVC
 		viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
 
-		//	so we can use our Card transition
-		let tm = transitionManager ?? CardTransitionManager()
+		//	prepare config, using supplied or default
+		let config = configuration ?? CardConfiguration()
+
+		//	then build transition manager
+		let tm = CardTransitionManager(configuration: config)
 		self.cardTransitionManager = tm
 		viewControllerToPresent.transitioningDelegate = tm
 
