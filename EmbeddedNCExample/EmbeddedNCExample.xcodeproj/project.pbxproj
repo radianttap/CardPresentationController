@@ -23,6 +23,7 @@
 		D021C74D21C3FE0B004CFA5A /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021C74821C3FE0B004CFA5A /* NibLoadable.swift */; };
 		D021C75021C3FE68004CFA5A /* ContentController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D021C74E21C3FE68004CFA5A /* ContentController.storyboard */; };
 		D021C75121C3FE68004CFA5A /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021C74F21C3FE68004CFA5A /* ContentController.swift */; };
+		D0AB35F221C5AB920038C6C6 /* CardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AB35F121C5AB920038C6C6 /* CardConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		D021C74821C3FE0B004CFA5A /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		D021C74E21C3FE68004CFA5A /* ContentController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContentController.storyboard; path = ../../Example/ContentController.storyboard; sourceTree = "<group>"; };
 		D021C74F21C3FE68004CFA5A /* ContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentController.swift; path = ../../Example/ContentController.swift; sourceTree = "<group>"; };
+		D0AB35F121C5AB920038C6C6 /* CardConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		D021C73821C3FDEB004CFA5A /* CardPresentationController */ = {
 			isa = PBXGroup;
 			children = (
+				D0AB35F121C5AB920038C6C6 /* CardConfiguration.swift */,
 				D021C73921C3FDEB004CFA5A /* UIKit-CardPresentationExtensions.swift */,
 				D021C73A21C3FDEB004CFA5A /* CardPresentationController.swift */,
 				D021C73B21C3FDEB004CFA5A /* CardAnimator.swift */,
@@ -213,6 +216,7 @@
 				D021C74B21C3FE0B004CFA5A /* DequeableView.swift in Sources */,
 				D021C73D21C3FDEB004CFA5A /* UIKit-CardPresentationExtensions.swift in Sources */,
 				D021C73F21C3FDEB004CFA5A /* CardAnimator.swift in Sources */,
+				D0AB35F221C5AB920038C6C6 /* CardConfiguration.swift in Sources */,
 				D021C73E21C3FDEB004CFA5A /* CardPresentationController.swift in Sources */,
 				D021C72721C3FDB0004CFA5A /* AppDelegate.swift in Sources */,
 			);
