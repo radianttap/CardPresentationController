@@ -84,6 +84,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let fromNC = fromVC as? UINavigationController
 			initialBarStyle = fromNC?.navigationBar.barStyle
 
+			let params = SpringParameters.tap
 			animate({
 				[weak self] in
 				guard let self = self else { return }
@@ -98,7 +99,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				} else {
 					fromView.alpha = self.fadeAlpha
 				}
-			}, completion: {
+			}, params: params, completion: {
 				[weak self] finalAnimatingPosition in
 
 				switch finalAnimatingPosition {
@@ -131,8 +132,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 			let fromEndFrame = offscreenFrame(inside: containerView)
 
-			let params = SpringParameters(damping: 0.7,
-										  response: 0.3)
+			let params = SpringParameters.tap
 			animate({
 				[weak self] in
 
@@ -187,10 +187,10 @@ private extension CardAnimator {
 		let damping: CGFloat
 		let response: CGFloat
 
-		static let base = SpringParameters(damping: 0.85, response: 0.4)
+		static let tap = SpringParameters(damping: 1, response: 0.4)
 	}
 
-	func animate(_ animation: @escaping () -> Void, params: SpringParameters = .base, completion: @escaping (UIViewAnimatingPosition) -> Void) {
+	func animate(_ animation: @escaping () -> Void, params: SpringParameters, completion: @escaping (UIViewAnimatingPosition) -> Void) {
 		//	entire spring animation should not last more than transitionDuration
 		let damping = params.damping
 		let response = params.response
