@@ -50,6 +50,28 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		}
 	}
 
+	private func insetBackCards(of pc: UIPresentationController) {
+		guard let pc = pc as? CardPresentationController else { return }
+
+		let frame = pc.presentingViewController.view.frame
+		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
+
+		if let nextPC = pc.presentingViewController.presentationController {
+			insetBackCards(of: nextPC)
+		}
+	}
+
+	private func outsetBackCards(of pc: UIPresentationController) {
+		guard let pc = pc as? CardPresentationController else { return }
+
+		let frame = pc.presentingViewController.view.frame
+		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
+
+		if let nextPC = pc.presentingViewController.presentationController {
+			outsetBackCards(of: nextPC)
+		}
+	}
+
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		guard
 			let fromVC = transitionContext.viewController(forKey: .from),
@@ -64,11 +86,13 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		switch direction {
 		case .presentation:
 			let sourceCardPresentationController = fromVC.presentationController as? CardPresentationController
+
 			let fromEndFrame: CGRect
 			let toEndFrame: CGRect
 
 			if let sourceCardPresentationController = sourceCardPresentationController {
 				sourceCardPresentationController.fadeoutHandle()
+
 				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
 				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
 
@@ -96,6 +120,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				[weak self] in
 				guard let self = self else { return }
 
+				if let pc = sourceCardPresentationController {
+					self.insetBackCards(of: pc)
+				}
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				fromView.cardMaskTopCorners(using: self.cornerRadius)
@@ -126,11 +153,11 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let targetCardPresentationController = toVC.presentationController as? CardPresentationController
 			let isTargetAlreadyCard = (targetCardPresentationController != nil)
 
+			let toBeginFrame = toView.frame
 			let toEndFrame: CGRect
 
 			if let targetCardPresentationController = targetCardPresentationController {
 				targetCardPresentationController.fadeinHandle()
-				let toBeginFrame = toView.frame
 				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
 
 			} else {
@@ -142,11 +169,16 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let params = SpringParameters.momentum
 			animate({
 				[weak self] in
+				guard let self = self else { return }
 
 				fromView.cardUnmask()
 				if !isTargetAlreadyCard {
 					toView.cardUnmask()
 				}
+				if let pc = targetCardPresentationController {
+					self.outsetBackCards(of: pc)
+				}
+
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				toView.alpha = 1
@@ -154,7 +186,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 				if
 					let nc = toVC as? UINavigationController,
-					let barStyle = self?.initialBarStyle
+					let barStyle = self.initialBarStyle
 				{
 					nc.navigationBar.barStyle = barStyle
 				}
