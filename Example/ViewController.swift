@@ -64,6 +64,7 @@ private extension ViewController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func expandCard(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
+		vc.context = .embed
 
 		let transitionManager = CardTransitionManager()
 		let f = container.convert(sender.bounds, to: view.window!)
