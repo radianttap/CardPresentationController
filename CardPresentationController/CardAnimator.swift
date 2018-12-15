@@ -132,7 +132,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 			let fromEndFrame = offscreenFrame(inside: containerView)
 
-			let params = SpringParameters.tap
+			let params = SpringParameters.momentum
 			animate({
 				[weak self] in
 
@@ -187,7 +187,19 @@ private extension CardAnimator {
 		let damping: CGFloat
 		let response: CGFloat
 
-		static let tap = SpringParameters(damping: 1, response: 0.4)
+		//	From amazing session 803 at WWDC 2018: https://developer.apple.com/videos/play/wwdc2018-803/?time=2238
+		//	> Because the tap doesn't have any momentum in the direction of the presentation of Now Playing,
+		//	> we use 100% damping to make sure it doesn't overshoot.
+		//
+		static let tap = SpringParameters(damping: 1, response: 0.44)
+
+		//	> But, if you swipe to dismiss Now Playing,
+		//	> there is momentum in the direction of the dismissal,
+		//	> and so we use 80% damping to have a little bit of bounce and squish,
+		//	> making the gesture a lot more satisfying.
+		//
+		//	(note that they use momentum even when tapping to dismiss)
+		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
 	}
 
 	func animate(_ animation: @escaping () -> Void, params: SpringParameters, completion: @escaping (UIViewAnimatingPosition) -> Void) {
