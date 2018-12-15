@@ -29,13 +29,6 @@ public struct CardConfiguration {
 	///	Ignored if back card is UINavigationController
 	var backFadeAlpha: CGFloat = 0.8
 
-	///	If `true`, a temporary `UIVisualEffectView` with given UIBlurEffect.Style will be installed behind the already existing back card.
-	///	This helps prevent noisy content overlap from multiple stacked cards.
-	///
-	///	Ignored if back card to which it should corresponds to, is actually `UINavigationController`.
-	///	Also if `backFadeAlpha is `1.0`.
-	var blurredBackViewStyle: UIBlurEffect.Style?
-
 	///	Default initializer, with most suitable values
 	init() {}
 }
@@ -46,7 +39,6 @@ extension CardConfiguration {
 		 horizontalInset: CGFloat? = nil,
 		 cornerRadius: CGFloat? = nil,
 		 backFadeAlpha: CGFloat? = nil,
-		 blurredBackViewStyle: UIBlurEffect.Style? = nil,
 		 initialTransitionFrame: CGRect? = nil)
 	{
 		if let verticalSpacing = verticalSpacing {
@@ -63,10 +55,6 @@ extension CardConfiguration {
 
 		if let backFadeAlpha = backFadeAlpha {
 			self.backFadeAlpha = backFadeAlpha
-		}
-
-		if let blurredBackViewStyle = blurredBackViewStyle {
-			self.blurredBackViewStyle = blurredBackViewStyle
 		}
 
 		if let initialTransitionFrame = initialTransitionFrame {

@@ -49,23 +49,7 @@ open class CardPresentationController: UIPresentationController {
 		return view
 	}()
 
-	//	We are using 80% transparency to fade the back card.
-	//	When stacking multiple cards, it's possible that top parts of the content will mess up with one another
-	//	To avoid that, add solid black background behind each "back" card
-	private lazy var backView: UIVisualEffectView = {
-		guard let blur = self.configuration.blurredBackViewStyle else {
-			fatalError("Missing `blurredBackViewStyle` value in CardConfiguration!")
-		}
-
-		let effect = UIBlurEffect.init(style: blur)
-		let v = UIVisualEffectView(effect: effect)
-		v.translatesAutoresizingMaskIntoConstraints = false
-		v.clipsToBounds = true
-		return v
-	}()
-
 	private var handleTopConstraint: NSLayoutConstraint!
-	private var tapGR: UITapGestureRecognizer?
 
 	private var usesDismissHandle: Bool {
 		return !(presentedViewController is UINavigationController)
@@ -75,7 +59,6 @@ open class CardPresentationController: UIPresentationController {
 
 	open override func presentationTransitionWillBegin() {
 		setupDismissHandle()
-		setupBackView()
 
 		super.presentationTransitionWillBegin()
 	}
@@ -87,11 +70,6 @@ open class CardPresentationController: UIPresentationController {
 			return
 		}
 		showDismissHandle()
-	}
-
-	open override func dismissalTransitionWillBegin() {
-		removeBackView()
-		super.dismissalTransitionWillBegin()
 	}
 
 	open override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -167,33 +145,5 @@ open class CardPresentationController: UIPresentationController {
 
 		self.handleView.superview?.layoutIfNeeded()
 		self.fadeinHandle()
-	}
-
-	private func setupBackView() {
-		if presentingViewController is UINavigationController { return }
-
-		guard
-			let fromView = presentingViewController.view,
-			let containerView = fromView.superview,
-			let _ = configuration.blurredBackViewStyle
-		else { return }
-
-		backView.layer.cornerRadius = fromView.layer.cornerRadius
-		containerView.insertSubview(backView, belowSubview: fromView)
-
-		backView.widthAnchor.constraint(equalTo: fromView.widthAnchor).isActive = true
-		backView.heightAnchor.constraint(equalTo: fromView.heightAnchor, constant: -1).isActive = true
-		backView.centerXAnchor.constraint(equalTo: fromView.centerXAnchor).isActive = true
-		backView.bottomAnchor.constraint(equalTo: fromView.bottomAnchor).isActive = true
-	}
-
-	private func removeBackView() {
-		if presentingViewController is UINavigationController { return }
-
-		guard
-			let _ = configuration.blurredBackViewStyle
-		else { return }
-
-		backView.removeFromSuperview()
 	}
 }
