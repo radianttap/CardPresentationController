@@ -20,7 +20,7 @@ public final class CardTransitionManager: NSObject, UIViewControllerTransitionin
 	private lazy var animator = CardAnimator(configuration: configuration)
 
 	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-		let pc = CardPresentationController(presentedViewController: presented, presenting: presenting)
+		let pc = CardPresentationController(configuration: configuration, presentedViewController: presented, presenting: presenting)
 		pc.sourceController = source
 		return pc
 	}
