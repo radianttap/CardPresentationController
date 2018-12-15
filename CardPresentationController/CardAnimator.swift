@@ -50,28 +50,6 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		}
 	}
 
-	private func insetBackCards(of pc: UIPresentationController) {
-		guard let pc = pc as? CardPresentationController else { return }
-
-		let frame = pc.presentingViewController.view.frame
-		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
-
-		if let nextPC = pc.presentingViewController.presentationController {
-			insetBackCards(of: nextPC)
-		}
-	}
-
-	private func outsetBackCards(of pc: UIPresentationController) {
-		guard let pc = pc as? CardPresentationController else { return }
-
-		let frame = pc.presentingViewController.view.frame
-		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
-
-		if let nextPC = pc.presentingViewController.presentationController {
-			outsetBackCards(of: nextPC)
-		}
-	}
-
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 		guard
 			let fromVC = transitionContext.viewController(forKey: .from),
@@ -120,9 +98,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				[weak self] in
 				guard let self = self else { return }
 
-				if let pc = sourceCardPresentationController {
-					self.insetBackCards(of: pc)
-				}
+				self.insetBackCards(of: sourceCardPresentationController)
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
 				fromView.cardMaskTopCorners(using: self.cornerRadius)
@@ -175,9 +151,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				if !isTargetAlreadyCard {
 					toView.cardUnmask()
 				}
-				if let pc = targetCardPresentationController {
-					self.outsetBackCards(of: pc)
-				}
+				self.outsetBackCards(of: targetCardPresentationController)
 
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
@@ -212,6 +186,24 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 
 private extension CardAnimator {
+	private func insetBackCards(of pc: CardPresentationController?) {
+		guard let pc = pc else { return }
+
+		let frame = pc.presentingViewController.view.frame
+		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
+
+		insetBackCards(of: pc.presentingViewController.presentationController as? CardPresentationController)
+	}
+
+	private func outsetBackCards(of pc: CardPresentationController?) {
+		guard let pc = pc else { return }
+
+		let frame = pc.presentingViewController.view.frame
+		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
+
+		outsetBackCards(of: pc.presentingViewController.presentationController as? CardPresentationController)
+	}
+
 	func offscreenFrame(inside containerView: UIView) -> CGRect {
 		if let initialTransitionFrame = initialTransitionFrame {
 			return initialTransitionFrame
