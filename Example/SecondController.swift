@@ -31,6 +31,8 @@ private extension SecondController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupCard(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
-		presentCard(vc, animated: true)
+
+		presentCard(vc,
+					animated: true)
 	}
 }

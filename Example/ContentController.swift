@@ -71,7 +71,9 @@ private extension ContentController {
 
 	@IBAction func popup(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
-		presentCard(vc, animated: true)
+
+		presentCard(vc,
+					animated: true)
 	}
 }
 
