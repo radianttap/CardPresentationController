@@ -187,19 +187,27 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 private extension CardAnimator {
 	private func insetBackCards(of pc: CardPresentationController?) {
-		guard let pc = pc else { return }
+		guard
+			let pc = pc,
+			let pcView = pc.presentingViewController.view
+		else { return }
 
-		let frame = pc.presentingViewController.view.frame
-		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
+		let frame = pcView.frame
+		pcView.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
+		pcView.alpha *= backFadeAlpha
 
 		insetBackCards(of: pc.presentingViewController.presentationController as? CardPresentationController)
 	}
 
 	private func outsetBackCards(of pc: CardPresentationController?) {
-		guard let pc = pc else { return }
+		guard
+			let pc = pc,
+			let pcView = pc.presentingViewController.view
+		else { return }
 
-		let frame = pc.presentingViewController.view.frame
-		pc.presentingViewController.view.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
+		let frame = pcView.frame
+		pcView.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
+		pcView.alpha /= backFadeAlpha
 
 		outsetBackCards(of: pc.presentingViewController.presentationController as? CardPresentationController)
 	}
