@@ -24,6 +24,7 @@
 		D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DC214D53540017A263 /* Assets.xcassets */; };
 		D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */; };
 		D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1E8214D54B50017A263 /* CardPresentationController.swift */; };
+		D0AB35F021C56F040038C6C6 /* CardConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AB35EF21C56F040038C6C6 /* CardConfiguration.swift */; };
 		D0AC738121BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */; };
 		D0AC738321BC88D800054FC3 /* PopupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		D05FF1DF214D53540017A263 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D05FF1E1214D53540017A263 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05FF1E8214D54B50017A263 /* CardPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPresentationController.swift; sourceTree = "<group>"; };
+		D0AB35EF21C56F040038C6C6 /* CardConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
 		D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit-CardPresentationExtensions.swift"; sourceTree = "<group>"; };
 		D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				D05FF1E8214D54B50017A263 /* CardPresentationController.swift */,
 				D051930B214D6C690047AB2D /* CardTransitionManager.swift */,
 				D051930D214D6DD10047AB2D /* CardAnimator.swift */,
+				D0AB35EF21C56F040038C6C6 /* CardConfiguration.swift */,
 				D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */,
 			);
 			path = CardPresentationController;
@@ -213,6 +216,7 @@
 			files = (
 				D0519306214D60910047AB2D /* StoryboardLoadable.swift in Sources */,
 				D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */,
+				D0AB35F021C56F040038C6C6 /* CardConfiguration.swift in Sources */,
 				D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */,
 				D026AF392185EAB400568323 /* ContentController.swift in Sources */,
 				D051930A214D60910047AB2D /* NibLoadable.swift in Sources */,
