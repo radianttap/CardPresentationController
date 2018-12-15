@@ -4,11 +4,15 @@ Custom [UIPresentationController](https://developer.apple.com/documentation/uiki
 
 [DEMO video on iPhone Xs simulator](CardPresentationController.mp4)
 
+## Installation
+
+Add the folder `CardPresentationController` into your project. It's only four files.
+
+I have not added CocoaPods nor Carthage support since I'm still working on some larger features (see TODO section at the end). 
+
 ## Usage
 
-1. Add the folder `CardPresentationController` into your project
-
-2. From anywhere you want to present a popup, call
+From anywhere you want to present a popup, call
 
 ```swift
 let vc = ...
@@ -96,6 +100,9 @@ The important bit here is setting `initialTransitionFrame` property to the frame
 
 `CardAnimator` can only animate layout of its own subviews – `from` and `to` views included in `transitionContext`. Behavior and layout of the internal views of each UIVC you are presenting is up to you.
 (I still need to figure that out, as it's obvious from the example).
+
+Depending on the complexity of your UI, in may be impossible to make it work properly. Usually in cases where UIKit applies its own private API magic related to status / navigation bars. 
+See `EmbeddedNCExample` where I have `UINavigationController` embedded inside ordinary `UIViewController`. This is very unusual UIVC stack which I would love to solve since I have project using just that.
 
 ## TODO
 
