@@ -12,16 +12,16 @@ import UIKit
 ///
 ///	Supply it as optional parameter to `presentCard(...)`.
 public struct CardConfiguration {
-	///	Vertical inset from the top or already shown card
+	///	Vertical inset from the top or already shown card.
 	var verticalSpacing: CGFloat = 16
 
-	///	Leading and trailing inset for the existing (presenting) view when it's being moved to the back
+	///	Leading and trailing inset for the existing (presenting) view when it's being pushed further back.
 	var horizontalInset: CGFloat = 16
 
-	///	Card has rounded corners, right?
+	///	Cards have rounded corners, right?
 	var cornerRadius: CGFloat = 12
 
-	///	The starting frame position for the card
+	///	The starting frame for the presented card.
 	var initialTransitionFrame: CGRect?
 
 	///	How much to fade the back card.
