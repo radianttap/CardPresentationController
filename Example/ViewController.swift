@@ -42,7 +42,8 @@ private extension ViewController {
 		//	wrap inside NC
 		let nc = UINavigationController(rootViewController: vc)
 
-		present(nc, animated: true)
+		present(nc,
+				animated: true)
 	}
 
 	/// Display popup as inset card
@@ -55,7 +56,8 @@ private extension ViewController {
 		//	wrap inside custom NC, so we can enforce statusBarStyle
 		let nc = PopupNavigationController(rootViewController: vc)
 
-		presentCard(nc, animated: true)
+		presentCard(nc,
+					animated: true)
 	}
 
 	/// Expand popup from the arbitrary rect on the screen
@@ -66,11 +68,12 @@ private extension ViewController {
 		let vc = ContentController.instantiate()
 		vc.context = .embed
 
-		let transitionManager = CardTransitionManager()
 		let f = container.convert(sender.bounds, to: view.window!)
-		transitionManager.initialTransitionFrame = f
+		let config = CardConfiguration(initialTransitionFrame: f)
 
-		presentCard(vc, using: transitionManager, animated: true)
+		presentCard(vc,
+					configuration: config,
+					animated: true)
 	}
 
 	@IBAction func pushNext(_ sender: UIBarButtonItem) {
