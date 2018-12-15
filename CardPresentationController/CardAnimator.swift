@@ -15,20 +15,26 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		case dismissal
 	}
 
-	//	
+	//	Init
 
-	var direction: Direction = .presentation
+	var direction: Direction
+	var configuration: CardConfiguration
 
-	var initialTransitionFrame: CGRect?
+	init(direction: Direction = .presentation, configuration: CardConfiguration) {
+		self.direction = direction
+		self.configuration = configuration
+		super.init()
+	}
 
-	//	Configuration
+	//	Local configuration
 
-	var verticalSpacing: CGFloat = 17
-	var horizontalInset: CGFloat = 16
-	var topCornerRadius: CGFloat = 12
-	var fadeAlpha: CGFloat = 0.8
+	private var verticalSpacing: CGFloat { return configuration.verticalSpacing }
+	private var horizontalInset: CGFloat { return configuration.horizontalInset }
+	private var cornerRadius: CGFloat { return configuration.cornerRadius }
+	private var backFadeAlpha: CGFloat  { return configuration.backFadeAlpha }
+	private var initialTransitionFrame: CGRect? { return configuration.initialTransitionFrame }
 
-	//	Local stuff
+	//	Other local stuff
 
 	private var statusBarFrame: CGRect = UIApplication.shared.statusBarFrame
 	private var initialBarStyle: UIBarStyle?
@@ -92,13 +98,13 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 				fromView.frame = fromEndFrame
 				toView.frame = toEndFrame
-				fromView.cardMaskTopCorners(using: self.topCornerRadius)
-				toView.cardMaskTopCorners(using: self.topCornerRadius)
+				fromView.cardMaskTopCorners(using: self.cornerRadius)
+				toView.cardMaskTopCorners(using: self.cornerRadius)
 
 				if let nc = fromVC as? UINavigationController, !nc.isNavigationBarHidden {
 					nc.navigationBar.barStyle = .black
 				} else {
-					fromView.alpha = self.fadeAlpha
+					fromView.alpha = self.backFadeAlpha
 				}
 			}, params: params, completion: {
 				[weak self] finalAnimatingPosition in

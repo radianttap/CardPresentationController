@@ -10,9 +10,14 @@ import UIKit
 
 @available(iOS 10.0, *)
 public final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
-	private lazy var animator = CardAnimator()
+	public private(set) var configuration: CardConfiguration
 
-	var initialTransitionFrame: CGRect?
+	init(configuration: CardConfiguration) {
+		self.configuration = configuration
+		super.init()
+	}
+
+	private lazy var animator = CardAnimator(configuration: configuration)
 
 	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
 		let pc = CardPresentationController(presentedViewController: presented, presenting: presenting)
@@ -22,10 +27,6 @@ public final class CardTransitionManager: NSObject, UIViewControllerTransitionin
 
 	public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 		animator.direction = .presentation
-
-		if let initialTransitionFrame = initialTransitionFrame {
-			animator.initialTransitionFrame = initialTransitionFrame
-		}
 		return animator
 	}
 
