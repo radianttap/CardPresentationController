@@ -93,6 +93,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D057BF7221C6A3B700686D76 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D05FF1E1214D53540017A263 /* Info.plist */,
+				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
+				D05FF1DC214D53540017A263 /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D05FF1C9214D53520017A263 = {
 			isa = PBXGroup;
 			children = (
@@ -119,9 +129,7 @@
 				D05FF1D9214D53520017A263 /* Main.storyboard */,
 				D021C71621C3F795004CFA5A /* SecondController.swift */,
 				D021C71821C3F875004CFA5A /* SecondController.storyboard */,
-				D05FF1DC214D53540017A263 /* Assets.xcassets */,
-				D05FF1DE214D53540017A263 /* LaunchScreen.storyboard */,
-				D05FF1E1214D53540017A263 /* Info.plist */,
+				D057BF7221C6A3B700686D76 /* Supporting Files */,
 				D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */,
 				D026AF382185EAB400568323 /* ContentController.swift */,
 				D026AF3A2185EE0E00568323 /* ContentController.storyboard */,
