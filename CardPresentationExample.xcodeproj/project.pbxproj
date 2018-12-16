@@ -18,6 +18,12 @@
 		D051930A214D60910047AB2D /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0519305214D60910047AB2D /* NibLoadable.swift */; };
 		D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051930B214D6C690047AB2D /* CardTransitionManager.swift */; };
 		D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D051930D214D6DD10047AB2D /* CardAnimator.swift */; };
+		D057BF7521C6A43500686D76 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057BF7321C6A43500686D76 /* GridCell.swift */; };
+		D057BF7621C6A43500686D76 /* GridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D057BF7421C6A43500686D76 /* GridCell.xib */; };
+		D057BF7821C6A45300686D76 /* GridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057BF7721C6A45300686D76 /* GridController.swift */; };
+		D057BF7A21C6A4D900686D76 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057BF7921C6A4D900686D76 /* GradientView.swift */; };
+		D057BF7C21C6A7FC00686D76 /* BaseGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057BF7B21C6A7FC00686D76 /* BaseGridLayout.swift */; };
+		D057BF7E21C6A83A00686D76 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D057BF7D21C6A83A00686D76 /* GridLayout.swift */; };
 		D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1D5214D53520017A263 /* AppDelegate.swift */; };
 		D05FF1D8214D53520017A263 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05FF1D7214D53520017A263 /* ViewController.swift */; };
 		D05FF1DB214D53520017A263 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D05FF1D9214D53520017A263 /* Main.storyboard */; };
@@ -41,6 +47,12 @@
 		D0519305214D60910047AB2D /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		D051930B214D6C690047AB2D /* CardTransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransitionManager.swift; sourceTree = "<group>"; };
 		D051930D214D6DD10047AB2D /* CardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAnimator.swift; sourceTree = "<group>"; };
+		D057BF7321C6A43500686D76 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		D057BF7421C6A43500686D76 /* GridCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridCell.xib; sourceTree = "<group>"; };
+		D057BF7721C6A45300686D76 /* GridController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridController.swift; sourceTree = "<group>"; };
+		D057BF7921C6A4D900686D76 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		D057BF7B21C6A7FC00686D76 /* BaseGridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseGridLayout.swift; sourceTree = "<group>"; };
+		D057BF7D21C6A83A00686D76 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		D05FF1D2214D53520017A263 /* CardPresentationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardPresentationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05FF1D5214D53520017A263 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D05FF1D7214D53520017A263 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +82,8 @@
 			children = (
 				D05192FF214D60910047AB2D /* Controllers */,
 				D0519302214D60910047AB2D /* Views */,
+				D057BF7921C6A4D900686D76 /* GradientView.swift */,
+				D057BF7B21C6A7FC00686D76 /* BaseGridLayout.swift */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -125,14 +139,18 @@
 			isa = PBXGroup;
 			children = (
 				D05FF1D5214D53520017A263 /* AppDelegate.swift */,
-				D05FF1D7214D53520017A263 /* ViewController.swift */,
 				D05FF1D9214D53520017A263 /* Main.storyboard */,
+				D05FF1D7214D53520017A263 /* ViewController.swift */,
 				D021C71621C3F795004CFA5A /* SecondController.swift */,
 				D021C71821C3F875004CFA5A /* SecondController.storyboard */,
 				D057BF7221C6A3B700686D76 /* Supporting Files */,
 				D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */,
 				D026AF382185EAB400568323 /* ContentController.swift */,
 				D026AF3A2185EE0E00568323 /* ContentController.storyboard */,
+				D057BF7721C6A45300686D76 /* GridController.swift */,
+				D057BF7D21C6A83A00686D76 /* GridLayout.swift */,
+				D057BF7321C6A43500686D76 /* GridCell.swift */,
+				D057BF7421C6A43500686D76 /* GridCell.xib */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -207,6 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D057BF7621C6A43500686D76 /* GridCell.xib in Resources */,
 				D021C71921C3F875004CFA5A /* SecondController.storyboard in Resources */,
 				D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */,
 				D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */,
@@ -226,9 +245,14 @@
 				D051930C214D6C690047AB2D /* CardTransitionManager.swift in Sources */,
 				D0AB35F021C56F040038C6C6 /* CardConfiguration.swift in Sources */,
 				D051930E214D6DD10047AB2D /* CardAnimator.swift in Sources */,
+				D057BF7521C6A43500686D76 /* GridCell.swift in Sources */,
 				D026AF392185EAB400568323 /* ContentController.swift in Sources */,
 				D051930A214D60910047AB2D /* NibLoadable.swift in Sources */,
+				D057BF7E21C6A83A00686D76 /* GridLayout.swift in Sources */,
+				D057BF7821C6A45300686D76 /* GridController.swift in Sources */,
+				D057BF7A21C6A4D900686D76 /* GradientView.swift in Sources */,
 				D0519308214D60910047AB2D /* DequeableView.swift in Sources */,
+				D057BF7C21C6A7FC00686D76 /* BaseGridLayout.swift in Sources */,
 				D05FF1E9214D54B50017A263 /* CardPresentationController.swift in Sources */,
 				D021C71721C3F795004CFA5A /* SecondController.swift in Sources */,
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,

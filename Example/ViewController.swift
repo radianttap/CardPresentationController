@@ -11,6 +11,7 @@ import UIKit
 final class ViewController: UIViewController {
 	@IBOutlet private weak var defaultPopupButton: UIButton!
 	@IBOutlet private weak var cardPopupButton: UIButton!
+	@IBOutlet private weak var gridPopupButton: UIButton!
 
 	@IBOutlet private weak var expandPopupButton: UIButton!
 	@IBOutlet private weak var container: UIView!
@@ -79,6 +80,16 @@ private extension ViewController {
 	@IBAction func pushNext(_ sender: UIBarButtonItem) {
 		let vc = SecondController.instantiate()
 		show(vc, sender: self)
+	}
+
+	/// Display popup as inset card
+	///
+	/// - Parameter sender: button which initiated this action
+	@IBAction func popupGrid(_ sender: UIButton) {
+		let vc = GridController()
+
+		presentCard(vc,
+					animated: true)
 	}
 }
 
