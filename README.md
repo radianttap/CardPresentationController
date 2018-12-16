@@ -37,13 +37,13 @@ If `presenting` is not `UINavigationController` instance, then its view will be 
 
 In both cases that back "card" is inset a bit from the edges.
 
-![](presentedNC-top.png)
+![](resources/presentedNC-top.png)
 
 If the _presented_ VC is `UINavigationController` instance, nothing special happens. It’s assumed that you will add `UIBarButtonItem` which will facilitate dismissal.
 
 If it is not, then `CardPresentationController` will automatically add a button at the middle of the shown card. Tapping on that will dismiss the cards.
 
-![](presentedVC-top.png)
+![](resources/presentedVC-top.png)
 
 As you present card over card, back cards will be ever more transparent and horizontally inset. In most cases, this should look rather nice.
 
