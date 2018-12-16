@@ -24,6 +24,10 @@ final class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		if let gradient = view as? GradientView {
+			gradient.direction = .vertical
+			gradient.colors = [.gray, .darkGray]
+		}
 
 		let vc = ContentController.instantiate()
 		vc.context = .embed
