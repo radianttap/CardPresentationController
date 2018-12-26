@@ -5,10 +5,18 @@ Custom [UIPresentationController](https://developer.apple.com/documentation/uiki
 [DEMO video on iPhone Xs simulator](CardPresentationController.mp4)
 
 ## Installation
+###Manually
 
 Add the folder `CardPresentationController` into your project. It's only five files.
+###CocoaPods
+Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
 
-I have not added CocoaPods nor Carthage support since I'm still working on some larger features (see TODO section at the end). 
+###Carthage
+
+Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
+
+
+
 
 ## Usage
 
@@ -143,3 +151,5 @@ See `EmbeddedNCExample` where I have `UINavigationController` embedded inside or
 ## LICENSE
 
 [MIT](LICENSE), as usual for all my stuff.
+
+
