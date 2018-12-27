@@ -5,13 +5,15 @@ Custom [UIPresentationController](https://developer.apple.com/documentation/uiki
 [DEMO video on iPhone Xs simulator](CardPresentationController.mp4)
 
 ## Installation
-###Manually
+### Manually
 
 Add the folder `CardPresentationController` into your project. It's only five files.
-###CocoaPods
+
+### CocoaPods
+
 Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
 
-###Carthage
+### Carthage
 
 Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
 
