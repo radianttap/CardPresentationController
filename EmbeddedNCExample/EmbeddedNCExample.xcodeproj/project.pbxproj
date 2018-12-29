@@ -43,8 +43,8 @@
 		D021C74621C3FE0B004CFA5A /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
 		D021C74721C3FE0B004CFA5A /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		D021C74821C3FE0B004CFA5A /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		D021C74E21C3FE68004CFA5A /* ContentController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ContentController.storyboard; path = ../../Example/ContentController.storyboard; sourceTree = "<group>"; };
-		D021C74F21C3FE68004CFA5A /* ContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentController.swift; path = ../../Example/ContentController.swift; sourceTree = "<group>"; };
+		D021C74E21C3FE68004CFA5A /* ContentController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ContentController.storyboard; sourceTree = "<group>"; };
+		D021C74F21C3FE68004CFA5A /* ContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
 		D0AB35F121C5AB920038C6C6 /* CardConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

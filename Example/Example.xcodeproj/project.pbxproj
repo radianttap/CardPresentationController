@@ -85,7 +85,8 @@
 				D057BF7921C6A4D900686D76 /* GradientView.swift */,
 				D057BF7B21C6A7FC00686D76 /* BaseGridLayout.swift */,
 			);
-			path = Vendor;
+			name = Vendor;
+			path = ../Vendor;
 			sourceTree = "<group>";
 		};
 		D05192FF214D60910047AB2D /* Controllers */ = {
@@ -164,7 +165,8 @@
 				D0AB35EF21C56F040038C6C6 /* CardConfiguration.swift */,
 				D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */,
 			);
-			path = CardPresentationController;
+			name = CardPresentationController;
+			path = ../CardPresentationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +204,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D05FF1CD214D53520017A263 /* Build configuration list for PBXProject "CardPresentationExample" */;
+			buildConfigurationList = D05FF1CD214D53520017A263 /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -441,7 +443,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D05FF1CD214D53520017A263 /* Build configuration list for PBXProject "CardPresentationExample" */ = {
+		D05FF1CD214D53520017A263 /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D05FF1E2214D53540017A263 /* Debug */,
