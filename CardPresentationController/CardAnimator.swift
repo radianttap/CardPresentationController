@@ -26,6 +26,11 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		super.init()
 	}
 
+	//	Animators
+
+	private(set) lazy var presentationAnimator: UIViewPropertyAnimator = setupAnimator(.presentation)
+	private(set) lazy var dismissAnimator: UIViewPropertyAnimator = setupAnimator(.dismissal)
+
 	//	Local configuration
 
 	private var verticalSpacing: CGFloat { return configuration.verticalSpacing }
@@ -93,8 +98,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let fromNC = fromVC as? UINavigationController
 			initialBarStyle = fromNC?.navigationBar.barStyle
 
-			let params = SpringParameters.tap
-			animate({
+			let pa = presentationAnimator
+			pa.addAnimations() {
 				[weak self] in
 				guard let self = self else { return }
 
@@ -109,7 +114,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				} else {
 					fromView.alpha = self.backFadeAlpha
 				}
-			}, params: params, completion: {
+			}
+
+			pa.addCompletion() {
 				[weak self] finalAnimatingPosition in
 
 				switch finalAnimatingPosition {
@@ -123,7 +130,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				}
 
 				transitionContext.completeTransition(true)
-			})
+			}
+
+			pa.startAnimation()
 
 		case .dismissal:
 			let targetCardPresentationController = toVC.presentationController as? CardPresentationController
@@ -142,8 +151,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 			let fromEndFrame = offscreenFrame(inside: containerView)
 
-			let params = SpringParameters.momentum
-			animate({
+			let pa = dismissAnimator
+			pa.addAnimations() {
 				[weak self] in
 				guard let self = self else { return }
 
@@ -164,7 +173,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				{
 					nc.navigationBar.barStyle = barStyle
 				}
-			}, params: params, completion: {
+			}
+
+			pa.addCompletion() {
 				[weak self] finalAnimatingPosition in
 
 				switch finalAnimatingPosition {
@@ -179,7 +190,9 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				}
 
 				transitionContext.completeTransition(true)
-			})
+			}
+
+			pa.startAnimation()
 		}
 	}
 }
@@ -241,55 +254,24 @@ private extension CardAnimator {
 		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
 	}
 
-	func animate(_ animation: @escaping () -> Void, params: SpringParameters, completion: @escaping (UIViewAnimatingPosition) -> Void) {
+	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
+		let params: SpringParameters
+
+		switch direction {
+		case .presentation:
+			params = .tap
+		case .dismissal:
+			params = .momentum
+		}
+
 		//	entire spring animation should not last more than transitionDuration
 		let damping = params.damping
 		let response = params.response
-
 		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
+
 		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
-		pa.addAnimations(animation)
-		pa.addCompletion(completion)
-/*
-		//	simple way to measure total time of the transition
-		//	add about 0.02 for good measure and use that value for transitionDuration
 
-		let ts = CACurrentMediaTime()
-		pa.addCompletion {
-			_ in
-			let te = CACurrentMediaTime()
-			print(te - ts)
-		}
-*/
-		pa.startAnimation()
-	}
-}
-
-
-
-fileprivate extension UIViewControllerContextTransitioning {
-	var fromContentController: UIViewController? {
-		guard let topVC = viewController(forKey: .from) else { return nil }
-		return recognize(topVC)
-	}
-
-	var toContentController: UIViewController? {
-		guard let topVC = viewController(forKey: .to) else { return nil }
-		return recognize(topVC)
-	}
-
-	func recognize(_ vc: UIViewController) -> UIViewController? {
-		switch vc {
-		case let nc as UINavigationController:
-			return nc.topViewController ?? nc
-
-		case let tbc as UITabBarController:
-			guard let vc = tbc.selectedViewController else { return tbc }
-			return recognize(vc)
-
-		default:
-			return vc
-		}
+		return pa
 	}
 }
 
