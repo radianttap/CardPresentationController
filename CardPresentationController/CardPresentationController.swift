@@ -15,6 +15,8 @@ open class CardPresentationController: UIPresentationController {
 	//	It's used in this file to clean-up CTM instance once dismissal happens.
 	weak var sourceController: UIViewController?
 
+	//
+	weak var cardAnimator: CardAnimator!
 
 	//	Init
 
@@ -28,8 +30,6 @@ open class CardPresentationController: UIPresentationController {
 		self.configuration = configuration
 		super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 	}
-
-
 
 	//	Private stuff
 
@@ -70,6 +70,7 @@ open class CardPresentationController: UIPresentationController {
 			return
 		}
 		showDismissHandle()
+		setupPanToDismiss()
 	}
 
 	open override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -146,4 +147,38 @@ open class CardPresentationController: UIPresentationController {
 		self.handleView.superview?.layoutIfNeeded()
 		self.fadeinHandle()
 	}
+
+	//	MARK:- Pan to dismiss
+
+	private var animator: UIViewPropertyAnimator { return cardAnimator.dismissAnimator }
+
+	private var panGR: UIPanGestureRecognizer?
+	private var startPoint: CGPoint = .zero
+	private var endPoint: CGPoint = .zero
+
+	private func setupPanToDismiss() {
+		let gr = UIPanGestureRecognizer(target: self, action: #selector(panned))
+
+		containerView?.addGestureRecognizer(gr)
+		panGR = gr
+	}
+
+	@objc private func panned(_ gr: UIPanGestureRecognizer) {
+		guard let containerView = containerView else { return }
+
+		switch gr.state {
+		case .began:
+			break
+
+		case .changed:
+			break
+
+		case .ended, .cancelled:
+			break
+
+		default:
+			break
+		}
+	}
 }
+
