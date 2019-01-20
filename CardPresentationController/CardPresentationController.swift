@@ -187,6 +187,8 @@ extension CardPresentationController: UIGestureRecognizerDelegate {
 	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
 								  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
 	{
+		if gestureRecognizer != panGR { return true }
+
 		let otherView = otherGestureRecognizer.view
 
 		//	allow unconditional panning if that other view is not `UIScrollView`
