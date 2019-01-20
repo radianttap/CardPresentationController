@@ -158,6 +158,7 @@ open class CardPresentationController: UIPresentationController {
 
 	private func setupPanToDismiss() {
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(panned))
+		gr.delegate = self
 
 		containerView?.addGestureRecognizer(gr)
 		panGR = gr
@@ -182,3 +183,24 @@ open class CardPresentationController: UIPresentationController {
 	}
 }
 
+extension CardPresentationController: UIGestureRecognizerDelegate {
+	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+								  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+	{
+		let otherView = otherGestureRecognizer.view
+
+		//	allow unconditional panning if that other view is not `UIScrollView`
+		guard let scrollView = otherView as? UIScrollView else {
+			return true
+		}
+
+		//	if it is `UIScrollView`,
+		//	allow panning only if its content is at the very top
+		if (scrollView.contentOffset.y + scrollView.contentInset.top) == 0 {
+			return true
+		}
+
+		//	otherwise, disallow pan to dismiss
+		return false
+	}
+}
