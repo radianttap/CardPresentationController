@@ -35,4 +35,14 @@ public final class CardTransitionManager: NSObject, UIViewControllerTransitionin
 		animator.direction = .dismissal
 		return animator
 	}
+
+	public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+		self.animator.direction = .presentation
+		return self.animator
+	}
+
+	public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+		self.animator.direction = .dismissal
+		return self.animator
+	}
 }

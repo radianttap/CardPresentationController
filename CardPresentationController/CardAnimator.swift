@@ -56,13 +56,54 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		guard let pa = buildAnimator(for: transitionContext) else {
+			return
+		}
+		pa.startAnimation()
+	}
+}
+
+extension CardAnimator: UIViewControllerInteractiveTransitioning {
+	func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+		guard let pa = buildAnimator(for: transitionContext) else {
+			return
+		}
+		pa.pauseAnimation()
+	}
+}
+
+
+//	UIViewPropertyAnimator
+
+private extension CardAnimator {
+	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
+		let params: SpringParameters
+
+		switch direction {
+		case .presentation:
+			params = .tap
+		case .dismissal:
+			params = .momentum
+		}
+
+		//	entire spring animation should not last more than transitionDuration
+		let damping = params.damping
+		let response = params.response
+		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
+
+		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
+
+		return pa
+	}
+
+	func buildAnimator(for transitionContext: UIViewControllerContextTransitioning) -> UIViewPropertyAnimator? {
 		guard
 			let fromVC = transitionContext.viewController(forKey: .from),
 			let toVC = transitionContext.viewController(forKey: .to),
 			let fromView = fromVC.view,
 			let toView = toVC.view
 		else {
-			return
+			return nil
 		}
 		let containerView = transitionContext.containerView
 
@@ -132,7 +173,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				transitionContext.completeTransition(true)
 			}
 
-			pa.startAnimation()
+			return pa
+
 
 		case .dismissal:
 			let targetCardPresentationController = toVC.presentationController as? CardPresentationController
@@ -192,11 +234,14 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				transitionContext.completeTransition(true)
 			}
 
-			pa.startAnimation()
+			return pa
 		}
 	}
 }
 
+
+
+//	Helper methods
 
 private extension CardAnimator {
 	private func insetBackCards(of pc: CardPresentationController?) {
@@ -253,26 +298,6 @@ private extension CardAnimator {
 		//	(note that they use momentum even when tapping to dismiss)
 		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
 	}
-
-	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
-		let params: SpringParameters
-
-		switch direction {
-		case .presentation:
-			params = .tap
-		case .dismissal:
-			params = .momentum
-		}
-
-		//	entire spring animation should not last more than transitionDuration
-		let damping = params.damping
-		let response = params.response
-		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
-
-		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
-
-		return pa
-	}
 }
 
 
@@ -289,5 +314,5 @@ private extension UISpringTimingParameters {
 		let damp = 4 * .pi * damping / response
 		self.init(mass: 1, stiffness: stiffness, damping: damp, initialVelocity: initialVelocity)
 	}
-
 }
+
