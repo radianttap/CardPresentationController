@@ -73,7 +73,37 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 		guard let pa = buildAnimator(for: transitionContext) else {
 			return
 		}
+		interactiveAnimator = pa
+		self.transitionContext = transitionContext
 		pa.pauseAnimation()
+	}
+
+	var wantsInteractiveStart: Bool {
+		return isInteractive
+	}
+
+	func updateInteractiveTransition(_ percentComplete: CGFloat) {
+		guard let pa = interactiveAnimator else { return }
+
+		pa.fractionComplete = percentComplete
+		transitionContext?.updateInteractiveTransition(percentComplete)
+	}
+
+	func cancelInteractiveTransition() {
+		guard let pa = interactiveAnimator else { return }
+
+		transitionContext?.cancelInteractiveTransition()
+		//	animate back to starting position
+		pa.isReversed = true
+		pa.continueAnimation(withTimingParameters: nil, durationFactor: 1)
+	}
+
+	func finishInteractiveTransition() {
+		guard let pa = interactiveAnimator else { return }
+
+		transitionContext?.finishInteractiveTransition()
+		//	animate to the end
+		pa.continueAnimation(withTimingParameters: nil, durationFactor: 1)
 	}
 }
 
