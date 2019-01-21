@@ -31,6 +31,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	private(set) lazy var presentationAnimator: UIViewPropertyAnimator = setupAnimator(.presentation)
 	private(set) lazy var dismissAnimator: UIViewPropertyAnimator = setupAnimator(.dismissal)
+	private var interactiveAnimator: UIViewPropertyAnimator?
+	private weak var transitionContext: UIViewControllerContextTransitioning?
 
 	//	Local configuration
 
