@@ -164,16 +164,43 @@ open class CardPresentationController: UIPresentationController {
 
 	@objc private func panned(_ gr: UIPanGestureRecognizer) {
 		guard let containerView = containerView else { return }
+		let verticalMove = gr.translation(in: containerView).y
+		let pct = verticalMove / containerView.bounds.height
+		let verticalVelocity = gr.velocity(in: containerView).y
 
 		switch gr.state {
 		case .began:
-			break
+			//	do not start dismiss until pan goes down
+			if verticalMove <= 0 { return }
+			//	setup flag that pan has finally started in the correct direction
+			hasStartedPan = true
+			//	and reset the movement so far
+			gr.setTranslation(.zero, in: containerView)
+
+			//	tell Animator that this will be interactive
+			cardAnimator.isInteractive = true
+
+			//	and then initiate dismissal
+			presentedViewController.dismiss(animated: true)
 
 		case .changed:
-			break
+			if !hasStartedPan { return }
+			cardAnimator.updateInteractiveTransition(pct)
 
 		case .ended, .cancelled:
-			break
+			if !hasStartedPan { return }
+
+			if verticalVelocity < 0 {
+				cardAnimator.cancelInteractiveTransition()
+			} else if verticalVelocity > 0 {
+				cardAnimator.finishInteractiveTransition()
+			} else {
+				if pct < 0.5 {
+					cardAnimator.cancelInteractiveTransition()
+				} else {
+					cardAnimator.finishInteractiveTransition()
+				}
+			}
 
 		default:
 			break
