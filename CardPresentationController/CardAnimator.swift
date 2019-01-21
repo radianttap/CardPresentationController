@@ -47,12 +47,14 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+		let interval: TimeInterval
 		switch direction {
 		case .presentation:
-			return 0.65
+			interval = 0.65
 		case .dismissal:
-			return 0.55
+			interval = 0.55
 		}
+		return interval
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
