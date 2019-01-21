@@ -17,32 +17,32 @@ public final class CardTransitionManager: NSObject, UIViewControllerTransitionin
 		super.init()
 	}
 
-	private lazy var animator = CardAnimator(configuration: configuration)
+	private lazy var cardAnimator = CardAnimator(configuration: configuration)
 
 	public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
 		let pc = CardPresentationController(configuration: configuration, presentedViewController: presented, presenting: presenting)
 		pc.sourceController = source
-		pc.cardAnimator = animator
+		pc.cardAnimator = cardAnimator
 		return pc
 	}
 
 	public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-		animator.direction = .presentation
-		return animator
+		cardAnimator.direction = .presentation
+		return cardAnimator
 	}
 
 	public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-		animator.direction = .dismissal
-		return animator
+		cardAnimator.direction = .dismissal
+		return cardAnimator
 	}
 
 	public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-		self.animator.direction = .presentation
-		return self.animator
+		if cardAnimator.isInteractive { return cardAnimator }
+		return nil
 	}
 
 	public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-		self.animator.direction = .dismissal
-		return self.animator
+		if cardAnimator.isInteractive { return cardAnimator }
+		return nil
 	}
 }
