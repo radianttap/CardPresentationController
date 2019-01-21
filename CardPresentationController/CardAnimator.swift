@@ -66,6 +66,11 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 		}
 		pa.startAnimation()
 	}
+
+	func animationEnded(_ transitionCompleted: Bool) {
+		isInteractive = false
+		interactiveAnimator = nil
+	}
 }
 
 extension CardAnimator: UIViewControllerInteractiveTransitioning {
