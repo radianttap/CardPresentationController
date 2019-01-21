@@ -15,7 +15,8 @@ open class CardPresentationController: UIPresentationController {
 	//	It's used in this file to clean-up CTM instance once dismissal happens.
 	weak var sourceController: UIViewController?
 
-	//
+	//	Required link to the actual animator,
+	//	so that pan gesture handler can drive the animation
 	weak var cardAnimator: CardAnimator!
 
 	//	Init
@@ -150,11 +151,8 @@ open class CardPresentationController: UIPresentationController {
 
 	//	MARK:- Pan to dismiss
 
-	private var animator: UIViewPropertyAnimator { return cardAnimator.dismissAnimator }
-
 	private var panGR: UIPanGestureRecognizer?
-	private var startPoint: CGPoint = .zero
-	private var endPoint: CGPoint = .zero
+	private var hasStartedPan = false
 
 	private func setupPanToDismiss() {
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(panned))
