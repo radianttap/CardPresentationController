@@ -166,7 +166,7 @@ open class CardPresentationController: UIPresentationController {
 		guard let containerView = containerView else { return }
 		let verticalMove = gr.translation(in: containerView).y
 		let pct = verticalMove / containerView.bounds.height
-		let verticalVelocity = gr.velocity(in: containerView).y
+		let verticalVelocity = gr.velocity(in: containerView)
 
 		switch gr.state {
 		case .began:
@@ -190,21 +190,22 @@ open class CardPresentationController: UIPresentationController {
 
 		case .ended, .cancelled:
 			if !hasStartedPan { return }
+			let vector = verticalVelocity.vector
 
-			if verticalVelocity < 0 {
-				cardAnimator.cancelInteractiveTransition()
+			if verticalVelocity.y < 0 {
+				cardAnimator.cancelInteractiveTransition(with: vector)
 				handleView.alpha = 1
 
-			} else if verticalVelocity > 0 {
-				cardAnimator.finishInteractiveTransition()
+			} else if verticalVelocity.y > 0 {
+				cardAnimator.finishInteractiveTransition(with: vector)
 				handleView.alpha = 0
 
 			} else {
 				if pct < 0.5 {
-					cardAnimator.cancelInteractiveTransition()
+					cardAnimator.cancelInteractiveTransition(with: vector)
 					handleView.alpha = 1
 				} else {
-					cardAnimator.finishInteractiveTransition()
+					cardAnimator.finishInteractiveTransition(with: vector)
 					handleView.alpha = 0
 				}
 			}
@@ -238,3 +239,10 @@ extension CardPresentationController: UIGestureRecognizerDelegate {
 		return false
 	}
 }
+
+private extension CGPoint {
+	var vector: CGVector {
+		return CGVector(dx: x, dy: y)
+	}
+}
+

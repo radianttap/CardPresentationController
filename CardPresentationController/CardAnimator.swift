@@ -101,21 +101,26 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 		transitionContext?.updateInteractiveTransition(percentComplete)
 	}
 
-	func cancelInteractiveTransition() {
+	func cancelInteractiveTransition(with velocity: CGVector = .zero) {
 		let pa = interactiveAnimator
 
 		transitionContext?.cancelInteractiveTransition()
-		//	animate back to starting position
-		pa.isReversed = true
-		pa.continueAnimation(withTimingParameters: nil, durationFactor: 1)
+
+		pa.isReversed = true	//	animate back to starting position
+
+		endPropertyAnimator(pa,
+							from: 1 - pa.fractionComplete,
+							withVelocity: velocity)
 	}
 
-	func finishInteractiveTransition() {
+	func finishInteractiveTransition(with velocity: CGVector = .zero) {
 		let pa = interactiveAnimator
 
 		transitionContext?.finishInteractiveTransition()
-		//	animate to the end
-		pa.continueAnimation(withTimingParameters: nil, durationFactor: 1)
+
+		endPropertyAnimator(pa,
+							from: pa.fractionComplete,
+							withVelocity: velocity)
 	}
 }
 
@@ -123,6 +128,20 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 //	UIViewPropertyAnimator
 
 private extension CardAnimator {
+	func clip<T : Comparable>(_ x0: T, _ x1: T, _ v: T) -> T {
+		return max(x0, min(x1, v))
+	}
+
+	func endPropertyAnimator(_ pa: UIViewPropertyAnimator, from percentComplete: CGFloat, withVelocity velocity: CGVector) {
+		let maxV: CGFloat = 32
+		let clippedVelocity = CGVector(dx: clip(-maxV, maxV, velocity.dx * percentComplete),
+									   dy: clip(-maxV, maxV, velocity.dy * percentComplete))
+
+		let params = SpringParameters.flick
+		let timingParams = UISpringTimingParameters(damping: params.damping, response: params.response, initialVelocity: clippedVelocity)
+		pa.continueAnimation(withTimingParameters: timingParams, durationFactor: percentComplete)
+	}
+
 	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
 		let params: SpringParameters
 
@@ -265,20 +284,28 @@ private extension CardAnimator {
 
 			pa.addCompletion() {
 				[weak self] animatingPosition in
+				guard let self = self else { return }
 
 				switch animatingPosition {
 				case .end, .current:	//	Note: .current should not be possible
-					self?.direction = .presentation
+					self.direction = .presentation
+					self.presentationAnimator = self.setupAnimator(.presentation)
+
 					toView.isUserInteractionEnabled = true
 					fromView.removeFromSuperview()
+
 					if let targetCardPresentationController = targetCardPresentationController {
 						targetCardPresentationController.fadeinHandle()
 					}
+
 					transitionContext.completeTransition(true)
 
 				case .start:
-					self?.direction = .dismissal
+					self.direction = .dismissal
+					self.dismissAnimator = self.setupAnimator(.dismissal)
+
 					toView.isUserInteractionEnabled = false
+
 					transitionContext.completeTransition(false)
 				}
 
@@ -347,6 +374,8 @@ private extension CardAnimator {
 		//
 		//	(note that they use momentum even when tapping to dismiss)
 		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
+
+		static let flick = SpringParameters(damping: 0.75, response: 0.44)
 	}
 }
 
