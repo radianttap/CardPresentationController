@@ -186,19 +186,26 @@ open class CardPresentationController: UIPresentationController {
 		case .changed:
 			if !hasStartedPan { return }
 			cardAnimator.updateInteractiveTransition(pct)
+			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
 
 		case .ended, .cancelled:
 			if !hasStartedPan { return }
 
 			if verticalVelocity < 0 {
 				cardAnimator.cancelInteractiveTransition()
+				handleView.alpha = 1
+
 			} else if verticalVelocity > 0 {
 				cardAnimator.finishInteractiveTransition()
+				handleView.alpha = 0
+
 			} else {
 				if pct < 0.5 {
 					cardAnimator.cancelInteractiveTransition()
+					handleView.alpha = 1
 				} else {
 					cardAnimator.finishInteractiveTransition()
+					handleView.alpha = 0
 				}
 			}
 
