@@ -31,8 +31,17 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	private(set) lazy var presentationAnimator: UIViewPropertyAnimator = setupAnimator(.presentation)
 	private(set) lazy var dismissAnimator: UIViewPropertyAnimator = setupAnimator(.dismissal)
-	private var interactiveAnimator: UIViewPropertyAnimator?
+
 	private weak var transitionContext: UIViewControllerContextTransitioning?
+
+	private var interactiveAnimator: UIViewPropertyAnimator {
+		switch direction {
+		case .presentation:
+			return presentationAnimator
+		case .dismissal:
+			return dismissAnimator
+		}
+	}
 
 	//	Local configuration
 
@@ -69,7 +78,6 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	func animationEnded(_ transitionCompleted: Bool) {
 		isInteractive = false
-		interactiveAnimator = nil
 	}
 }
 
@@ -78,7 +86,6 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 		guard let pa = buildAnimator(for: transitionContext) else {
 			return
 		}
-		interactiveAnimator = pa
 		self.transitionContext = transitionContext
 		pa.pauseAnimation()
 	}
@@ -88,14 +95,14 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	}
 
 	func updateInteractiveTransition(_ percentComplete: CGFloat) {
-		guard let pa = interactiveAnimator else { return }
+		let pa = interactiveAnimator
 
 		pa.fractionComplete = percentComplete
 		transitionContext?.updateInteractiveTransition(percentComplete)
 	}
 
 	func cancelInteractiveTransition() {
-		guard let pa = interactiveAnimator else { return }
+		let pa = interactiveAnimator
 
 		transitionContext?.cancelInteractiveTransition()
 		//	animate back to starting position
@@ -104,7 +111,7 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	}
 
 	func finishInteractiveTransition() {
-		guard let pa = interactiveAnimator else { return }
+		let pa = interactiveAnimator
 
 		transitionContext?.finishInteractiveTransition()
 		//	animate to the end
