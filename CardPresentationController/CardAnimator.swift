@@ -198,19 +198,19 @@ private extension CardAnimator {
 			}
 
 			pa.addCompletion() {
-				[weak self] finalAnimatingPosition in
+				[weak self] animatingPosition in
 
-				switch finalAnimatingPosition {
+				switch animatingPosition {
 				case .end, .current:	//	Note: .current should not be possible
 					self?.direction = .dismissal
 					fromView.isUserInteractionEnabled = false
+					transitionContext.completeTransition(true)
 
 				case .start:
 					self?.direction = .presentation
 					fromView.isUserInteractionEnabled = true
+					transitionContext.completeTransition(false)
 				}
-
-				transitionContext.completeTransition(true)
 			}
 
 			return pa
@@ -223,8 +223,7 @@ private extension CardAnimator {
 			let toBeginFrame = toView.frame
 			let toEndFrame: CGRect
 
-			if let targetCardPresentationController = targetCardPresentationController {
-				targetCardPresentationController.fadeinHandle()
+			if let _ = targetCardPresentationController {
 				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
 
 			} else {
@@ -258,20 +257,24 @@ private extension CardAnimator {
 			}
 
 			pa.addCompletion() {
-				[weak self] finalAnimatingPosition in
+				[weak self] animatingPosition in
 
-				switch finalAnimatingPosition {
+				switch animatingPosition {
 				case .end, .current:	//	Note: .current should not be possible
 					self?.direction = .presentation
 					toView.isUserInteractionEnabled = true
 					fromView.removeFromSuperview()
+					if let targetCardPresentationController = targetCardPresentationController {
+						targetCardPresentationController.fadeinHandle()
+					}
+					transitionContext.completeTransition(true)
 
 				case .start:
 					self?.direction = .dismissal
 					toView.isUserInteractionEnabled = false
+					transitionContext.completeTransition(false)
 				}
 
-				transitionContext.completeTransition(true)
 			}
 
 			return pa
