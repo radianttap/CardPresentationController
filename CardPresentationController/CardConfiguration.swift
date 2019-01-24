@@ -29,6 +29,9 @@ public struct CardConfiguration {
 	///	Ignored if back card is UINavigationController
 	var backFadeAlpha: CGFloat = 0.8
 
+	///	Set to true to disable interactive dismissal
+	var allowInteractiveDismissal = true
+
 	///	Default initializer, with most suitable values
 	init() {}
 }
@@ -39,7 +42,8 @@ extension CardConfiguration {
 		 horizontalInset: CGFloat? = nil,
 		 cornerRadius: CGFloat? = nil,
 		 backFadeAlpha: CGFloat? = nil,
-		 initialTransitionFrame: CGRect? = nil)
+		 initialTransitionFrame: CGRect? = nil,
+		 allowInteractiveDismissal: Bool? = nil)
 	{
 		if let verticalSpacing = verticalSpacing {
 			self.verticalSpacing = verticalSpacing
@@ -59,6 +63,10 @@ extension CardConfiguration {
 
 		if let initialTransitionFrame = initialTransitionFrame {
 			self.initialTransitionFrame = initialTransitionFrame
+		}
+
+		if let allowInteractiveDismissal = allowInteractiveDismissal {
+			self.allowInteractiveDismissal = allowInteractiveDismissal
 		}
 	}
 }

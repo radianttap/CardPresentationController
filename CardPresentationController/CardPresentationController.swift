@@ -155,6 +155,8 @@ open class CardPresentationController: UIPresentationController {
 	private var hasStartedPan = false
 
 	private func setupPanToDismiss() {
+		if !configuration.allowInteractiveDismissal { return }
+
 		let gr = UIPanGestureRecognizer(target: self, action: #selector(panned))
 		gr.delegate = self
 
