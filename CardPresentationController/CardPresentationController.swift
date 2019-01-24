@@ -74,6 +74,11 @@ open class CardPresentationController: UIPresentationController {
 		setupPanToDismiss()
 	}
 
+	open override func dismissalTransitionWillBegin() {
+		fadeoutHandle()
+		super.dismissalTransitionWillBegin()
+	}
+
 	open override func dismissalTransitionDidEnd(_ completed: Bool) {
 		super.dismissalTransitionDidEnd(completed)
 		if !completed {
@@ -189,7 +194,7 @@ open class CardPresentationController: UIPresentationController {
 		case .changed:
 			if !hasStartedPan { return }
 			cardAnimator.updateInteractiveTransition(pct)
-			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
+//			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
 
 		case .ended, .cancelled:
 			if !hasStartedPan { return }
