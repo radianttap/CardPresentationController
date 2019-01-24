@@ -101,7 +101,9 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	}
 
 	func cancelInteractiveTransition(with velocity: CGVector = .zero) {
-		guard transitionContext?.isInteractive ?? false else { return }
+		guard isInteractive else {
+			return
+		}
 
 		transitionContext?.cancelInteractiveTransition()
 
@@ -114,7 +116,9 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	}
 
 	func finishInteractiveTransition(with velocity: CGVector = .zero) {
-		guard transitionContext?.isInteractive ?? false else { return }
+		guard isInteractive else {
+			return
+		}
 
 		transitionContext?.finishInteractiveTransition()
 
