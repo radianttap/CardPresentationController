@@ -292,7 +292,6 @@ private extension CardAnimator {
 
 					transitionContext.completeTransition(false)
 				}
-
 			}
 
 			return pa
