@@ -358,8 +358,6 @@ private extension CardAnimator {
 		//
 		//	(note that they use momentum even when tapping to dismiss)
 		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
-
-		static let flick = SpringParameters(damping: 0.75, response: 0.44)
 	}
 }
 
