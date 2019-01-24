@@ -83,11 +83,10 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-		guard let pa = buildAnimator(for: transitionContext) else {
+		guard let _ = buildAnimator(for: transitionContext) else {
 			return
 		}
 		self.transitionContext = transitionContext
-		pa.pauseAnimation()
 	}
 
 	var wantsInteractiveStart: Bool {
@@ -102,25 +101,27 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 	}
 
 	func cancelInteractiveTransition(with velocity: CGVector = .zero) {
-		let pa = interactiveAnimator
+		guard transitionContext?.isInteractive ?? false else { return }
 
 		transitionContext?.cancelInteractiveTransition()
 
-		pa.isReversed = true	//	animate back to starting position
+		interactiveAnimator.isReversed = true	//	animate back to starting position
 
-		endPropertyAnimator(pa,
-							from: 1 - pa.fractionComplete,
-							withVelocity: velocity)
+		let pct = interactiveAnimator.fractionComplete
+		endInteraction(from: pct,
+					   withVelocity: velocity,
+					   durationFactor: 1 - pct)
 	}
 
 	func finishInteractiveTransition(with velocity: CGVector = .zero) {
-		let pa = interactiveAnimator
+		guard transitionContext?.isInteractive ?? false else { return }
 
 		transitionContext?.finishInteractiveTransition()
 
-		endPropertyAnimator(pa,
-							from: pa.fractionComplete,
-							withVelocity: velocity)
+		let pct = interactiveAnimator.fractionComplete
+		endInteraction(from: pct,
+					   withVelocity: velocity,
+					   durationFactor: pct)
 	}
 }
 
@@ -128,18 +129,13 @@ extension CardAnimator: UIViewControllerInteractiveTransitioning {
 //	UIViewPropertyAnimator
 
 private extension CardAnimator {
-	func clip<T : Comparable>(_ x0: T, _ x1: T, _ v: T) -> T {
-		return max(x0, min(x1, v))
-	}
-
-	func endPropertyAnimator(_ pa: UIViewPropertyAnimator, from percentComplete: CGFloat, withVelocity velocity: CGVector) {
-		let maxV: CGFloat = 32
-		let clippedVelocity = CGVector(dx: clip(-maxV, maxV, velocity.dx * percentComplete),
-									   dy: clip(-maxV, maxV, velocity.dy * percentComplete))
-
-		let params = SpringParameters.flick
-		let timingParams = UISpringTimingParameters(damping: params.damping, response: params.response, initialVelocity: clippedVelocity)
-		pa.continueAnimation(withTimingParameters: timingParams, durationFactor: percentComplete)
+	func endInteraction(from percentComplete: CGFloat, withVelocity velocity: CGVector, durationFactor: CGFloat) {
+		switch interactiveAnimator.state {
+		case .inactive:
+			interactiveAnimator.startAnimation()
+		case .active, .stopped:
+			interactiveAnimator.continueAnimation(withTimingParameters: nil, durationFactor: durationFactor)
+		}
 	}
 
 	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
@@ -251,7 +247,6 @@ private extension CardAnimator {
 
 			if let _ = targetCardPresentationController {
 				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
-
 			} else {
 				toEndFrame = transitionContext.finalFrame(for: toVC)
 			}
@@ -274,10 +269,7 @@ private extension CardAnimator {
 				toView.alpha = 1
 				fromView.alpha = 1
 
-				if
-					let nc = toVC as? UINavigationController,
-					let barStyle = self.initialBarStyle
-				{
+				if let nc = toVC as? UINavigationController, let barStyle = self.initialBarStyle {
 					nc.navigationBar.barStyle = barStyle
 				}
 			}
@@ -303,6 +295,12 @@ private extension CardAnimator {
 				case .start:
 					self.direction = .dismissal
 					self.dismissAnimator = self.setupAnimator(.dismissal)
+
+					if let nc = toVC as? UINavigationController, !nc.isNavigationBarHidden {
+						nc.navigationBar.barStyle = .black
+					} else {
+						fromView.alpha = self.backFadeAlpha
+					}
 
 					toView.isUserInteractionEnabled = false
 
