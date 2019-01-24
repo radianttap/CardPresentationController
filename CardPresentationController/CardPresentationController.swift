@@ -164,6 +164,7 @@ open class CardPresentationController: UIPresentationController {
 
 	@objc private func panned(_ gr: UIPanGestureRecognizer) {
 		guard let containerView = containerView else { return }
+
 		let verticalMove = gr.translation(in: containerView).y
 		let pct = verticalMove / containerView.bounds.height
 		let verticalVelocity = gr.velocity(in: containerView)
@@ -209,6 +210,7 @@ open class CardPresentationController: UIPresentationController {
 					handleView.alpha = 0
 				}
 			}
+			hasStartedPan = false
 
 		default:
 			break
