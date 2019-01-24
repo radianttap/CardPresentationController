@@ -54,7 +54,6 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	Other local stuff
 
 	private var statusBarFrame: CGRect = UIApplication.shared.statusBarFrame
-	private var initialBarStyle: UIBarStyle?
 
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
@@ -202,9 +201,6 @@ private extension CardAnimator {
 			toView.layoutIfNeeded()
 			containerView.addSubview(toView)
 
-			let fromNC = fromVC as? UINavigationController
-			initialBarStyle = fromNC?.navigationBar.barStyle
-
 			let pa = presentationAnimator
 			pa.addAnimations() {
 				[weak self] in
@@ -216,11 +212,7 @@ private extension CardAnimator {
 				fromView.cardMaskTopCorners(using: self.cornerRadius)
 				toView.cardMaskTopCorners(using: self.cornerRadius)
 
-				if let nc = fromVC as? UINavigationController, !nc.isNavigationBarHidden {
-					nc.navigationBar.barStyle = .black
-				} else {
-					fromView.alpha = self.backFadeAlpha
-				}
+				fromView.alpha = self.backFadeAlpha
 			}
 
 			pa.addCompletion() {
@@ -272,10 +264,6 @@ private extension CardAnimator {
 				toView.frame = toEndFrame
 				toView.alpha = 1
 				fromView.alpha = 1
-
-				if let nc = toVC as? UINavigationController, let barStyle = self.initialBarStyle {
-					nc.navigationBar.barStyle = barStyle
-				}
 			}
 
 			pa.addCompletion() {
@@ -299,12 +287,6 @@ private extension CardAnimator {
 				case .start:
 					self.direction = .dismissal
 					self.dismissAnimator = self.setupAnimator(.dismissal)
-
-					if let nc = toVC as? UINavigationController, !nc.isNavigationBarHidden {
-						nc.navigationBar.barStyle = .black
-					} else {
-						fromView.alpha = self.backFadeAlpha
-					}
 
 					toView.isUserInteractionEnabled = false
 
