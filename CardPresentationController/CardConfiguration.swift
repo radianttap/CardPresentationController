@@ -29,7 +29,7 @@ public struct CardConfiguration {
 	///	Ignored if back card is UINavigationController
 	var backFadeAlpha: CGFloat = 0.8
 
-	///	Set to true to disable interactive dismissal
+	///	Set to false to disable interactive dismissal
 	var allowInteractiveDismissal = true
 
 	///	Default initializer, with most suitable values
