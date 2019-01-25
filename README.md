@@ -11,11 +11,11 @@ Add the folder `CardPresentationController` into your project. It's only five fi
 
 ### CocoaPods
 
-Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
+Don't support now, later make it work because I'm still working on some larger features. 
 
 ### Carthage
 
-Don't support now, later make it work because I'm still working on some larger features(see TODO section at the end). 
+Don't support now, later make it work because I'm still working on some larger features. 
 
 
 
@@ -41,11 +41,9 @@ You can *present card from another card*; library will stack the cards nicely. D
 
 ### Advanced behavior
 
-If the _presenting_ controller was `UINavigationController` instance (which is the case in most apps) then its `barStyle` will be automatically changed to `.black`. So it looks dimmed.
+View of the `presenting` Controller will be (by default) 20% transparent to blend into the background a bit, thus looking dimmed.
 
-If `presenting` is not `UINavigationController` instance, then its view will be (by default) 20% transparent to blend into the background a bit, again looking dimmed.
-
-In both cases that back "card" is inset a bit from the edges.
+That back "card" is also inset a bit from the edges.
 
 ![](resources/presentedNC-top.png)
 
@@ -56,6 +54,8 @@ If it is not, then `CardPresentationController` will automatically add a button 
 ![](resources/presentedVC-top.png)
 
 As you present card over card, back cards will be ever more transparent and horizontally inset. In most cases, this should look rather nice.
+
+Library also supports interactive dismissal — simply pan  from top to bottom and UI will obey you. You can pan up or down and the direction and position where you let go will determine will the card finish dismissing or return to presented state.
 
 ### Status bar style
 
@@ -114,6 +114,9 @@ var initialTransitionFrame: CGRect?
 ///
 ///	Ignored if back card is UINavigationController.
 var backFadeAlpha: CGFloat = 0.8
+
+///	Set to false to disable interactive dismissal
+var allowInteractiveDismissal = true
 ```
 
 There’s a very handy `init` for it where you can supply any combination of these parameters.
@@ -141,14 +144,6 @@ The important bit here is setting `initialTransitionFrame` property to the frame
 
 Depending on the complexity of your UI, in may be impossible to make the transition perfect. Usually in cases where UIKit applies its own private API magic related to status / navigation bars. 
 See `EmbeddedNCExample` where I have `UINavigationController` embedded inside ordinary `UIViewController`. This is very unusual UIVC stack which I would love to solve since I have project using just that.
-
-## TODO
-
-* ~~configurability~~ (1.2)
-* ~~stack multiple cards~~ (1.1)
-* interactivity (both for presenting and dismissing)
-* improve landscape behavior
-* ~~more examples~~ (1.1)
 
 ## LICENSE
 
