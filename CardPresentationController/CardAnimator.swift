@@ -19,11 +19,28 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
 	var direction: Direction
 	var configuration: CardConfiguration
+	var isInteractive = false
 
 	init(direction: Direction = .presentation, configuration: CardConfiguration) {
 		self.direction = direction
 		self.configuration = configuration
 		super.init()
+	}
+
+	//	Animators
+
+	private(set) lazy var presentationAnimator: UIViewPropertyAnimator = setupAnimator(.presentation)
+	private(set) lazy var dismissAnimator: UIViewPropertyAnimator = setupAnimator(.dismissal)
+
+	private weak var transitionContext: UIViewControllerContextTransitioning?
+
+	private var interactiveAnimator: UIViewPropertyAnimator {
+		switch direction {
+		case .presentation:
+			return presentationAnimator
+		case .dismissal:
+			return dismissAnimator
+		}
 	}
 
 	//	Local configuration
@@ -37,27 +54,121 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	Other local stuff
 
 	private var statusBarFrame: CGRect = UIApplication.shared.statusBarFrame
-	private var initialBarStyle: UIBarStyle?
 
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
 	func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+		let interval: TimeInterval
 		switch direction {
 		case .presentation:
-			return 0.65
+			interval = 0.65
 		case .dismissal:
-			return 0.55
+			interval = 0.55
 		}
+		return interval
 	}
 
 	func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+		guard let pa = buildAnimator(for: transitionContext) else {
+			return
+		}
+		pa.startAnimation()
+	}
+
+	func animationEnded(_ transitionCompleted: Bool) {
+		isInteractive = false
+	}
+}
+
+extension CardAnimator: UIViewControllerInteractiveTransitioning {
+	func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
+		guard let _ = buildAnimator(for: transitionContext) else {
+			return
+		}
+		self.transitionContext = transitionContext
+	}
+
+	var wantsInteractiveStart: Bool {
+		return isInteractive
+	}
+
+	func updateInteractiveTransition(_ percentComplete: CGFloat) {
+		let pa = interactiveAnimator
+
+		pa.fractionComplete = percentComplete
+		transitionContext?.updateInteractiveTransition(percentComplete)
+	}
+
+	func cancelInteractiveTransition(with velocity: CGVector = .zero) {
+		guard isInteractive else {
+			return
+		}
+
+		transitionContext?.cancelInteractiveTransition()
+
+		interactiveAnimator.isReversed = true	//	animate back to starting position
+
+		let pct = interactiveAnimator.fractionComplete
+		endInteraction(from: pct,
+					   withVelocity: velocity,
+					   durationFactor: 1 - pct)
+	}
+
+	func finishInteractiveTransition(with velocity: CGVector = .zero) {
+		guard isInteractive else {
+			return
+		}
+
+		transitionContext?.finishInteractiveTransition()
+
+		let pct = interactiveAnimator.fractionComplete
+		endInteraction(from: pct,
+					   withVelocity: velocity,
+					   durationFactor: pct)
+	}
+}
+
+
+//	UIViewPropertyAnimator
+
+private extension CardAnimator {
+	func endInteraction(from percentComplete: CGFloat, withVelocity velocity: CGVector, durationFactor: CGFloat) {
+		switch interactiveAnimator.state {
+		case .inactive:
+			interactiveAnimator.startAnimation()
+		case .active, .stopped:
+			interactiveAnimator.continueAnimation(withTimingParameters: nil, durationFactor: durationFactor)
+		}
+	}
+
+	func setupAnimator(_ direction: Direction) -> UIViewPropertyAnimator {
+		let params: SpringParameters
+
+		switch direction {
+		case .presentation:
+			params = .tap
+		case .dismissal:
+			params = .momentum
+		}
+
+		//	entire spring animation should not last more than transitionDuration
+		let damping = params.damping
+		let response = params.response
+		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
+
+		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
+
+		return pa
+	}
+
+	func buildAnimator(for transitionContext: UIViewControllerContextTransitioning) -> UIViewPropertyAnimator? {
 		guard
 			let fromVC = transitionContext.viewController(forKey: .from),
 			let toVC = transitionContext.viewController(forKey: .to),
 			let fromView = fromVC.view,
 			let toView = toVC.view
 		else {
-			return
+			return nil
 		}
 		let containerView = transitionContext.containerView
 
@@ -90,11 +201,8 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			toView.layoutIfNeeded()
 			containerView.addSubview(toView)
 
-			let fromNC = fromVC as? UINavigationController
-			initialBarStyle = fromNC?.navigationBar.barStyle
-
-			let params = SpringParameters.tap
-			animate({
+			let pa = presentationAnimator
+			pa.addAnimations() {
 				[weak self] in
 				guard let self = self else { return }
 
@@ -104,26 +212,27 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				fromView.cardMaskTopCorners(using: self.cornerRadius)
 				toView.cardMaskTopCorners(using: self.cornerRadius)
 
-				if let nc = fromVC as? UINavigationController, !nc.isNavigationBarHidden {
-					nc.navigationBar.barStyle = .black
-				} else {
-					fromView.alpha = self.backFadeAlpha
-				}
-			}, params: params, completion: {
-				[weak self] finalAnimatingPosition in
+				fromView.alpha = self.backFadeAlpha
+			}
 
-				switch finalAnimatingPosition {
+			pa.addCompletion() {
+				[weak self] animatingPosition in
+
+				switch animatingPosition {
 				case .end, .current:	//	Note: .current should not be possible
 					self?.direction = .dismissal
 					fromView.isUserInteractionEnabled = false
+					transitionContext.completeTransition(true)
 
 				case .start:
 					self?.direction = .presentation
 					fromView.isUserInteractionEnabled = true
+					transitionContext.completeTransition(false)
 				}
+			}
 
-				transitionContext.completeTransition(true)
-			})
+			return pa
+
 
 		case .dismissal:
 			let targetCardPresentationController = toVC.presentationController as? CardPresentationController
@@ -132,18 +241,16 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 			let toBeginFrame = toView.frame
 			let toEndFrame: CGRect
 
-			if let targetCardPresentationController = targetCardPresentationController {
-				targetCardPresentationController.fadeinHandle()
+			if let _ = targetCardPresentationController {
 				toEndFrame = toBeginFrame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))
-
 			} else {
 				toEndFrame = transitionContext.finalFrame(for: toVC)
 			}
 
 			let fromEndFrame = offscreenFrame(inside: containerView)
 
-			let params = SpringParameters.momentum
-			animate({
+			let pa = dismissAnimator
+			pa.addAnimations() {
 				[weak self] in
 				guard let self = self else { return }
 
@@ -157,33 +264,44 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 				toView.frame = toEndFrame
 				toView.alpha = 1
 				fromView.alpha = 1
+			}
 
-				if
-					let nc = toVC as? UINavigationController,
-					let barStyle = self.initialBarStyle
-				{
-					nc.navigationBar.barStyle = barStyle
-				}
-			}, params: params, completion: {
-				[weak self] finalAnimatingPosition in
+			pa.addCompletion() {
+				[weak self] animatingPosition in
+				guard let self = self else { return }
 
-				switch finalAnimatingPosition {
+				switch animatingPosition {
 				case .end, .current:	//	Note: .current should not be possible
-					self?.direction = .presentation
+					self.direction = .presentation
+					self.presentationAnimator = self.setupAnimator(.presentation)
+
 					toView.isUserInteractionEnabled = true
 					fromView.removeFromSuperview()
 
-				case .start:
-					self?.direction = .dismissal
-					toView.isUserInteractionEnabled = false
-				}
+					if let targetCardPresentationController = targetCardPresentationController {
+						targetCardPresentationController.fadeinHandle()
+					}
 
-				transitionContext.completeTransition(true)
-			})
+					transitionContext.completeTransition(true)
+
+				case .start:
+					self.direction = .dismissal
+					self.dismissAnimator = self.setupAnimator(.dismissal)
+
+					toView.isUserInteractionEnabled = false
+
+					transitionContext.completeTransition(false)
+				}
+			}
+
+			return pa
 		}
 	}
 }
 
+
+
+//	Helper methods
 
 private extension CardAnimator {
 	private func insetBackCards(of pc: CardPresentationController?) {
@@ -240,57 +358,6 @@ private extension CardAnimator {
 		//	(note that they use momentum even when tapping to dismiss)
 		static let momentum = SpringParameters(damping: 0.8, response: 0.44)
 	}
-
-	func animate(_ animation: @escaping () -> Void, params: SpringParameters, completion: @escaping (UIViewAnimatingPosition) -> Void) {
-		//	entire spring animation should not last more than transitionDuration
-		let damping = params.damping
-		let response = params.response
-
-		let timingParameters = UISpringTimingParameters(damping: damping, response: response)
-		let pa = UIViewPropertyAnimator(duration: 0, timingParameters: timingParameters)
-		pa.addAnimations(animation)
-		pa.addCompletion(completion)
-/*
-		//	simple way to measure total time of the transition
-		//	add about 0.02 for good measure and use that value for transitionDuration
-
-		let ts = CACurrentMediaTime()
-		pa.addCompletion {
-			_ in
-			let te = CACurrentMediaTime()
-			print(te - ts)
-		}
-*/
-		pa.startAnimation()
-	}
-}
-
-
-
-fileprivate extension UIViewControllerContextTransitioning {
-	var fromContentController: UIViewController? {
-		guard let topVC = viewController(forKey: .from) else { return nil }
-		return recognize(topVC)
-	}
-
-	var toContentController: UIViewController? {
-		guard let topVC = viewController(forKey: .to) else { return nil }
-		return recognize(topVC)
-	}
-
-	func recognize(_ vc: UIViewController) -> UIViewController? {
-		switch vc {
-		case let nc as UINavigationController:
-			return nc.topViewController ?? nc
-
-		case let tbc as UITabBarController:
-			guard let vc = tbc.selectedViewController else { return tbc }
-			return recognize(vc)
-
-		default:
-			return vc
-		}
-	}
 }
 
 
@@ -307,5 +374,5 @@ private extension UISpringTimingParameters {
 		let damp = 4 * .pi * damping / response
 		self.init(mass: 1, stiffness: stiffness, damping: damp, initialVelocity: initialVelocity)
 	}
-
 }
+

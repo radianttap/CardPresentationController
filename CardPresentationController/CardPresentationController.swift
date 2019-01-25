@@ -15,6 +15,9 @@ open class CardPresentationController: UIPresentationController {
 	//	It's used in this file to clean-up CTM instance once dismissal happens.
 	weak var sourceController: UIViewController?
 
+	//	Required link to the actual animator,
+	//	so that pan gesture handler can drive the animation
+	weak var cardAnimator: CardAnimator!
 
 	//	Init
 
@@ -28,8 +31,6 @@ open class CardPresentationController: UIPresentationController {
 		self.configuration = configuration
 		super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
 	}
-
-
 
 	//	Private stuff
 
@@ -70,6 +71,12 @@ open class CardPresentationController: UIPresentationController {
 			return
 		}
 		showDismissHandle()
+		setupPanToDismiss()
+	}
+
+	open override func dismissalTransitionWillBegin() {
+		fadeoutHandle()
+		super.dismissalTransitionWillBegin()
 	}
 
 	open override func dismissalTransitionDidEnd(_ completed: Bool) {
@@ -146,4 +153,105 @@ open class CardPresentationController: UIPresentationController {
 		self.handleView.superview?.layoutIfNeeded()
 		self.fadeinHandle()
 	}
+
+	//	MARK:- Pan to dismiss
+
+	private var panGR: UIPanGestureRecognizer?
+	private var hasStartedPan = false
+
+	private func setupPanToDismiss() {
+		if !configuration.allowInteractiveDismissal { return }
+
+		let gr = UIPanGestureRecognizer(target: self, action: #selector(panned))
+		gr.delegate = self
+
+		containerView?.addGestureRecognizer(gr)
+		panGR = gr
+	}
+
+	@objc private func panned(_ gr: UIPanGestureRecognizer) {
+		guard let containerView = containerView else { return }
+
+		let verticalMove = gr.translation(in: containerView).y
+		let pct = verticalMove / containerView.bounds.height
+		let verticalVelocity = gr.velocity(in: containerView)
+
+		switch gr.state {
+		case .began:
+			//	do not start dismiss until pan goes down
+			if verticalMove <= 0 { return }
+			//	setup flag that pan has finally started in the correct direction
+			hasStartedPan = true
+			//	and reset the movement so far
+			gr.setTranslation(.zero, in: containerView)
+
+			//	tell Animator that this will be interactive
+			cardAnimator.isInteractive = true
+
+			//	and then initiate dismissal
+			presentedViewController.dismiss(animated: true)
+
+		case .changed:
+			if !hasStartedPan { return }
+			cardAnimator.updateInteractiveTransition(pct)
+//			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
+
+		case .ended, .cancelled:
+			if !hasStartedPan { return }
+			let vector = verticalVelocity.vector
+
+			if verticalVelocity.y < 0 {
+				cardAnimator.cancelInteractiveTransition(with: vector)
+				handleView.alpha = 1
+
+			} else if verticalVelocity.y > 0 {
+				cardAnimator.finishInteractiveTransition(with: vector)
+				handleView.alpha = 0
+
+			} else {
+				if pct < 0.5 {
+					cardAnimator.cancelInteractiveTransition(with: vector)
+					handleView.alpha = 1
+				} else {
+					cardAnimator.finishInteractiveTransition(with: vector)
+					handleView.alpha = 0
+				}
+			}
+			hasStartedPan = false
+
+		default:
+			break
+		}
+	}
 }
+
+extension CardPresentationController: UIGestureRecognizerDelegate {
+	public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+								  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
+	{
+		if gestureRecognizer != panGR { return true }
+
+		let otherView = otherGestureRecognizer.view
+
+		//	allow unconditional panning if that other view is not `UIScrollView`
+		guard let scrollView = otherView as? UIScrollView else {
+			return true
+		}
+
+		//	if it is `UIScrollView`,
+		//	allow panning only if its content is at the very top
+		if (scrollView.contentOffset.y + scrollView.contentInset.top) == 0 {
+			return true
+		}
+
+		//	otherwise, disallow pan to dismiss
+		return false
+	}
+}
+
+private extension CGPoint {
+	var vector: CGVector {
+		return CGVector(dx: x, dy: y)
+	}
+}
+
