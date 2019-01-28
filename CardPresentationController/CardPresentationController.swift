@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 10.0, *)
-open class CardPresentationController: UIPresentationController {
+public class CardPresentationController: UIPresentationController {
 	//	This is a link to the original UIVC on which presentCard() was called.
 	//	(this is populated by CardTransitionManager)
 	//	It's used in this file to clean-up CTM instance once dismissal happens.
@@ -58,13 +58,13 @@ open class CardPresentationController: UIPresentationController {
 
 	//	MARK:- PresentationController
 
-	open override func presentationTransitionWillBegin() {
+	public override func presentationTransitionWillBegin() {
 		setupDismissHandle()
 
 		super.presentationTransitionWillBegin()
 	}
 
-	open override func presentationTransitionDidEnd(_ completed: Bool) {
+	public override func presentationTransitionDidEnd(_ completed: Bool) {
 		super.presentationTransitionDidEnd(completed)
 
 		if !completed {
@@ -74,12 +74,12 @@ open class CardPresentationController: UIPresentationController {
 		setupPanToDismiss()
 	}
 
-	open override func dismissalTransitionWillBegin() {
+	public override func dismissalTransitionWillBegin() {
 		fadeoutHandle()
 		super.dismissalTransitionWillBegin()
 	}
 
-	open override func dismissalTransitionDidEnd(_ completed: Bool) {
+	public override func dismissalTransitionDidEnd(_ completed: Bool) {
 		super.dismissalTransitionDidEnd(completed)
 		if !completed {
 			return

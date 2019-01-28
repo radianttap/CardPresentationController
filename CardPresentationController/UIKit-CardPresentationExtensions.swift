@@ -33,7 +33,7 @@ extension UIViewController {
 	///   - configuration: an instance of `CardConfiguration`. By default it's `nil` which means that defaults will be used.
 	///   - flag: Pass `true` to animate the presentation; otherwise, `pass` false.
 	///   - completion: The closure to execute after the presentation finishes. This closure has no return value and takes no parameters. You may specify `nil` for this parameter or omit it entirely.
-	open func presentCard(_ viewControllerToPresent: UIViewController,
+	public func presentCard(_ viewControllerToPresent: UIViewController,
 						  configuration: CardConfiguration? = nil,
 						  animated flag: Bool,
 						  completion: (() -> Void)? = nil)

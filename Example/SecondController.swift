@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CardPresentationController
 
 final class SecondController: UIViewController, StoryboardLoadable {
 

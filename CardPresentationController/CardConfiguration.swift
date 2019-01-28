@@ -13,24 +13,24 @@ import UIKit
 ///	Supply it as optional parameter to `presentCard(...)`.
 public struct CardConfiguration {
 	///	Vertical inset from the top or already shown card.
-	var verticalSpacing: CGFloat = 16
+	public var verticalSpacing: CGFloat = 16
 
 	///	Leading and trailing inset for the existing (presenting) view when it's being pushed further back.
-	var horizontalInset: CGFloat = 16
+	public var horizontalInset: CGFloat = 16
 
 	///	Cards have rounded corners, right?
-	var cornerRadius: CGFloat = 12
+	public var cornerRadius: CGFloat = 12
 
 	///	The starting frame for the presented card.
-	var initialTransitionFrame: CGRect?
+	public var initialTransitionFrame: CGRect?
 
 	///	How much to fade the back card.
 	///
 	///	Ignored if back card is UINavigationController
-	var backFadeAlpha: CGFloat = 0.8
+	public var backFadeAlpha: CGFloat = 0.8
 
 	///	Set to false to disable interactive dismissal
-	var allowInteractiveDismissal = true
+	public var allowInteractiveDismissal = true
 
 	///	Default initializer, with most suitable values
 	init() {}
