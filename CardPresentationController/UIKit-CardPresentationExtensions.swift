@@ -57,7 +57,7 @@ extension UIViewController {
 				completion: completion)
 	}
 
-	public func removeCardTransitionManager() {
+	func removeCardTransitionManager() {
 		cardTransitionManager = nil
 	}
 }
