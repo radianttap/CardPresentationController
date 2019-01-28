@@ -9,14 +9,33 @@ Custom [UIPresentationController](https://developer.apple.com/documentation/uiki
 
 Add the folder `CardPresentationController` into your project. It's only five files.
 
+If you prefer to use dependency managers, see below. 
+Releases are tagged with [Semantic Versioning](https://semver.org) in mind.
+
 ### CocoaPods
 
-Don't support now, later make it work because I'm still working on some larger features. 
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Coordinator into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
-### Carthage
+```ruby
+pod 'Coordinator', 	:git => 'https://github.com/radianttap/CardPresentationController.git'
+```
 
-Don't support now, later make it work because I'm still working on some larger features. 
+### Setting up with Carthage
 
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate CardPresentationController into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "radianttap/CardPresentationController"
+```
 
 
 
@@ -49,7 +68,7 @@ That back "card" is also inset a bit from the edges.
 
 If the _presented_ VC is `UINavigationController` instance, nothing special happens. It’s assumed that you will add `UIBarButtonItem` which will facilitate dismissal.
 
-If it is not, then `CardPresentationController` will automatically add a button at the middle of the shown card. Tapping on that will dismiss the cards.
+If it is not, then `CardPresentationController` will automatically add a button at the middle of the shown card. Tapping on that will dismiss the card.
 
 ![](resources/presentedVC-top.png)
 
