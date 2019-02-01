@@ -44,8 +44,8 @@ extension UIViewController {
 		//	enforce statusBarStyle preferred by presented UIVC
 		viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
 
-		//	prepare config, using supplied or default
-		let config = configuration ?? CardConfiguration()
+		//	card config, using supplied or default
+		let config = configuration ?? CardConfiguration.shared
 
 		//	then build transition manager
 		let tm = CardTransitionManager(configuration: config)

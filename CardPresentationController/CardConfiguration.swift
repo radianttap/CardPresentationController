@@ -25,8 +25,6 @@ public struct CardConfiguration {
 	public var initialTransitionFrame: CGRect?
 
 	///	How much to fade the back card.
-	///
-	///	Ignored if back card is UINavigationController
 	public var backFadeAlpha: CGFloat = 0.8
 
 	///	Set to false to disable interactive dismissal
@@ -34,6 +32,12 @@ public struct CardConfiguration {
 
 	///	Default initializer, with most suitable values
 	init() {}
+
+	///	Common instance of the Configuration, applied to all cards
+	///	unless a specific instance is supplied in `presentCard()` call.
+	///
+	///	Set this value early in your app lifecycle to adjust the look of all cards in your app.
+	public static var shared = CardConfiguration()
 }
 
 extension CardConfiguration {
