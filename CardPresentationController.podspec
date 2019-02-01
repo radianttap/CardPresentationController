@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = 'CardPresentationController'
-    s.version = '1.4'
+    s.version = '1.4.1'
     s.summary = 'Custom UIPresentationController which mimics the behavior of Apple Music UI'
     s.description = 'Configurable, supports interactive dismissal and really easy to integrate.'
     s.homepage = 'https://github.com/radianttap/CardPresentationController'

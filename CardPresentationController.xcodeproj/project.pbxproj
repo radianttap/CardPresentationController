@@ -91,6 +91,8 @@
 		D0AB35EF21C56F040038C6C6 /* CardConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardConfiguration.swift; sourceTree = "<group>"; };
 		D0AC738021BC61B800054FC3 /* UIKit-CardPresentationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit-CardPresentationExtensions.swift"; sourceTree = "<group>"; };
 		D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupNavigationController.swift; sourceTree = "<group>"; };
+		D0CE0567220442E300012062 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D0CE05682204458A00012062 /* CardPresentationController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = CardPresentationController.podspec; sourceTree = "<group>"; };
 		D0ECC50321FF7B71006D5ED1 /* CardPresentationController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CardPresentationController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ECC50521FF7B72006D5ED1 /* CardPresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardPresentationController.h; sourceTree = "<group>"; };
 		D0ECC50621FF7B72006D5ED1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,6 +160,8 @@
 		D05FF1C9214D53520017A263 = {
 			isa = PBXGroup;
 			children = (
+				D0CE05682204458A00012062 /* CardPresentationController.podspec */,
+				D0CE0567220442E300012062 /* README.md */,
 				D05FF1E7214D54970017A263 /* CardPresentationController */,
 				D05FF1D4214D53520017A263 /* Example */,
 				D05192FE214D60910047AB2D /* Vendor */,
@@ -426,7 +430,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -491,7 +495,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_NS_ASSERTIONS = NO;

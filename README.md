@@ -130,8 +130,6 @@ var cornerRadius: CGFloat = 12
 var initialTransitionFrame: CGRect?
 
 ///	How much to fade the back card.
-///
-///	Ignored if back card is UINavigationController.
 var backFadeAlpha: CGFloat = 0.8
 
 ///	Set to false to disable interactive dismissal
@@ -139,6 +137,9 @@ var allowInteractiveDismissal = true
 ```
 
 There’s a very handy `init` for it where you can supply any combination of these parameters.
+
+If you don't supply config, then `CardConfiguration.shared` will be used, consisting of the default values shown above. 
+You can override this property early in app's lifecycle so adjust default look of the cards for the entire app (see AppDelegate.swift for an example).  
 
 ### Advanced example
 
