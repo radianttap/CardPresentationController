@@ -26,9 +26,9 @@ private extension AppDelegate {
 		//	Example of globally changing every card in the app
 		//	
 		//	(uncomment to see it in action)
-		CardConfiguration.shared = CardConfiguration(verticalSpacing: 8,
-													 horizontalInset: 8,
-													 cornerRadius: 0,
-													 backFadeAlpha: 0.5)
+//		CardConfiguration.shared = CardConfiguration(verticalSpacing: 8,
+//													 horizontalInset: 8,
+//													 cornerRadius: 0,
+//													 backFadeAlpha: 0.5)
 	}
 }
