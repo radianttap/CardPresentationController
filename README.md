@@ -151,9 +151,7 @@ let vc = ContentController.instantiate()
 let f = container.convert(sender.bounds, to: view.window!)
 let config = CardConfiguration(initialTransitionFrame: f)
 
-presentCard(vc,
-			configuration: config,
-			animated: true)
+presentCard(vc, configuration: config, animated: true)
 ```
 
 The important bit here is setting `initialTransitionFrame` property to the frame *in the UIWindow coordinating space*, since transition happens in it.
