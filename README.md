@@ -17,7 +17,7 @@ Releases are tagged with [Semantic Versioning](https://semver.org) in mind.
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Coordinator into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'Coordinator', 	:git => 'https://github.com/radianttap/CardPresentationController.git'
+pod 'CardPresentationController', 	:git => 'https://github.com/radianttap/CardPresentationController.git'
 ```
 
 ### Setting up with Carthage
