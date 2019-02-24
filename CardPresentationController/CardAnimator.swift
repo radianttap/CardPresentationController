@@ -46,14 +46,11 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	Local configuration
 
 	private var verticalSpacing: CGFloat { return configuration.verticalSpacing }
+    private var verticalInset: CGFloat { return configuration.verticalInset }
 	private var horizontalInset: CGFloat { return configuration.horizontalInset }
 	private var cornerRadius: CGFloat { return configuration.cornerRadius }
 	private var backFadeAlpha: CGFloat  { return configuration.backFadeAlpha }
 	private var initialTransitionFrame: CGRect? { return configuration.initialTransitionFrame }
-
-	//	Other local stuff
-
-	private var statusBarFrame: CGRect = UIApplication.shared.statusBarFrame
 
 	//	MARK:- UIViewControllerAnimatedTransitioning
 
@@ -189,10 +186,10 @@ private extension CardAnimator {
 
 			} else {
 				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
-				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height, left: horizontalInset, bottom: 0, right: horizontalInset))
+				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: 0, right: horizontalInset))
 
 				let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
-				toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: statusBarFrame.height + verticalSpacing, left: 0, bottom: 0, right: 0))
+				toEndFrame = toBaseFinalFrame.inset(by: UIEdgeInsets(top: verticalInset + verticalSpacing, left: 0, bottom: 0, right: 0))
 			}
 			let toStartFrame = offscreenFrame(inside: containerView)
 
