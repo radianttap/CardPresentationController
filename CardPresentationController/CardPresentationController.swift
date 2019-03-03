@@ -23,7 +23,7 @@ public class CardPresentationController: UIPresentationController {
 	///
 	///	By default, it's assumed it's 16pt and handle will be 5pt tall, centered in the middle of that area
 	///	(thus effectivelly its center is 8pt from the top of the card).
-	var dismissHandleAreaHeight: CGFloat = 16
+	var dismissAreaHeight: CGFloat = 16
 
 
 
@@ -155,7 +155,7 @@ public class CardPresentationController: UIPresentationController {
 		//	Center dismiss handle in the (hopefully empty) area at the top of the presented card.
 		//	Place in the middle of that space.
 		if let v = presentedViewController.view {
-			let handleCenterY = v.frame.minY + dismissHandleAreaHeight / 2
+			let handleCenterY = v.frame.minY + dismissAreaHeight / 2
 			handleTopConstraint.constant = handleCenterY - handleView.frame.height / 2
 		}
 

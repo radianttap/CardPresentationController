@@ -23,6 +23,7 @@ final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelega
 		let pc = CardPresentationController(configuration: configuration, presentedViewController: presented, presenting: presenting)
 		pc.sourceController = source
 		pc.cardAnimator = cardAnimator
+		pc.dismissAreaHeight = configuration.dismissAreaHeight
 		return pc
 	}
 

@@ -21,6 +21,9 @@ public struct CardConfiguration {
 	///	Leading and trailing inset for the existing (presenting) view when it's being pushed further back.
 	public var horizontalInset: CGFloat = 16
 
+	///	Height of the "empty" area at the top of the card where dismiss handle glyph will be centered.
+	public var dismissAreaHeight: CGFloat = 16
+
 	///	Cards have rounded corners, right?
 	public var cornerRadius: CGFloat = 12
 
@@ -48,6 +51,7 @@ extension CardConfiguration {
 	public init(verticalSpacing: CGFloat? = nil,
 				verticalInset: CGFloat? = nil,
 				horizontalInset: CGFloat? = nil,
+				dismissAreaHeight: CGFloat? = nil,
 				cornerRadius: CGFloat? = nil,
 				backFadeAlpha: CGFloat? = nil,
 				initialTransitionFrame: CGRect? = nil,
@@ -63,6 +67,10 @@ extension CardConfiguration {
 
 		if let horizontalInset = horizontalInset {
 			self.horizontalInset = horizontalInset
+		}
+
+		if let dismissAreaHeight = dismissAreaHeight {
+			self.dismissAreaHeight = dismissAreaHeight
 		}
 
 		if let cornerRadius = cornerRadius {
