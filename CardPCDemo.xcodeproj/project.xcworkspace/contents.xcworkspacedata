@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:CardPresentationExample.xcodeproj">
+      location = "self:/Users/aleck/dev/codeaplus/github/CardPresentationController/CardPCDemo.xcodeproj">
    </FileRef>
 </Workspace>
