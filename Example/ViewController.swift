@@ -13,6 +13,7 @@ final class ViewController: UIViewController {
 	@IBOutlet private weak var defaultPopupButton: UIButton!
 	@IBOutlet private weak var cardPopupButton: UIButton!
 	@IBOutlet private weak var gridPopupButton: UIButton!
+	@IBOutlet private weak var largeTopInsetPopupButton: UIButton!
 
 	@IBOutlet private weak var expandPopupButton: UIButton!
 	@IBOutlet private weak var container: UIView!
@@ -94,6 +95,19 @@ private extension ViewController {
 		let vc = GridController()
 
 		presentCard(vc,
+					animated: true)
+	}
+
+	/// Display popup as inset card, with initial vertical inset of 132pt
+	///
+	/// - Parameter sender: button which initiated this action
+	@IBAction func popupLargeInsetCard(_ sender: UIButton) {
+		let vc = ContentController.instantiate()
+
+		let config = CardConfiguration(verticalInset: 132)
+
+		presentCard(vc,
+					configuration: config,
 					animated: true)
 	}
 }

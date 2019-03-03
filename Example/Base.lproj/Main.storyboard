@@ -29,16 +29,16 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardPresentationExample" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="CardPresentationExample" customModuleProvider="target">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardModal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="CardModal" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-Yc-YQv" userLabel="buttons">
-                                <rect key="frame" x="118.5" y="282.5" width="138" height="166"/>
+                                <rect key="frame" x="107.5" y="253.5" width="160" height="224"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K0-Qm-Nmn">
-                                        <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rYq-6D-xr3"/>
@@ -56,7 +56,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TM-Ls-ln9">
-                                        <rect key="frame" x="0.0" y="58" width="138" height="50"/>
+                                        <rect key="frame" x="0.0" y="58" width="160" height="50"/>
                                         <color key="backgroundColor" red="0.80392156859999997" green="0.25882352939999997" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
@@ -73,7 +73,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-I9-4w2">
-                                        <rect key="frame" x="0.0" y="116" width="138" height="50"/>
+                                        <rect key="frame" x="0.0" y="116" width="160" height="50"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
@@ -89,21 +89,42 @@
                                             <action selector="popupGrid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VrH-n0-ZmL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EM6-XZ-DD4">
+                                        <rect key="frame" x="0.0" y="174" width="160" height="50"/>
+                                        <color key="backgroundColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
+                                        <state key="normal" title="Custom top inset">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="popupLargeInsetCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2AH-WV-WSy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="EM6-XZ-DD4" secondAttribute="bottom" id="7gg-84-KfW"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="width" secondItem="5K0-Qm-Nmn" secondAttribute="width" id="Cyk-tS-B8X"/>
+                                    <constraint firstItem="EM6-XZ-DD4" firstAttribute="top" secondItem="nEt-I9-4w2" secondAttribute="bottom" constant="8" symbolic="YES" id="Kxf-sn-AYG"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="centerX" secondItem="5K0-Qm-Nmn" secondAttribute="centerX" id="LMo-64-gl4"/>
                                     <constraint firstItem="5K0-Qm-Nmn" firstAttribute="leading" secondItem="cTK-Yc-YQv" secondAttribute="leading" id="PQO-bP-YlH"/>
                                     <constraint firstItem="5K0-Qm-Nmn" firstAttribute="top" secondItem="cTK-Yc-YQv" secondAttribute="top" id="TOt-tF-2wy"/>
+                                    <constraint firstItem="EM6-XZ-DD4" firstAttribute="leading" secondItem="nEt-I9-4w2" secondAttribute="leading" id="Ufr-wJ-vSx"/>
                                     <constraint firstItem="nEt-I9-4w2" firstAttribute="trailing" secondItem="4TM-Ls-ln9" secondAttribute="trailing" id="YdF-iO-K97"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="top" secondItem="5K0-Qm-Nmn" secondAttribute="bottom" constant="8" symbolic="YES" id="Zws-Y6-jwu"/>
                                     <constraint firstItem="nEt-I9-4w2" firstAttribute="top" secondItem="4TM-Ls-ln9" secondAttribute="bottom" constant="8" symbolic="YES" id="ewQ-J9-InB"/>
-                                    <constraint firstAttribute="bottom" secondItem="nEt-I9-4w2" secondAttribute="bottom" id="fxR-ql-JWH"/>
+                                    <constraint firstItem="EM6-XZ-DD4" firstAttribute="height" secondItem="nEt-I9-4w2" secondAttribute="height" id="feZ-gm-9wG"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="height" secondItem="5K0-Qm-Nmn" secondAttribute="height" id="g8U-tC-vjf"/>
                                     <constraint firstItem="nEt-I9-4w2" firstAttribute="height" secondItem="4TM-Ls-ln9" secondAttribute="height" id="hv6-Ub-XNq"/>
                                     <constraint firstAttribute="trailing" secondItem="5K0-Qm-Nmn" secondAttribute="trailing" id="kCJ-oy-Bfa"/>
                                     <constraint firstItem="nEt-I9-4w2" firstAttribute="leading" secondItem="4TM-Ls-ln9" secondAttribute="leading" id="n7K-GB-kCL"/>
+                                    <constraint firstItem="EM6-XZ-DD4" firstAttribute="trailing" secondItem="nEt-I9-4w2" secondAttribute="trailing" id="ydf-Od-Gnf"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYw-t1-vEd">
@@ -147,6 +168,7 @@
                         <outlet property="defaultPopupButton" destination="5K0-Qm-Nmn" id="bsQ-3d-ncB"/>
                         <outlet property="expandPopupButton" destination="MqC-J9-uYC" id="MJA-W8-UlH"/>
                         <outlet property="gridPopupButton" destination="nEt-I9-4w2" id="3Gv-L7-sC4"/>
+                        <outlet property="largeTopInsetPopupButton" destination="EM6-XZ-DD4" id="DYq-gI-kL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
