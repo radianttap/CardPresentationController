@@ -46,7 +46,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	//	Local configuration
 
 	private var verticalSpacing: CGFloat { return configuration.verticalSpacing }
-    private var verticalInset: CGFloat { return configuration.verticalInset }
+	private var verticalInset: CGFloat { return configuration.verticalInset }
 	private var horizontalInset: CGFloat { return configuration.horizontalInset }
 	private var cornerRadius: CGFloat { return configuration.cornerRadius }
 	private var backFadeAlpha: CGFloat  { return configuration.backFadeAlpha }
@@ -164,8 +164,8 @@ private extension CardAnimator {
 			let toVC = transitionContext.viewController(forKey: .to),
 			let fromView = fromVC.view,
 			let toView = toVC.view
-		else {
-			return nil
+			else {
+				return nil
 		}
 		let containerView = transitionContext.containerView
 
@@ -305,7 +305,7 @@ private extension CardAnimator {
 		guard
 			let pc = pc,
 			let pcView = pc.presentingViewController.view
-		else { return }
+			else { return }
 
 		let frame = pcView.frame
 		pcView.frame = frame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
@@ -318,7 +318,7 @@ private extension CardAnimator {
 		guard
 			let pc = pc,
 			let pcView = pc.presentingViewController.view
-		else { return }
+			else { return }
 
 		let frame = pcView.frame
 		pcView.frame = frame.inset(by: UIEdgeInsets(top: 0, left: -horizontalInset, bottom: 0, right: -horizontalInset))

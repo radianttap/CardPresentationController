@@ -116,7 +116,7 @@ public class CardPresentationController: UIPresentationController {
 		guard
 			usesDismissHandle,
 			let containerView = containerView
-		else { return }
+			else { return }
 
 		containerView.addSubview(handleView)
 		handleView.widthAnchor.constraint(equalToConstant: 50).isActive = true
@@ -139,7 +139,7 @@ public class CardPresentationController: UIPresentationController {
 		guard
 			usesDismissHandle,
 			let containerView = containerView
-		else { return }
+			else { return }
 
 		containerView.bringSubviewToFront(handleView)
 		containerView.bringSubviewToFront(handleButton)
@@ -194,7 +194,7 @@ public class CardPresentationController: UIPresentationController {
 		case .changed:
 			if !hasStartedPan { return }
 			cardAnimator.updateInteractiveTransition(pct)
-//			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
+			//			handleView.alpha = max(0, 1 - pct * 4)	//	handle disappears 4x faster
 
 		case .ended, .cancelled:
 			if !hasStartedPan { return }
@@ -230,7 +230,7 @@ extension CardPresentationController: UIGestureRecognizerDelegate {
 								  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
 	{
 		if gestureRecognizer != panGR { return true }
-
+		
 		let otherView = otherGestureRecognizer.view
 
 		//	allow unconditional panning if that other view is not `UIScrollView`
