@@ -66,7 +66,7 @@ private extension ViewController {
 	/// - Parameter sender: button which initiated this action
 	@IBAction func popupCustomContainerCard(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
-		vc.context = .embed
+//		vc.context = .embed
 
 		let cc = CustomContainerController.initial()
 		cc.display(vc: vc)
