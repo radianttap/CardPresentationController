@@ -128,6 +128,10 @@ var verticalSpacing: CGFloat = 16
 /// when it's being pushed further back
 var horizontalInset: CGFloat = 16
 
+///	Height of the "empty" area at the top of the card 
+///	where dismiss handle glyph will be centered.
+public var dismissAreaHeight: CGFloat = 16
+
 ///	Cards have rounded corners, right?
 var cornerRadius: CGFloat = 12
 
