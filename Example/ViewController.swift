@@ -10,12 +10,6 @@ import UIKit
 import CardPresentationController
 
 final class ViewController: UIViewController {
-	@IBOutlet private weak var defaultPopupButton: UIButton!
-	@IBOutlet private weak var cardPopupButton: UIButton!
-	@IBOutlet private weak var gridPopupButton: UIButton!
-	@IBOutlet private weak var largeTopInsetPopupButton: UIButton!
-
-	@IBOutlet private weak var expandPopupButton: UIButton!
 	@IBOutlet private weak var container: UIView!
 
 	//	Embedded
@@ -56,7 +50,7 @@ private extension ViewController {
 	/// Display popup as inset card
 	///
 	/// - Parameter sender: button which initiated this action
-	@IBAction func popupCard(_ sender: UIButton) {
+	@IBAction func popupNavBarCard(_ sender: UIButton) {
 		let vc = ContentController.instantiate()
 		addDismissBarButton(to: vc)
 
@@ -64,6 +58,24 @@ private extension ViewController {
 		let nc = PopupNavigationController(rootViewController: vc)
 
 		presentCard(nc,
+					animated: true)
+	}
+
+	/// Display custom container with embedded content, as popup card.
+	///
+	/// - Parameter sender: button which initiated this action
+	@IBAction func popupCustomContainerCard(_ sender: UIButton) {
+		let vc = ContentController.instantiate()
+		vc.context = .embed
+
+		let cc = CustomContainerController.initial()
+		cc.display(vc: vc)
+
+		//	center the dismiss handle inside the reserved area at the top of the container
+		let config = CardConfiguration(dismissAreaHeight: cc.edgeInsets.top)
+
+		presentCard(cc,
+					configuration: config,
 					animated: true)
 	}
 

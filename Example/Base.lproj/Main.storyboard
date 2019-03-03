@@ -35,10 +35,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-Yc-YQv" userLabel="buttons">
-                                <rect key="frame" x="107.5" y="253.5" width="160" height="224"/>
+                                <rect key="frame" x="83.5" y="224.5" width="208" height="282"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K0-Qm-Nmn">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="208" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="rYq-6D-xr3"/>
@@ -56,11 +56,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TM-Ls-ln9">
-                                        <rect key="frame" x="0.0" y="58" width="160" height="50"/>
+                                        <rect key="frame" x="0.0" y="58" width="208" height="50"/>
                                         <color key="backgroundColor" red="0.80392156859999997" green="0.25882352939999997" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
-                                        <state key="normal" title="Card popup">
+                                        <state key="normal" title="Card, nav bar with btn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -69,11 +69,28 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="popupCard:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="hvZ-G7-CEq"/>
+                                            <action selector="popupNavBarCard:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Hb4-gG-Q2m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TC4-aF-ibR">
+                                        <rect key="frame" x="0.0" y="116" width="208" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.1100852844" blue="0.25242264619999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
+                                        <state key="normal" title="Card, custom container">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="popupCustomContainerCard:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="joI-Fd-1EH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-I9-4w2">
-                                        <rect key="frame" x="0.0" y="116" width="160" height="50"/>
+                                        <rect key="frame" x="0.0" y="174" width="208" height="50"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
@@ -86,11 +103,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="popupGrid:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VrH-n0-ZmL"/>
+                                            <action selector="popupGrid:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="Dgn-uD-Krh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EM6-XZ-DD4">
-                                        <rect key="frame" x="0.0" y="174" width="160" height="50"/>
+                                        <rect key="frame" x="0.0" y="232" width="208" height="50"/>
                                         <color key="backgroundColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
@@ -103,27 +120,32 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="popupLargeInsetCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2AH-WV-WSy"/>
+                                            <action selector="popupLargeInsetCard:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="pYt-2j-QN7"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="TC4-aF-ibR" firstAttribute="leading" secondItem="4TM-Ls-ln9" secondAttribute="leading" id="4Yi-ry-uVM"/>
+                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="top" secondItem="TC4-aF-ibR" secondAttribute="bottom" constant="8" symbolic="YES" id="5E5-Zv-u0U"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="leading" secondItem="5K0-Qm-Nmn" secondAttribute="leading" id="6Cq-1W-kTF"/>
                                     <constraint firstAttribute="bottom" secondItem="EM6-XZ-DD4" secondAttribute="bottom" id="7gg-84-KfW"/>
+                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="leading" secondItem="TC4-aF-ibR" secondAttribute="leading" id="DWy-e7-ixL"/>
                                     <constraint firstItem="EM6-XZ-DD4" firstAttribute="top" secondItem="nEt-I9-4w2" secondAttribute="bottom" constant="8" symbolic="YES" id="Kxf-sn-AYG"/>
                                     <constraint firstItem="5K0-Qm-Nmn" firstAttribute="leading" secondItem="cTK-Yc-YQv" secondAttribute="leading" id="PQO-bP-YlH"/>
                                     <constraint firstItem="5K0-Qm-Nmn" firstAttribute="top" secondItem="cTK-Yc-YQv" secondAttribute="top" id="TOt-tF-2wy"/>
                                     <constraint firstItem="EM6-XZ-DD4" firstAttribute="leading" secondItem="nEt-I9-4w2" secondAttribute="leading" id="Ufr-wJ-vSx"/>
-                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="trailing" secondItem="4TM-Ls-ln9" secondAttribute="trailing" id="YdF-iO-K97"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="top" secondItem="5K0-Qm-Nmn" secondAttribute="bottom" constant="8" symbolic="YES" id="Zws-Y6-jwu"/>
+                                    <constraint firstItem="TC4-aF-ibR" firstAttribute="height" secondItem="4TM-Ls-ln9" secondAttribute="height" id="cfg-Oc-2On"/>
+                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="height" secondItem="TC4-aF-ibR" secondAttribute="height" id="eUM-0Q-Wa0"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="trailing" secondItem="5K0-Qm-Nmn" secondAttribute="trailing" id="erl-Ye-STC"/>
-                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="top" secondItem="4TM-Ls-ln9" secondAttribute="bottom" constant="8" symbolic="YES" id="ewQ-J9-InB"/>
                                     <constraint firstItem="EM6-XZ-DD4" firstAttribute="height" secondItem="nEt-I9-4w2" secondAttribute="height" id="feZ-gm-9wG"/>
                                     <constraint firstItem="4TM-Ls-ln9" firstAttribute="height" secondItem="5K0-Qm-Nmn" secondAttribute="height" id="g8U-tC-vjf"/>
                                     <constraint firstItem="nEt-I9-4w2" firstAttribute="height" secondItem="4TM-Ls-ln9" secondAttribute="height" id="hv6-Ub-XNq"/>
                                     <constraint firstAttribute="trailing" secondItem="5K0-Qm-Nmn" secondAttribute="trailing" id="kCJ-oy-Bfa"/>
-                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="leading" secondItem="4TM-Ls-ln9" secondAttribute="leading" id="n7K-GB-kCL"/>
+                                    <constraint firstItem="TC4-aF-ibR" firstAttribute="trailing" secondItem="4TM-Ls-ln9" secondAttribute="trailing" id="kla-6D-lil"/>
+                                    <constraint firstItem="nEt-I9-4w2" firstAttribute="trailing" secondItem="TC4-aF-ibR" secondAttribute="trailing" id="m3f-0M-NFU"/>
+                                    <constraint firstItem="TC4-aF-ibR" firstAttribute="top" secondItem="4TM-Ls-ln9" secondAttribute="bottom" constant="8" symbolic="YES" id="p9J-Rf-4u9"/>
                                     <constraint firstItem="EM6-XZ-DD4" firstAttribute="trailing" secondItem="nEt-I9-4w2" secondAttribute="trailing" id="ydf-Od-Gnf"/>
                                 </constraints>
                             </view>
@@ -163,12 +185,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cardPopupButton" destination="4TM-Ls-ln9" id="wnU-6H-mRs"/>
                         <outlet property="container" destination="zYw-t1-vEd" id="ned-Ia-yqR"/>
-                        <outlet property="defaultPopupButton" destination="5K0-Qm-Nmn" id="bsQ-3d-ncB"/>
-                        <outlet property="expandPopupButton" destination="MqC-J9-uYC" id="MJA-W8-UlH"/>
-                        <outlet property="gridPopupButton" destination="nEt-I9-4w2" id="3Gv-L7-sC4"/>
-                        <outlet property="largeTopInsetPopupButton" destination="EM6-XZ-DD4" id="DYq-gI-kL2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

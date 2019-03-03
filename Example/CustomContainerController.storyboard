@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a00-1L-oHa">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Custom Container Controller-->
+        <scene sceneID="ybL-Dy-IaV">
+            <objects>
+                <viewController storyboardIdentifier="CustomContainerController" id="a00-1L-oHa" customClass="CustomContainerController" customModule="CardModal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YF0-Oo-3Wi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cg-hK-q2f">
+                                <rect key="frame" x="16" y="64" width="343" height="587"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.1100852844" blue="0.25242264619999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XO0-LA-MzJ" firstAttribute="bottom" secondItem="5cg-hK-q2f" secondAttribute="bottom" constant="16" id="H5R-fM-gj5"/>
+                            <constraint firstItem="XO0-LA-MzJ" firstAttribute="trailing" secondItem="5cg-hK-q2f" secondAttribute="trailing" constant="16" id="HEJ-lq-Gqz"/>
+                            <constraint firstItem="5cg-hK-q2f" firstAttribute="leading" secondItem="XO0-LA-MzJ" secondAttribute="leading" constant="16" id="Q6g-T1-w3R"/>
+                            <constraint firstItem="5cg-hK-q2f" firstAttribute="top" secondItem="XO0-LA-MzJ" secondAttribute="top" constant="44" id="RWS-cN-u52"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XO0-LA-MzJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="containingView" destination="5cg-hK-q2f" id="rG6-aU-fMQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="won-36-AHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138" y="-100"/>
+        </scene>
+    </scenes>
+</document>

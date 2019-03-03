@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D01ADC6F222BDAEB0007ACD8 /* CustomContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01ADC6E222BDAEB0007ACD8 /* CustomContainerController.swift */; };
+		D01ADC71222BDB130007ACD8 /* CustomContainerController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D01ADC70222BDB130007ACD8 /* CustomContainerController.storyboard */; };
 		D021C71721C3F795004CFA5A /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021C71621C3F795004CFA5A /* SecondController.swift */; };
 		D021C71921C3F875004CFA5A /* SecondController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D021C71821C3F875004CFA5A /* SecondController.storyboard */; };
 		D026AF392185EAB400568323 /* ContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D026AF382185EAB400568323 /* ContentController.swift */; };
@@ -63,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D01ADC6E222BDAEB0007ACD8 /* CustomContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerController.swift; sourceTree = "<group>"; };
+		D01ADC70222BDB130007ACD8 /* CustomContainerController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomContainerController.storyboard; sourceTree = "<group>"; };
 		D021C71621C3F795004CFA5A /* SecondController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
 		D021C71821C3F875004CFA5A /* SecondController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondController.storyboard; sourceTree = "<group>"; };
 		D026AF382185EAB400568323 /* ContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentController.swift; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 				D021C71821C3F875004CFA5A /* SecondController.storyboard */,
 				D057BF7221C6A3B700686D76 /* Supporting Files */,
 				D0AC738221BC88D800054FC3 /* PopupNavigationController.swift */,
+				D01ADC6E222BDAEB0007ACD8 /* CustomContainerController.swift */,
+				D01ADC70222BDB130007ACD8 /* CustomContainerController.storyboard */,
 				D026AF382185EAB400568323 /* ContentController.swift */,
 				D026AF3A2185EE0E00568323 /* ContentController.storyboard */,
 				D057BF7721C6A45300686D76 /* GridController.swift */,
@@ -317,6 +323,7 @@
 				D021C71921C3F875004CFA5A /* SecondController.storyboard in Resources */,
 				D05FF1E0214D53540017A263 /* LaunchScreen.storyboard in Resources */,
 				D05FF1DD214D53540017A263 /* Assets.xcassets in Resources */,
+				D01ADC71222BDB130007ACD8 /* CustomContainerController.storyboard in Resources */,
 				D026AF3B2185EE0E00568323 /* ContentController.storyboard in Resources */,
 				D05FF1DB214D53520017A263 /* Main.storyboard in Resources */,
 			);
@@ -348,6 +355,7 @@
 				D021C71721C3F795004CFA5A /* SecondController.swift in Sources */,
 				D05FF1D8214D53520017A263 /* ViewController.swift in Sources */,
 				D0519307214D60910047AB2D /* Embeddable.swift in Sources */,
+				D01ADC6F222BDAEB0007ACD8 /* CustomContainerController.swift in Sources */,
 				D0519309214D60910047AB2D /* ReusableView.swift in Sources */,
 				D0AC738321BC88D800054FC3 /* PopupNavigationController.swift in Sources */,
 				D05FF1D6214D53520017A263 /* AppDelegate.swift in Sources */,
