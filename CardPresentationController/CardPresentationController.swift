@@ -10,14 +10,22 @@ import UIKit
 
 @available(iOS 10.0, *)
 public class CardPresentationController: UIPresentationController {
-	//	This is a link to the original UIVC on which presentCard() was called.
-	//	(this is populated by CardTransitionManager)
-	//	It's used in this file to clean-up CTM instance once dismissal happens.
+	///	This is a link to the original UIVC on which presentCard() was called.
+	///	(this is populated by CardTransitionManager)
+	///	It's used in this file to clean-up CTM instance once dismissal happens.
 	weak var sourceController: UIViewController?
 
-	//	Required link to the actual animator,
-	//	so that pan gesture handler can drive the animation
+	///	Required link to the actual animator,
+	///	so that pan gesture handler can drive the animation
 	weak var cardAnimator: CardAnimator!
+
+	///	How much space is available at the top of the presentedView (card) to draw the dismiss glyph (handle).
+	///
+	///	By default, it's assumed it's 16pt and handle will be 5pt tall, centered in the middle of that area
+	///	(thus effectivelly its center is 8pt from the top of the card).
+	var dismissHandleAreaHeight: CGFloat = 16
+
+
 
 	//	Init
 
@@ -144,10 +152,11 @@ public class CardPresentationController: UIPresentationController {
 		containerView.bringSubviewToFront(handleView)
 		containerView.bringSubviewToFront(handleButton)
 
-		//	assume there's 16pt space at the top, which can be used to fit-in dismiss handle
-		//	place in the middle of that space
+		//	Center dismiss handle in the (hopefully empty) area at the top of the presented card.
+		//	Place in the middle of that space.
 		if let v = presentedViewController.view {
-			handleTopConstraint.constant = v.frame.minY + 8 - handleView.frame.height / 2
+			let handleCenterY = v.frame.minY + dismissHandleAreaHeight / 2
+			handleTopConstraint.constant = handleCenterY - handleView.frame.height / 2
 		}
 
 		self.handleView.superview?.layoutIfNeeded()
@@ -230,7 +239,7 @@ extension CardPresentationController: UIGestureRecognizerDelegate {
 								  shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool
 	{
 		if gestureRecognizer != panGR { return true }
-		
+
 		let otherView = otherGestureRecognizer.view
 
 		//	allow unconditional panning if that other view is not `UIScrollView`
