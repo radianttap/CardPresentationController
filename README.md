@@ -1,10 +1,17 @@
 # CardPresentationController
 
+[![](https://img.shields.io/github/tag/radianttap/CardPresentationController.svg?label=ver)](https://github.com/radianttap/CardPresentationController/releases)
+![platforms: iOS](https://img.shields.io/badge/platform-ios-blue.svg)
+[![](https://img.shields.io/github/license/radianttap/CardPresentationController.svg)](https://github.com/radianttap/CardPresentationController/blob/master/LICENSE)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-AD4709.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-fb0006.svg)](https://cocoapods.org)
+
 Custom [UIPresentationController](https://developer.apple.com/documentation/uikit/uipresentationcontroller) which mimics the behavior of Apple Music UI.
 
 [DEMO video on iPhone Xs simulator](CardPresentationController.mp4)
 
 ## Installation
+
 ### Manually
 
 Add the folder `CardPresentationController` into your project. It's only five files.
@@ -90,9 +97,7 @@ If you are presenting UINC, then my advice is to subclass it and override `prefe
 
 ## Requirements
 
-Currently it’s tested only on iOS. 
-
-It *requires iOS 10*, since it uses [UIViewPropertyAnimator](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator), [UISpringTimingParameters](https://developer.apple.com/documentation/uikit/uispringtimingparameters) and a bunch of other modern UIKit animation APIs.
+*Requires iOS 10*, since it uses [UIViewPropertyAnimator](https://developer.apple.com/documentation/uikit/uiviewpropertyanimator), [UISpringTimingParameters](https://developer.apple.com/documentation/uikit/uispringtimingparameters) and a bunch of other modern UIKit animation APIs.
 
 On iOS 11 it uses [maskedCorners](https://developer.apple.com/documentation/quartzcore/calayer/2877488-maskedcorners) property to round just the top corners. On iOS 10.x it will fallback to rounding all corners.
 
