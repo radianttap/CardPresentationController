@@ -133,7 +133,7 @@ private extension CardAnimator {
 		switch interactiveAnimator.state {
 		case .inactive:
 			interactiveAnimator.startAnimation()
-		case .active, .stopped:
+		default:	//	case .active, .stopped, @unknown-futures
 			interactiveAnimator.continueAnimation(withTimingParameters: nil, durationFactor: durationFactor)
 		}
 	}
@@ -216,15 +216,14 @@ private extension CardAnimator {
 				[weak self] animatingPosition in
 
 				switch animatingPosition {
-				case .end, .current:	//	Note: .current should not be possible
-					self?.direction = .dismissal
-					fromView.isUserInteractionEnabled = false
-					transitionContext.completeTransition(true)
-
 				case .start:
 					self?.direction = .presentation
 					fromView.isUserInteractionEnabled = true
 					transitionContext.completeTransition(false)
+				default:	//	case .end, .current (which should not be possible), @unknown-futures
+					self?.direction = .dismissal
+					fromView.isUserInteractionEnabled = false
+					transitionContext.completeTransition(true)
 				}
 			}
 
@@ -268,7 +267,15 @@ private extension CardAnimator {
 				guard let self = self else { return }
 
 				switch animatingPosition {
-				case .end, .current:	//	Note: .current should not be possible
+				case .start:
+					self.direction = .dismissal
+					self.dismissAnimator = self.setupAnimator(.dismissal)
+
+					toView.isUserInteractionEnabled = false
+
+					transitionContext.completeTransition(false)
+
+				default: //	case .end, .current (which should not be possible), @unknown-futures
 					self.direction = .presentation
 					self.presentationAnimator = self.setupAnimator(.presentation)
 
@@ -280,14 +287,6 @@ private extension CardAnimator {
 					}
 
 					transitionContext.completeTransition(true)
-
-				case .start:
-					self.direction = .dismissal
-					self.dismissAnimator = self.setupAnimator(.dismissal)
-
-					toView.isUserInteractionEnabled = false
-
-					transitionContext.completeTransition(false)
 				}
 			}
 

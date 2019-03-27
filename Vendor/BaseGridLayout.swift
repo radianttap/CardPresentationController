@@ -41,6 +41,8 @@ class BaseGridLayout: UICollectionViewFlowLayout {
 			return newBounds.height != collectionView?.bounds.height
 		case .vertical:
 			return newBounds.width != collectionView?.bounds.width
+		@unknown default:
+			return false
 		}
 	}
 
@@ -51,6 +53,8 @@ class BaseGridLayout: UICollectionViewFlowLayout {
 			context.invalidateFlowLayoutDelegateMetrics = newBounds.height != collectionView?.bounds.height
 		case .vertical:
 			context.invalidateFlowLayoutDelegateMetrics = newBounds.width != collectionView?.bounds.width
+		@unknown default:
+			break
 		}
 		return context
 	}
