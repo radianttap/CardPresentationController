@@ -1,10 +1,11 @@
-# CardPresentationController
-
-[![](https://img.shields.io/github/tag/radianttap/CardPresentationController.svg?label=ver)](https://github.com/radianttap/CardPresentationController/releases)
-![platforms: iOS](https://img.shields.io/badge/platform-ios-blue.svg)
+[![](https://img.shields.io/github/tag/radianttap/CardPresentationController.svg?label=current)](https://github.com/radianttap/CardPresentationController/releases)
+![platforms: iOS](https://img.shields.io/badge/platform-iOS-blue.svg)
 [![](https://img.shields.io/github/license/radianttap/CardPresentationController.svg)](https://github.com/radianttap/CardPresentationController/blob/master/LICENSE)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-AD4709.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-fb0006.svg)](https://cocoapods.org)
+![](https://img.shields.io/badge/swift-5-223344.svg?logo=swift&labelColor=FA7343&logoColor=white)
+
+# CardPresentationController
 
 Custom [UIPresentationController](https://developer.apple.com/documentation/uikit/uipresentationcontroller) which mimics the behavior of Apple Music UI.
 
