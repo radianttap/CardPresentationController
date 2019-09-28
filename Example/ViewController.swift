@@ -23,7 +23,11 @@ final class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		toggle.isOn = CardPresentationController.useSystemPresentationOniOS13
+		if #available(iOS 13, *) {
+			toggle.isOn = CardPresentationController.useSystemPresentationOniOS13
+		} else {
+			toggle.superview?.isHidden = true
+		}
 
 		if let gradient = view as? GradientView {
 			gradient.direction = .vertical
