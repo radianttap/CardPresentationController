@@ -7,9 +7,21 @@
 
 # CardPresentationController
 
-Custom [UIPresentationController](https://developer.apple.com/documentation/uikit/uipresentationcontroller) which mimics the behavior of Apple Music UI.
+Custom [UIPresentationController](https://developer.apple.com/documentation/uikit/uipresentationcontroller) which mimics the behavior of Apple Music UI. Should work just fine from iOS 10 and beyond.
 
 [DEMO video on iPhone Xs simulator](CardPresentationController.mp4)
+
+### Modal presentation in iOS 13
+
+iOS 13 changed the behavior of the ordinary `present(vc, ...) calls` - all modals now look like cards. *Thus you don’t need this library on iOS 13.* I always recommend to use system stuff as much as possible thus this library will, by default, fallback to system look & behavior if you are on iOS 13. 
+
+To toggle this off and still use this library to present modal cards, set this at some point before presenting your first `UIViewController`:
+
+```
+CardPresentationController.useSystemPresentationOniOS13 = false
+```
+
+Keep in mind that visual display of multiple cards in this library is different from what iOS 13 does. (I don’t intend to change this, it’s not really worth it.)
 
 ## Installation
 
