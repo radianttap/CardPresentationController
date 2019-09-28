@@ -179,13 +179,25 @@ private extension CardAnimator {
 			if let sourceCardPresentationController = sourceCardPresentationController {
 				sourceCardPresentationController.fadeoutHandle()
 
-				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				let fromBeginFrame: CGRect
+				if #available(iOS 13, *) {
+					fromBeginFrame = fromView.frame
+				} else {
+					//	on iOS 13, origin.y for this seem to always be 0
+					fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				}
 				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset))
 
 				toEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: verticalSpacing, left: 0, bottom: 0, right: 0))
 
 			} else {
-				let fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				let fromBeginFrame: CGRect
+				if #available(iOS 13, *) {
+					fromBeginFrame = fromView.frame
+				} else {
+					//	on iOS 13, origin.y for this seem to always be 0
+					fromBeginFrame = transitionContext.initialFrame(for: fromVC)
+				}
 				fromEndFrame = fromBeginFrame.inset(by: UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: 0, right: horizontalInset))
 
 				let toBaseFinalFrame = transitionContext.finalFrame(for: toVC)
