@@ -38,23 +38,28 @@ extension UIViewController {
 							animated flag: Bool,
 							completion: (() -> Void)? = nil)
 	{
-		//	make it custom
-		viewControllerToPresent.modalPresentationStyle = .custom
+		if #available(iOS 13, *), CardPresentationController.useSystemPresentationOniOS13 {
+			//	if we are on iOS 13, fallback to default system look & behavior
+			present(viewControllerToPresent, animated: flag, completion: completion)
+		} else {
+			//	make it custom
+			viewControllerToPresent.modalPresentationStyle = .custom
 
-		//	enforce statusBarStyle preferred by presented UIVC
-		viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
+			//	enforce statusBarStyle preferred by presented UIVC
+			viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
 
-		//	card config, using supplied or default
-		let config = configuration ?? CardConfiguration.shared
+			//	card config, using supplied or default
+			let config = configuration ?? CardConfiguration.shared
 
-		//	then build transition manager
-		let tm = CardTransitionManager(configuration: config)
-		self.cardTransitionManager = tm
-		viewControllerToPresent.transitioningDelegate = tm
+			//	then build transition manager
+			let tm = CardTransitionManager(configuration: config)
+			self.cardTransitionManager = tm
+			viewControllerToPresent.transitioningDelegate = tm
 
-		present(viewControllerToPresent,
-				animated: flag,
-				completion: completion)
+			present(viewControllerToPresent,
+					animated: flag,
+					completion: completion)
+		}
 	}
 
 	func removeCardTransitionManager() {
