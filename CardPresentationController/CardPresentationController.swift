@@ -10,7 +10,7 @@ import UIKit
 
 @available(iOS 10.0, *)
 public class CardPresentationController: UIPresentationController {
-	static var useSystemPresentationOniOS13 = true
+	public static var useSystemPresentationOniOS13 = true
 
 	///	This is a link to the original UIVC on which presentCard() was called.
 	///	(this is populated by CardTransitionManager)
