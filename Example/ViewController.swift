@@ -10,7 +10,9 @@ import UIKit
 import CardPresentationController
 
 final class ViewController: UIViewController {
-	@IBOutlet private weak var container: UIView!
+	@IBOutlet private var container: UIView!
+
+	@IBOutlet private var toggle: UISwitch!
 
 	//	Embedded
 
@@ -20,6 +22,9 @@ final class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		toggle.isOn = CardPresentationController.useSystemPresentationOniOS13
+
 		if let gradient = view as? GradientView {
 			gradient.direction = .vertical
 			gradient.colors = [.gray, .darkGray]
@@ -139,5 +144,9 @@ fileprivate extension ViewController {
 		var buttonItems = vc.navigationItem.leftBarButtonItems ?? []
 		buttonItems.append(bbi)
 		vc.navigationItem.leftBarButtonItems = buttonItems
+	}
+
+	@IBAction func toggleSystemCardUsage(_ sender: UISwitch) {
+		CardPresentationController.useSystemPresentationOniOS13 = sender.isOn
 	}
 }

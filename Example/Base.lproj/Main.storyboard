@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eBy-7c-wXF">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eBy-7c-wXF">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +13,7 @@
             <objects>
                 <navigationController id="eBy-7c-wXF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zMb-o7-op6">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -34,8 +32,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SP5-DU-dbK">
+                                <rect key="frame" x="0.0" y="54" width="367" height="47"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use system cards on iOS 13" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvS-uf-Fds">
+                                        <rect key="frame" x="8" y="13.5" width="294" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwP-ck-9xx">
+                                        <rect key="frame" x="310" y="8" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="toggleSystemCardUsage:" destination="BYZ-38-t0r" eventType="valueChanged" id="wqv-w4-af4"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="rwP-ck-9xx" secondAttribute="bottom" id="6GZ-gX-IKh"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="rwP-ck-9xx" secondAttribute="trailing" id="7Sk-4O-K74"/>
+                                    <constraint firstItem="rwP-ck-9xx" firstAttribute="leading" secondItem="zvS-uf-Fds" secondAttribute="trailing" constant="8" symbolic="YES" id="HkX-d4-btj"/>
+                                    <constraint firstItem="zvS-uf-Fds" firstAttribute="leading" secondItem="SP5-DU-dbK" secondAttribute="leadingMargin" id="VPs-KO-hcS"/>
+                                    <constraint firstItem="zvS-uf-Fds" firstAttribute="centerY" secondItem="rwP-ck-9xx" secondAttribute="centerY" id="acM-Jy-huq"/>
+                                    <constraint firstItem="rwP-ck-9xx" firstAttribute="top" secondItem="SP5-DU-dbK" secondAttribute="topMargin" id="fJV-eT-i2O"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cTK-Yc-YQv" userLabel="buttons">
-                                <rect key="frame" x="83.5" y="224.5" width="208" height="282"/>
+                                <rect key="frame" x="83.5" y="214.5" width="208" height="282"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5K0-Qm-Nmn">
                                         <rect key="frame" x="0.0" y="0.0" width="208" height="50"/>
@@ -165,6 +188,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SP5-DU-dbK" secondAttribute="trailing" constant="8" id="0mw-WQ-UGl"/>
+                            <constraint firstItem="SP5-DU-dbK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="EL6-Aa-fE7"/>
                             <constraint firstAttribute="trailing" secondItem="zYw-t1-vEd" secondAttribute="trailing" id="ESb-OR-lS7"/>
                             <constraint firstItem="MqC-J9-uYC" firstAttribute="leading" secondItem="zYw-t1-vEd" secondAttribute="leading" id="EhH-qm-4Yk"/>
                             <constraint firstItem="cTK-Yc-YQv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GdZ-DW-1hf"/>
@@ -172,6 +197,7 @@
                             <constraint firstItem="zYw-t1-vEd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Pg1-ew-Pza"/>
                             <constraint firstItem="MqC-J9-uYC" firstAttribute="top" secondItem="zYw-t1-vEd" secondAttribute="top" id="Yt2-Cj-GcT"/>
                             <constraint firstItem="cTK-Yc-YQv" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="jOq-uq-KbV"/>
+                            <constraint firstItem="SP5-DU-dbK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nK6-vq-vGQ"/>
                             <constraint firstItem="MqC-J9-uYC" firstAttribute="width" secondItem="zYw-t1-vEd" secondAttribute="width" id="vdg-1h-7iQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="zYw-t1-vEd" secondAttribute="bottom" id="w1t-zI-pi2"/>
                         </constraints>
@@ -186,6 +212,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="container" destination="zYw-t1-vEd" id="ned-Ia-yqR"/>
+                        <outlet property="toggle" destination="rwP-ck-9xx" id="QR4-Ha-zb9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
