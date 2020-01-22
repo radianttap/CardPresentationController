@@ -36,6 +36,9 @@ public struct CardConfiguration {
 	///	Set to false to disable interactive dismissal
 	public var allowInteractiveDismissal = true
 
+    /// A completion block runs after dismiss the presented view controller
+    public var dismissCompletion: (() -> Void)? = nil
+
 	///	Default initializer, with most suitable values
 	init() {}
 
@@ -55,7 +58,8 @@ extension CardConfiguration {
 				cornerRadius: CGFloat? = nil,
 				backFadeAlpha: CGFloat? = nil,
 				initialTransitionFrame: CGRect? = nil,
-				allowInteractiveDismissal: Bool? = nil)
+                allowInteractiveDismissal: Bool? = nil,
+                dismissCompletion: (() -> Void)? = nil)
 	{
 		if let verticalSpacing = verticalSpacing {
 			self.verticalSpacing = verticalSpacing
@@ -88,5 +92,9 @@ extension CardConfiguration {
 		if let allowInteractiveDismissal = allowInteractiveDismissal {
 			self.allowInteractiveDismissal = allowInteractiveDismissal
 		}
+        
+        if let dismissCompletion = dismissCompletion {
+            self.dismissCompletion = dismissCompletion
+        }
 	}
 }

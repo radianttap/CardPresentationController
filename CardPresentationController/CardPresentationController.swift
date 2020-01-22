@@ -200,7 +200,7 @@ public class CardPresentationController: UIPresentationController {
 			cardAnimator.isInteractive = true
 
 			//	and then initiate dismissal
-			presentedViewController.dismiss(animated: true)
+            presentedViewController.dismiss(animated: true, completion: configuration.dismissCompletion)
 
 		case .changed:
 			if !hasStartedPan { return }
