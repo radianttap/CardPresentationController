@@ -190,3 +190,6 @@ See `EmbeddedNCExample` where I have `UINavigationController` embedded inside or
 [MIT](LICENSE), as usual for all my stuff.
 
 
+## Give back
+
+If you found this code useful, please consider [buying me a coffee](https://www.buymeacoffee.com/radianttap) or two. ☕️😋
