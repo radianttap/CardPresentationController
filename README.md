@@ -1,3 +1,13 @@
+This component is deprecated.
+
+- We have native card support since iOS 13. 
+- In iOS 15 Apple is adding custom presentation sheets for half-modals.
+
+This component has served its purpose, **please move on to native API**.
+
+---
+
+
 [![](https://img.shields.io/github/tag/radianttap/CardPresentationController.svg?label=current)](https://github.com/radianttap/CardPresentationController/releases)
 ![platforms: iOS](https://img.shields.io/badge/platform-iOS-blue.svg)
 [![](https://img.shields.io/github/license/radianttap/CardPresentationController.svg)](https://github.com/radianttap/CardPresentationController/blob/master/LICENSE)
